@@ -29,6 +29,7 @@ SOURCES += \
     model/core/weapon_sword.cpp \
     model/core/weaponarmor_gloves.cpp \
     model/core/weaponshield_attackshield.cpp \
+    model/inventory.cpp \
     view/mainwindow.cpp \
     model/core/ring.cpp \
     model/core/shield.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     model/core/weapon_sword.h \
     model/core/weaponarmor_gloves.h \
     model/core/weaponhield_attackshield.h \
+    model/inventory.h \
     view/mainwindow.h \
     model/core/ring.h \
     model/core/shield.h \
