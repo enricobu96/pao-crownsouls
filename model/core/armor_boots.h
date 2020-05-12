@@ -6,6 +6,7 @@
 class Boots : public Armor {
 public:
     Boots();
+    void setName(const string&);
 };
 
 #endif // ARMORBOOTS_H
