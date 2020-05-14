@@ -6,6 +6,8 @@
 class Shield : public InventoryItem {
 public:
     Shield();
+
+private:
 };
 
 #endif // SHIELD_H
