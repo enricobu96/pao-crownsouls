@@ -3,9 +3,9 @@
 
 #include "shield.h"
 
-class Full : public Shield {
+class DefenseShield : public Shield {
 public:
-    Full(U_INT =0);
+    DefenseShield(string, U_SHORT, string, U_INT, U_INT, U_INT =0);
 
     void setSpeedPenality(const U_INT&);
 private:

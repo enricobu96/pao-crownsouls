@@ -1,6 +1,7 @@
 #include "weaponarmor_gloves.h"
 
-Gloves::Gloves(U_SHORT _strScaling) {
+Gloves::Gloves(string n, U_SHORT il, string d, U_INT pdef, U_INT mdef, U_SHORT b, U_INT pdmg, U_INT mdmg, U_SHORT _strScaling) :
+WeaponArmor(n, il, d, pdef, mdef, b, pdmg, mdmg) {
     setStrScaling(_strScaling);
 }
 

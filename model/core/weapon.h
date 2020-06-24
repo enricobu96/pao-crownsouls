@@ -3,9 +3,9 @@
 
 #include "inventoryitem.h"
 
-class Weapon : public InventoryItem {
+class Weapon : virtual public InventoryItem {
 public:
-    Weapon(U_INT =0, U_INT =0);
+    Weapon(string, U_SHORT, string, U_INT =0, U_INT =0);
 
     //metodi setter
     void setPhysicalDmg(const U_INT &);

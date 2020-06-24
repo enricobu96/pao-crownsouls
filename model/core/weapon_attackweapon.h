@@ -5,7 +5,7 @@
 
 class AttackWeapon : public Weapon {
 public:
-    AttackWeapon(U_SHORT =0, U_SHORT =0);
+    AttackWeapon(string, U_SHORT, string, U_INT, U_INT, U_SHORT =0, U_SHORT =0);
 
     //metodi setter
     void setStrScaling(const U_SHORT&);

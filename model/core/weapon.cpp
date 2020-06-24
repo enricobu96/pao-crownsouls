@@ -1,9 +1,10 @@
 #include "weapon.h"
 
-Weapon::Weapon(U_INT _physicalDmg, U_INT _magicalDmg):
-    levelDmg(CalculateLevelDmg()) {
+Weapon::Weapon(string n, U_SHORT il, string d, U_INT _physicalDmg, U_INT _magicalDmg):
+    InventoryItem(n, il, d) {
     setPhysicalDmg(_physicalDmg);
     setMagicalDmg(_magicalDmg);
+    levelDmg = CalculateLevelDmg();
 }
 
 void Weapon::setPhysicalDmg(const unsigned int & _physicalDmg) {

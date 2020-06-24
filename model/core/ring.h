@@ -8,7 +8,7 @@ using std::string;
 
 class Ring : public InventoryItem {
 public:
-    Ring(string ="");
+    Ring(string, U_SHORT, string, string ="Storia non definita");
 
     string getFlavour() const;
 private:

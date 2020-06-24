@@ -1,6 +1,6 @@
 #include "armor.h"
 
-Armor::Armor(U_INT _physicalDef, U_INT _magicalDef, U_SHORT _balance) : InventoryItem() {
+Armor::Armor(string n, U_SHORT il, string d, U_INT _physicalDef, U_INT _magicalDef, U_SHORT _balance) : InventoryItem(n, il, d) {
     setPhysicalDef(_physicalDef);
     setMagicalDef(_magicalDef);
     setBalance(_balance);

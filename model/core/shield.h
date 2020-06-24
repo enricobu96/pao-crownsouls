@@ -3,9 +3,9 @@
 
 #include "inventoryitem.h"
 
-class Shield : public InventoryItem {
+class Shield : virtual public InventoryItem {
 public:
-    Shield(U_INT =0, U_INT =0);
+    Shield(string, U_SHORT, string, U_INT =0, U_INT =0);
 
     //metodi setter
     void setPhysicalRed(const U_INT&);

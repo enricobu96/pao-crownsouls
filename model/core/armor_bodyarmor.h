@@ -5,7 +5,7 @@
 
 class BodyArmor : public Armor {
 public:
-    BodyArmor(U_INT =0, U_INT =0);
+    BodyArmor(string, U_SHORT, string, U_INT, U_INT, U_SHORT, U_INT =0, U_INT =0);
 
     //metodi setter
     void setFallingDef(const U_INT&);

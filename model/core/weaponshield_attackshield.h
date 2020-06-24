@@ -5,7 +5,7 @@
 
 class AttackShield : public WeaponShield {
 public:
-    AttackShield(U_SHORT =0);
+    AttackShield(string, U_SHORT, string, U_INT, U_INT, U_INT, U_INT, U_SHORT =0);
 
     void setDexScaling(const U_SHORT&);
 private:

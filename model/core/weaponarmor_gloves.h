@@ -5,7 +5,7 @@
 
 class Gloves : public WeaponArmor {
 public:
-    Gloves(U_SHORT =0);
+    Gloves(string, U_SHORT, string, U_INT, U_INT, U_SHORT, U_INT, U_INT, U_SHORT =0);
 
     void setStrScaling(const U_SHORT&);
 
