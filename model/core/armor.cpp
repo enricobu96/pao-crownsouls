@@ -24,7 +24,7 @@ void Armor::setMagicalDef(const unsigned int & _magicalDef) {
 
 void Armor::setBalance(const unsigned short & _balance) {
     if(_balance > 0 && _balance < 30)
-        physicalDef = _balance;
+        balance = _balance;
     else
         balance = 0;
 }
