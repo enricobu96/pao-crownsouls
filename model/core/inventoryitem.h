@@ -1,33 +1,41 @@
 #ifndef INVENTORYITEM_H
 #define INVENTORYITEM_H
 
+
 #include<string>
 using std::string;
+
+//just some macros
+#define U_INT unsigned int
+#define U_SHORT unsigned short
 
 class InventoryItem
 {
 public:
-    InventoryItem(string ="Nome non definito", unsigned short =0, string ="Descrizione non definita", unsigned short =0, double =0.0);
+    InventoryItem(string ="Nome non definito", U_SHORT =0, string ="Descrizione non definita", U_SHORT =0, double =0.0);
+
+    //copia profonda
+    virtual InventoryItem* clone() const =0;
 
     //setter propri della classe
     virtual void setName(const string&);
-    virtual void setItemLevel(const unsigned short&);
+    virtual void setItemLevel(const U_SHORT&);
     virtual void setDescription(const string&);
-    virtual void setDuration(const unsigned short&);
+    virtual void setDuration(const U_SHORT&);
     virtual void setWeight(const double&);
 
     //getter propri della classe
     virtual string getName() const;
-    virtual unsigned short getItemLevel() const;
+    virtual U_SHORT getItemLevel() const;
     virtual string getDescription() const;
-    virtual unsigned short getDuration() const;
+    virtual U_SHORT getDuration() const;
     virtual double getWeight() const;
 
 private:
     string name;
-    unsigned short itemLevel;
+    U_SHORT itemLevel;
     string description;
-    unsigned short duration;
+    U_SHORT duration;
     double weight;
 };
 

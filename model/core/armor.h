@@ -5,19 +5,27 @@
 
 class Armor : public InventoryItem {
 public:
-    Armor(unsigned int =0, unsigned int =0, unsigned int =0, unsigned int =0,
-          unsigned short =0, unsigned short =0, unsigned short =0);
+    Armor( U_INT =0, U_INT =0, U_INT =0, U_INT =0,
+          U_SHORT =0, U_SHORT =0, U_SHORT =0);
 
-    unsigned int calculateTotalDef();
+    //metodi setter
+    void setPhysicalDef(const U_INT &);
+    void setMagicalDef(const U_INT &);
+    void setFireDef(const U_INT &);
+    void setElectricDef(const U_INT &);
+    void setBalance(const U_SHORT &);
+    void setBleedingRes(const U_SHORT &);
+    void setPoisonRes(const U_SHORT &);
+
+    virtual U_INT getTotalDef() const =0;
 private:
-    unsigned int physicalDef;
-    unsigned int magicalDef;
-    unsigned int fireDef;
-    unsigned int electricDef;
-    unsigned int totalDef;
-    unsigned short balance;
-    unsigned short bleedingRes;
-    unsigned short poisonRes;
+    U_INT physicalDef;
+    U_INT magicalDef;
+    U_INT fireDef;
+    U_INT electricDef;
+    U_SHORT balance;
+    U_SHORT bleedingRes;
+    U_SHORT poisonRes;
 };
 
 #endif // ARMOR_H

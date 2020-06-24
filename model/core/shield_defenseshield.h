@@ -5,7 +5,11 @@
 
 class Full : public Shield {
 public:
-    Full();
+    Full(U_INT =0);
+
+    void setSpeedPenality(const U_INT&);
+private:
+    U_INT speedPenality;
 };
 
 #endif // FULL_H

@@ -17,16 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     model/core/armor.cpp \
-    model/core/armor_body.cpp \
-    model/core/armor_boots.cpp \
-    model/core/armor_helmet.cpp \
+    model/core/armor_bodyarmor.cpp \
     model/core/inventoryitem.cpp \
     main.cpp \
-    model/core/shield_full.cpp \
-    model/core/shield_parry.cpp \
-    model/core/weapon_axe.cpp \
-    model/core/weapon_halberd.cpp \
-    model/core/weapon_sword.cpp \
+    model/core/shield_defenseshield.cpp \
+    model/core/weapon_attackweapon.cpp \
     model/core/weaponarmor_gloves.cpp \
     model/core/weaponshield_attackshield.cpp \
     model/inventory.cpp \
@@ -39,17 +34,12 @@ SOURCES += \
 
 HEADERS += \
     model/core/armor.h \
-    model/core/armor_body.h \
-    model/core/armor_boots.h \
-    model/core/armor_helmet.h \
+    model/core/armor_bodyarmor.h \
     model/core/inventoryitem.h \
-    model/core/shield_full.h \
-    model/core/shield_parry.h \
-    model/core/weapon_axe.h \
-    model/core/weapon_halberd.h \
-    model/core/weapon_sword.h \
+    model/core/shield_defenseshield.h \
+    model/core/weapon_attackweapon.h \
     model/core/weaponarmor_gloves.h \
-    model/core/weaponhield_attackshield.h \
+    model/core/weaponshield_attackshield.h \
     model/inventory.h \
     view/mainwindow.h \
     model/core/ring.h \

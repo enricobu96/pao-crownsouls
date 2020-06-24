@@ -5,7 +5,12 @@
 
 class Gloves : public WeaponArmor {
 public:
-    Gloves();
+    Gloves(U_SHORT =0);
+
+    void setStrScaling(const U_SHORT&);
+
+private:
+    U_SHORT strScaling;
 };
 
 #endif // GLOVES_H
