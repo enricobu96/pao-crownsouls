@@ -6,6 +6,7 @@ Armor::Armor(string n, U_SHORT il, string d, U_INT _physicalDef, U_INT _magicalD
     setBalance(_balance);
 }
 
+//SETTER
 void Armor::setPhysicalDef(const unsigned int & _physicalDef) {
     if(_physicalDef > 0 && _physicalDef < 200)
         physicalDef = _physicalDef;
@@ -29,7 +30,12 @@ void Armor::setBalance(const unsigned short & _balance) {
 }
 
 
-U_INT Armor::getTotalDef() const
-{
+//GETTER
+unsigned int Armor::getPhysicalDef() const { return physicalDef; }
+unsigned int Armor::getMagicalDef() const { return magicalDef; }
+unsigned short Armor::getBalance() const { return balance; }
+
+//METODI
+double Armor::getTotalDef() const {
     return physicalDef+magicalDef;
 }

@@ -6,6 +6,11 @@ Armor(n, il, d, pdef, mdef, b) {
     setStabbingDef(_stabbingDef);
 }
 
+BodyArmor *BodyArmor::clone() const {
+    return new BodyArmor(*this);
+}
+
+//SETTER
 void BodyArmor::setFallingDef(const unsigned int & _fallingDef) {
     if(_fallingDef > 0 && _fallingDef < 100)
         fallingDef = _fallingDef;
@@ -18,4 +23,13 @@ void BodyArmor::setStabbingDef(const unsigned int & _stabbingDef) {
         stabbingDef = _stabbingDef;
     else
         stabbingDef = 0;
+}
+
+//GETTER
+unsigned int BodyArmor::getFallingDef() const { return fallingDef; }
+unsigned int BodyArmor::getStabbingDef() const { return stabbingDef; }
+
+//METODI
+double BodyArmor::getTotalDef() const {
+    return Armor::getTotalDef() + fallingDef + stabbingDef;
 }

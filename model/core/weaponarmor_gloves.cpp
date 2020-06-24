@@ -5,9 +5,22 @@ WeaponArmor(n, il, d, pdef, mdef, b, pdmg, mdmg) {
     setStrScaling(_strScaling);
 }
 
+Gloves *Gloves::clone() const {
+    return new Gloves(*this);
+}
+
+//SETTER
 void Gloves::setStrScaling(const unsigned short & _strScaling) {
     if(_strScaling >= 0 && _strScaling <= 4)
         strScaling = _strScaling;
     else
         strScaling = 0;
+}
+
+//GETTER
+unsigned short Gloves::getStrScaling() const { return strScaling; }
+
+//METODI
+double Gloves::getTotalDef() const {
+    return WeaponArmor::getTotalDef()*strScaling*0.25;
 }

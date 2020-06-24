@@ -6,6 +6,7 @@ Shield::Shield(string n, U_SHORT il, string d, U_INT _physicalRed, U_INT _magica
     setMagicalRed(_magicalRed);
 }
 
+//SETTER
 void Shield::setPhysicalRed(const unsigned int & _physicalRed) {
     if(_physicalRed > 0 && _physicalRed < 100)
         physicalRed = _physicalRed;
@@ -20,8 +21,12 @@ void Shield::setMagicalRed(const unsigned int & _magicalRed) {
         magicalRed = 0;
 }
 
-U_INT Shield::getTotalRed() const
-{
+//GETTER
+unsigned int Shield::getPhysicalRed() const { return physicalRed; }
+unsigned int Shield::getMagicalRed() const { return magicalRed; }
+
+//METODI
+double Shield::getTotalRed() const {
     return physicalRed+magicalRed;
 }
 

@@ -7,6 +7,7 @@ Weapon::Weapon(string n, U_SHORT il, string d, U_INT _physicalDmg, U_INT _magica
     levelDmg = CalculateLevelDmg();
 }
 
+//SETTER
 void Weapon::setPhysicalDmg(const unsigned int & _physicalDmg) {
     if(_physicalDmg > 0 && _physicalDmg < 500)
         physicalDmg = _physicalDmg;
@@ -21,13 +22,17 @@ void Weapon::setMagicalDmg(const unsigned int & _magicalDmg) {
         magicalDmg = 0;
 }
 
+//GETTER
+unsigned int Weapon::getPhysicalDmg() const { return physicalDmg; }
+unsigned int Weapon::getMagicalDmg() const { return magicalDmg; }
+unsigned int Weapon::getLevelDmg() const { return levelDmg; }
 
+//METODI
 U_INT Weapon::CalculateLevelDmg() const {
     return InventoryItem::getItemLevel()*3;
 }
 
-U_INT Weapon::getTotalDmg() const
-{
+double Weapon::getTotalDmg() const {
     return physicalDmg+magicalDmg+levelDmg;
 }
 

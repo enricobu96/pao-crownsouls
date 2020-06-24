@@ -1,13 +1,12 @@
 #include "inventoryitem.h"
 
-//costruttore
 InventoryItem::InventoryItem(std::string _name, U_SHORT _itemLevel, std::string _description) {
     setName(_name);
     setItemLevel(_itemLevel);
     setDescription(_description);
 }
 
-//metodi setter
+//SETTER
 void InventoryItem::setName(const std::string & _name) {
     if(_name.size() > 100)
         name="unknown";
@@ -30,7 +29,7 @@ void InventoryItem::setDescription(const std::string & _description) {
 }
 
 
-//metodi getter
+//GETTER
 std::string InventoryItem::getName() const { return name; }
 U_SHORT InventoryItem::getItemLevel() const { return itemLevel; }
 std::string InventoryItem::getDescription() const { return description; }

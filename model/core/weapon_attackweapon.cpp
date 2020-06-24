@@ -6,6 +6,12 @@ Weapon(n, il, d, pdmg, mdmg) {
     setDexScaling(_dexScaling);
 }
 
+AttackWeapon *AttackWeapon::clone() const {
+    return new AttackWeapon(*this);
+}
+
+
+//SETTER
 void AttackWeapon::setStrScaling(const unsigned short & _strScaling) {
     if(_strScaling >= 0 && _strScaling <= 4)
         strScaling = _strScaling;
@@ -18,4 +24,13 @@ void AttackWeapon::setDexScaling(const unsigned short & _dexScaling) {
         dexScaling = _dexScaling;
     else
         dexScaling = 0;
+}
+
+//GETTER
+unsigned short AttackWeapon::getStrScaling() const { return strScaling; }
+unsigned short AttackWeapon::getDexScaling() const { return dexScaling; }
+
+//METODI
+double AttackWeapon::getTotalDmg() const {
+    return Weapon::getTotalDmg()+(strScaling*0.25)+(dexScaling*0.125);
 }

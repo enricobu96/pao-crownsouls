@@ -5,14 +5,22 @@
 
 class Weapon : virtual public InventoryItem {
 public:
+
     Weapon(string, U_SHORT, string, U_INT =0, U_INT =0);
 
-    //metodi setter
+    //SETTER
     void setPhysicalDmg(const U_INT &);
     void setMagicalDmg(const U_INT &);
 
+    //GETTER
+    U_INT getPhysicalDmg() const;
+    U_INT getMagicalDmg() const;
+    U_INT getLevelDmg() const;
+
+    //METODI
     U_INT CalculateLevelDmg() const;
-    U_INT getTotalDmg() const;
+    virtual double getTotalDmg() const;
+
 private:
     U_INT physicalDmg;
     U_INT magicalDmg;

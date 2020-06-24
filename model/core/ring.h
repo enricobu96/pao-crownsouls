@@ -8,9 +8,16 @@ using std::string;
 
 class Ring : public InventoryItem {
 public:
-    Ring(string, U_SHORT, string, string ="Storia non definita");
 
+    Ring(string, U_SHORT, string, string ="Storia non definita");
+    virtual Ring* clone() const;
+
+    //SETTER
+    void setFlavour(const string&);
+
+    //GETTER
     string getFlavour() const;
+
 private:
     string flavour;
 };
