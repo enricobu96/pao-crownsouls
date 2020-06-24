@@ -6,7 +6,7 @@
 class Shield : virtual public InventoryItem {
 public:
 
-    Shield(string, U_SHORT, string, U_INT =0, U_INT =0);
+    Shield(U_INT =0, U_INT =0);
 
     //SETTER
     void setPhysicalRed(const U_INT&);

@@ -1,7 +1,6 @@
 #include "shield.h"
 
-Shield::Shield(string n, U_SHORT il, string d, U_INT _physicalRed, U_INT _magicalRed) :
-    InventoryItem(n, il, d) {
+Shield::Shield(U_INT _physicalRed, U_INT _magicalRed) {
     setPhysicalRed(_physicalRed);
     setMagicalRed(_magicalRed);
 }

@@ -1,7 +1,7 @@
 #include "weaponshield_attackshield.h"
 
 AttackShield::AttackShield(string n, U_SHORT il, string d, U_INT pdmg, U_INT mdmg, U_INT pred, U_INT mred, U_SHORT _dexScaling) :
-WeaponShield(n, il, d, pdmg, mdmg, pred, mred) {
+InventoryItem(n, il, d), WeaponShield(pdmg, mdmg, pred, mred) {
     setDexScaling(_dexScaling);
 }
 
