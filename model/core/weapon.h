@@ -7,6 +7,7 @@ class Weapon : virtual public InventoryItem {
 public:
 
     Weapon(U_INT =0, U_INT =0);
+    virtual ~Weapon() =default;
 
     //SETTER
     void setPhysicalDmg(const U_INT &);

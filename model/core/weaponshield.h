@@ -7,6 +7,7 @@
 class WeaponShield : public Weapon , public Shield {
 public:
     WeaponShield(U_INT, U_INT, U_INT, U_INT);
+    virtual ~WeaponShield() =default;
 
     //METODI
     virtual double getTotalDmg() const;

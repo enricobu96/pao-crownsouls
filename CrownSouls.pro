@@ -24,7 +24,6 @@ SOURCES += \
     model/core/weapon_attackweapon.cpp \
     model/core/weaponarmor_gloves.cpp \
     model/core/weaponshield_attackshield.cpp \
-    model/inventory.cpp \
     view/mainwindow.cpp \
     model/core/ring.cpp \
     model/core/shield.cpp \
@@ -40,7 +39,7 @@ HEADERS += \
     model/core/weapon_attackweapon.h \
     model/core/weaponarmor_gloves.h \
     model/core/weaponshield_attackshield.h \
-    model/inventory.h \
+    model/inventory.hpp \
     view/mainwindow.h \
     model/core/ring.h \
     model/core/shield.h \

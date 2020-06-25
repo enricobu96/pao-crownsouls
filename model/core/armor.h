@@ -7,6 +7,7 @@ class Armor : virtual public InventoryItem {
 public:
 
     Armor(U_INT =0, U_INT =0, U_SHORT =0);
+    virtual ~Armor() =default;
 
     //SETTER
     void setPhysicalDef(const U_INT &);

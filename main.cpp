@@ -15,7 +15,7 @@
 #include "model/core/weaponarmor_gloves.h"
 #include "model/core/weaponshield.h"
 #include "model/core/weaponshield_attackshield.h"
-#include "model/inventory.h"
+#include "model/inventory.hpp"
 
 using namespace std;
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     //WeaponArmor wa = new WeaponArmor("aaa", 63, "bbb", 5, 5, 5, 5, 5); //non compila e questo è esattamente quello che voglio
     //WeaponShield ws = new WeaponShield("aaa", 54, "bbb", 3, 3, 3, 3); //non compila e questo è esattamente quello che voglio
 
-    //CONCRETE
+    //CONCRETE - check
     BodyArmor* ba = new BodyArmor("bodyarmor", 5, "bbbodyarmor", 4, 4, 4, 4, 4);
     cout << "prima bodyarmor be liek:" << endl;
     cout << ba->getName() << " " << ba->getItemLevel() << " " << ba->getDescription() << " " << ba->getPhysicalDef() << " " <<
@@ -83,12 +83,39 @@ int main(int argc, char *argv[])
     cout << "primo anello be liek:" <<endl;
     cout << r->getName() << " " << r->getItemLevel() << " " << r->getDescription() << " " << r->getFlavour() << endl;
 
+    //delete r;
+    //delete ass;
 
-    //TEST DEI METODI DELLA GERARCHIA
-    cout << "bodyarmor: " << ba->getTotalDef() << endl;
+    //TEST DEI METODI DELLA GERARCHIA - check
+    /*cout << "bodyarmor: " << ba->getTotalDef() << endl;
     cout << "gloves: " << g->getTotalDef() << " " << g->getTotalDmg() << endl;
     cout << "attackweapon: " << aw->getTotalDmg() << endl;
     cout << "attackshield: " << ass->getTotalDmg() << " " << ass->getTotalRed() << endl;
-    cout << "defenseshield: " << ds->getTotalRed() << endl;
+    cout << "defenseshield: " << ds->getTotalRed() << endl; */
 
+    //TEST DEL CONTAINER
+    Inventory<InventoryItem*> ta; //creazione
+    ta.pushFront(ass); //pushfront
+    ta.pushBack(aw); //pushBack
+    ta.pushBack(ds);
+    ta.pushBack(r);
+
+    Inventory<InventoryItem*> copy(ta); //costruttore di copia
+
+
+    cout << "elemento in ta:" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
+            ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
+
+    ta.popFront();
+
+    cout << "dopo popfront" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
+            ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
+    ta.popBack();
+
+    cout << "dopo popback" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
+            ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
+
+    cout << "test costruttore di copia" << copy.isEmpty() << " " << copy.getSize() << " " << copy.getFront()->getName() << " " <<
+           copy.getBack()->getName() << endl;
+    cout << "boh";
 }
