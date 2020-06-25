@@ -267,13 +267,7 @@ T Inventory<T>::getBack() const {
 
 template<class T>
 unsigned int Inventory<T>::getSize() const {
-    int i=0;
-    SmartP* t = first;
-    while(t) {
-        t = t->next;
-        i++;
-    }
-    return i;
+    return size;
 }
 
 
