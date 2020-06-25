@@ -94,28 +94,45 @@ int main(int argc, char *argv[])
     cout << "defenseshield: " << ds->getTotalRed() << endl; */
 
     //TEST DEL CONTAINER
-    Inventory<InventoryItem*> ta; //creazione
-    ta.pushFront(ass); //pushfront
-    ta.pushBack(aw); //pushBack
+
+    //costruttore
+    Inventory<InventoryItem*> ta;
+    //diversi tipi di push
+    ta.pushFront(ass);
+    ta.pushBack(aw);
     ta.pushBack(ds);
     ta.pushBack(r);
-
+    ta.pushBack(g);
+    ta.pushBack(ba);
+    ta.pushBack(r);
+    ta.pushBack(ds);
+    //costruttore di copia
     Inventory<InventoryItem*> copy(ta); //costruttore di copia
 
 
     cout << "elemento in ta:" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
 
-    ta.popFront();
+    cout << "test costruttore di copia" << copy.isEmpty() << " " << copy.getSize() << " " << copy.getFront()->getName() << " " <<
+           copy.getBack()->getName() << endl;
 
+
+
+    //diversi tipi di pop
+    ta.popFront();
     cout << "dopo popfront" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
     ta.popBack();
-
     cout << "dopo popback" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
+    ta.popAtPosition(2);
+    cout << "dopo popPosition in mezzo" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
+            ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
+    ta.popAtPosition(0);
+    cout << "dopo popPosition in testa" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
+            ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
+    ta.popAtPosition(3);
+    cout << "dopo popPosition in coda" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
+            ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
 
-    cout << "test costruttore di copia" << copy.isEmpty() << " " << copy.getSize() << " " << copy.getFront()->getName() << " " <<
-           copy.getBack()->getName() << endl;
-    cout << "boh";
 }
