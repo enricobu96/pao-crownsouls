@@ -3,6 +3,7 @@
 #include "core/inventoryitem.h"
 #include<iostream>
 using namespace std;
+
 /*
  * A FUTURA MEMORIA:
  * Classe container, corrispondente all'inventario composto da più InventoryItem.
@@ -17,36 +18,9 @@ using namespace std;
 template<class T>
 class Inventory
 {
-public:
-    //COSTRUTTORI INVENTORY
-    Inventory();
-    Inventory(const Inventory&);
-    ~Inventory();
-
-    //OVERLOADING DEGLI OPERATORI
-    bool operator== (const Inventory&) const;
-    bool operator!= (const Inventory&) const;
-    Inventory<T> operator= (const Inventory&);
-    T& operator[] (U_INT) const;
-
-    //FUNZIONALITÀ BASE
-    bool isEmpty() const;
-    void pushFront(const T&);
-    void pushBack(const T&);
-    void popFront();
-    void popBack();
-    void popAtPosition(U_INT);
-    T getFront() const;
-    T getBack() const;
-    U_INT getSize() const;
-
-    /*ITERATORE: TODO?
-     *class Iterator{
-     *   friend class Inventory<T>;
-     *};
-     */
-
+    friend class Iterator;
 private:
+
     //CLASSE INTERNA SMART POINTER
     class SmartP {
     public:
@@ -69,12 +43,62 @@ private:
 
     //CAMPI DATI INVENTORY
     SmartP* first;
-    SmartP* last; //last per O(1) per il push_back
+    SmartP* last;
     U_INT size;
 
     //METODI DI UTILITÀ PRIVATI
     SmartP* cloneList(SmartP*);
     bool isSame(SmartP*, SmartP*) const;
+
+public:
+
+    //COSTRUTTORI INVENTORY
+    Inventory();
+    Inventory(const Inventory&);
+    ~Inventory();
+
+    //OVERLOADING DEGLI OPERATORI
+    bool operator== (const Inventory&) const;
+    bool operator!= (const Inventory&) const;
+    Inventory<T> operator= (const Inventory&);
+    T& operator[] (U_INT) const; //DA SISTEMARE
+
+    //FUNZIONALITÀ BASE
+    bool isEmpty() const;
+    void pushFront(const T&);
+    void pushBack(const T&);
+    void popFront();
+    void popBack();
+    void popAtPosition(U_INT);
+    T getFront() const;
+    T getBack() const;
+    U_INT getSize() const;
+
+    //ITERATORE
+    class Iterator{
+        friend class Inventory<T>;
+    private:
+        const typename Inventory<T>::SmartP* p;
+        U_INT i;
+        bool isFinished;
+    public:
+
+        //COSTRUTTORI
+        Iterator(typename Inventory<T>::SmartP* =nullptr, U_INT =0, bool =false);
+        ~Iterator() =default;
+
+        //RIDEFINIZIONE OPERATORI ITERATOR
+        Iterator& operator++();
+        const T& operator* () const;
+        const T* operator-> () const;
+        bool operator== (const Iterator&) const;
+        bool operator!= (const Iterator&) const;
+
+    };
+
+    //METODI PER ITERATORE
+    Iterator begin() const;
+    Iterator end() const;
 };
 
 
@@ -123,7 +147,7 @@ bool Inventory<T>::SmartP::operator!=(const SmartP & s) const {
 
 //METODI D'UTILITÀ PRIVATI
 template<class T>
-typename Inventory<T>::SmartP* Inventory<T>::cloneList(Inventory<T>::SmartP* p) { //clonazione profonda di una lista
+typename Inventory<T>::SmartP* Inventory<T>::cloneList(Inventory<T>::SmartP* p) {
     if(!p)
         return nullptr;
     if(!p->next)
@@ -223,23 +247,19 @@ void Inventory<T>::popAtPosition(unsigned int i) {
     if(!this->isEmpty()) {
         if(i == 0) return popFront();
         if(first == last) {
-            cout << "first == last ";
             delete first;
             first = nullptr;
             last = nullptr;
         } else if(size<=i+1) {
-            cout << " popback ";
             popBack();
         } else {
-            cout << " ramo else ";
             SmartP* t = first;
             while(first && i>1) {
-                cout << "A";
                 first = first->next;
                 --i;
             }
             SmartP* tt = first->next;
-            if(first->next->next) first->next = first->next->next; //spaghetti alla carbonara
+            if(first->next->next) first->next = first->next->next;
             else first->next = nullptr;
             if(tt->next) tt->next = nullptr;
             if(tt) delete tt;
@@ -288,28 +308,66 @@ Inventory<T> Inventory<T>::operator=(const Inventory & s) {
     if(this != &s) {
         if(first)
             delete first;
-        first = cloneList(s.front);
+        first = cloneList(s.first);
         size = s.size;
     }
     return *this;
 }
 
 template<class T>
-T &Inventory<T>::operator[](unsigned int i) const { //potrebbe non funzionare, occhio!
-    if(isEmpty())
-        return NULL;
+T& Inventory<T>::operator[](unsigned int i) const { //potrebbe non funzionare, occhio!
     SmartP* t = first;
-    while(i && first) {
-        first = first->next;
-        --i;
-    }
-    if(!first) {
-        first = t;
-        return NULL;
-    }
-    T r = first->item;
-    first = t;
-    return r;
+    while(i-- && t != nullptr)
+        t=t->next;
+    return t->item;
 }
+
+//COSTRUTTORI ITERATOR
+template<class T>
+Inventory<T>::Iterator::Iterator(typename Inventory<T>::SmartP* _p, unsigned int _i, bool f) : p(_p), i(_i), isFinished(f) {}
+
+template<class T>
+typename Inventory<T>::Iterator& Inventory<T>::Iterator::operator++() {
+    if(!isFinished) {
+        if(p->next == nullptr)
+            isFinished = true;
+        else
+            p = p->next;
+        i++;
+    } return *this;
+}
+
+//RIDEFINIZIONE OPERATORI ITERATOR
+template<class T>
+const T& Inventory<T>::Iterator::operator*() const {
+    return p->item;
+}
+
+template<class T>
+const T* Inventory<T>::Iterator::operator->() const {
+    return &(p->item);
+}
+
+template<class T>
+bool Inventory<T>::Iterator::operator== (const Iterator& s) const {
+    return p == s.p;
+}
+
+template<class T>
+bool Inventory<T>::Iterator::operator!= (const Iterator& s) const {
+    return p != s.p;
+}
+
+//METODI ITERATOR
+template<class T>
+typename Inventory<T>::Iterator Inventory<T>::begin() const {
+    return Iterator(first, 0, isEmpty());
+}
+
+template<class T>
+typename Inventory<T>::Iterator Inventory<T>::end() const {
+    return Iterator(last, size, true);
+}
+
 
 #endif // INVENTORY_H

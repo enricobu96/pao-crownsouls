@@ -87,15 +87,16 @@ int main(int argc, char *argv[])
     //delete ass;
 
     //TEST DEI METODI DELLA GERARCHIA - check
-    /*cout << "bodyarmor: " << ba->getTotalDef() << endl;
-    cout << "gloves: " << g->getTotalDef() << " " << g->getTotalDmg() << endl;
-    cout << "attackweapon: " << aw->getTotalDmg() << endl;
-    cout << "attackshield: " << ass->getTotalDmg() << " " << ass->getTotalRed() << endl;
-    cout << "defenseshield: " << ds->getTotalRed() << endl; */
+    cout << "bodyarmor: " << ba->getTotalDef() << ba->getType() << endl;
+    cout << "gloves: " << g->getTotalDef() << " " << g->getTotalDmg() << g->getType() << endl;
+    cout << "attackweapon: " << aw->getTotalDmg() << aw->getType() << endl;
+    cout << "attackshield: " << ass->getTotalDmg() << " " << ass->getTotalRed() << ass->getType() << endl;
+    cout << "defenseshield: " << ds->getTotalRed() << ds->getType()<< endl;
+
 
     //TEST DEL CONTAINER
 
-    //costruttore
+    //costruttore - check
     Inventory<InventoryItem*> ta;
     //diversi tipi di push
     ta.pushFront(ass);
@@ -106,20 +107,44 @@ int main(int argc, char *argv[])
     ta.pushBack(ba);
     ta.pushBack(r);
     ta.pushBack(ds);
-    //costruttore di copia
+
     Inventory<InventoryItem*> copy(ta); //costruttore di copia
 
-
+    /*
     cout << "elemento in ta:" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
 
     cout << "test costruttore di copia" << copy.isEmpty() << " " << copy.getSize() << " " << copy.getFront()->getName() << " " <<
            copy.getBack()->getName() << endl;
+    */
 
+    //test degli operatori del container - check
+    /*Inventory<InventoryItem*> terzo;
+    if(ta == copy) cout << endl << "copy e ta sono uguali" << endl;
+    if(ta == terzo) cout << "questo non deve comparire" << endl;
+    if(ta!=terzo) cout << "ta e terzo non sono uguali" << endl;
 
+    terzo = ta; //operatore =
+    if(ta == terzo) cout << "ora ta e terzo sono uguali" << endl;
 
-    //diversi tipi di pop
-    ta.popFront();
+    for(unsigned int i=0; i<ta.getSize(); ++i) { //operatore []
+       cout << endl << ta[i]->getName();
+    }
+
+    ta.popAtPosition(2);
+    cout << endl << "POPATPOSITION TERZO ELEMENTO" << endl;
+
+    for(unsigned int i=0; i<ta.getSize(); ++i) { //operatore []
+       cout << endl << ta[i]->getName();
+    } */
+
+    /*metodi del container
+    Inventory<InventoryItem*> vuoto;
+    if(vuoto.isEmpty()) cout << "vuoto è effettivamente vuoto" << endl;
+    */
+
+    //diversi tipi di pop - check
+    /*ta.popFront();
     cout << "dopo popfront" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
     ta.popBack();
@@ -134,5 +159,18 @@ int main(int argc, char *argv[])
     ta.popAtPosition(3);
     cout << "dopo popPosition in coda" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
+            */
 
+    //iteratore - NON PRENDE L'ULTIMO
+    cout << endl << "ITERATORE" << endl;
+    Inventory<InventoryItem*>::Iterator it;
+
+     for(it=ta.begin(); it!=ta.end(); ++it) {
+        InventoryItem* t = *it;
+        cout << t->getName() << endl; //NON PRENDE L'ULTIMO
+     }
 }
+
+/* TO FIX:
+ * - iteratore non prende l'ultimo elemento
+ */

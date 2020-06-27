@@ -19,6 +19,7 @@ public:
 
     //METODI
     virtual double getTotalRed() const;
+    virtual string getType() const override;
 
 private:
     U_INT physicalRed;

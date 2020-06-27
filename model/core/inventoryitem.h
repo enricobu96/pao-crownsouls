@@ -26,6 +26,9 @@ public:
     virtual U_SHORT getItemLevel() const;
     virtual string getDescription() const;
 
+    //METODI
+    virtual string getType() const =0;
+
 private:
     string name;
     U_SHORT itemLevel;

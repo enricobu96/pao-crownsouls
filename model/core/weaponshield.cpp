@@ -11,3 +11,7 @@ double WeaponShield::getTotalDmg() const {
 double WeaponShield::getTotalRed() const {
     return Shield::getTotalRed();
 }
+
+std::string WeaponShield::getType() const {
+    return "weaponshield";
+}

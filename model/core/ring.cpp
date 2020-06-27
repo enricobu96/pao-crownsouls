@@ -16,3 +16,8 @@ void Ring::setFlavour(const std::string & _flavour) {
 
 //GETTER
 std::string Ring::getFlavour() const { return flavour; }
+
+//METODI
+std::string Ring::getType() const {
+    return "ring";
+}

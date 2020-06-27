@@ -10,8 +10,9 @@ public:
     virtual ~WeaponShield() =default;
 
     //METODI
-    virtual double getTotalDmg() const;
-    virtual double getTotalRed() const;
+    virtual double getTotalDmg() const override;
+    virtual double getTotalRed() const override;
+    virtual string getType() const override;
 };
 
 #endif // WEAPONSHIELD_H

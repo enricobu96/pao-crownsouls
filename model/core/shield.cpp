@@ -29,3 +29,7 @@ double Shield::getTotalRed() const {
     return physicalRed+magicalRed;
 }
 
+std::string Shield::getType() const {
+    return "shield";
+}
+

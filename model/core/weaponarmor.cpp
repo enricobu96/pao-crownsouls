@@ -7,3 +7,7 @@ WeaponArmor::WeaponArmor(U_INT pdef, U_INT mdef, U_SHORT b, U_INT pdmg, U_INT md
 double WeaponArmor::getTotalDef() const {
     return Armor::getTotalDef();
 }
+
+std::string WeaponArmor::getType() const {
+    return "weaponarmor";
+}

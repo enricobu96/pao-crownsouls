@@ -11,7 +11,8 @@ public:
     virtual ~WeaponArmor() =default;
 
     //METODI
-    virtual double getTotalDef() const;
+    virtual double getTotalDef() const override;
+    virtual string getType() const override;
 
 };
 

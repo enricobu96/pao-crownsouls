@@ -21,6 +21,7 @@ public:
     //METODI
     U_INT CalculateLevelDmg() const;
     virtual double getTotalDmg() const;
+    string getType() const override;
 
 private:
     U_INT physicalDmg;

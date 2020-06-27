@@ -39,3 +39,7 @@ unsigned short Armor::getBalance() const { return balance; }
 double Armor::getTotalDef() const {
     return physicalDef+magicalDef;
 }
+
+std::string Armor::getType() const {
+    return "armor";
+}

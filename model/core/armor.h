@@ -21,6 +21,7 @@ public:
 
     //METODI
     virtual double getTotalDef() const =0;
+    virtual string getType() const override;
 
 private:
     U_INT physicalDef;

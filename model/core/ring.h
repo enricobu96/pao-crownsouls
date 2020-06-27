@@ -18,6 +18,9 @@ public:
     //GETTER
     string getFlavour() const;
 
+    //METODI
+    virtual string getType() const override;
+
 private:
     string flavour;
 };

@@ -35,3 +35,7 @@ double Weapon::getTotalDmg() const {
     return physicalDmg+magicalDmg+levelDmg;
 }
 
+std::string Weapon::getType() const {
+    return "weapon";
+}
+
