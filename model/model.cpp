@@ -82,7 +82,7 @@ Inventory<InventoryItem *> Model::getInventory() const {
 Inventory<InventoryItem*> Model::getArmorItems() const {
     Inventory<InventoryItem*> l;
     Inventory<InventoryItem*>::Iterator it;
-     for(it=inventory.begin(); it!=inventory.end(); ++it) {
+     for(it=inventory.begin(); it.hasFinished(); ++it) {
         InventoryItem* t = *it;
         if(t->getType() == "armor" || t->getType() == "weaponarmor")
             l.pushBack(t);
@@ -93,7 +93,7 @@ Inventory<InventoryItem*> Model::getArmorItems() const {
 Inventory<InventoryItem*> Model::getWeaponItems() const {
     Inventory<InventoryItem*> l;
     Inventory<InventoryItem*>::Iterator it;
-     for(it=inventory.begin(); it!=inventory.end(); ++it) {
+     for(it=inventory.begin(); it.hasFinished(); ++it) {
         InventoryItem* t = *it;
         if(t->getType() == "weapon" || t->getType() == "weaponarmor")
             l.pushBack(t);
@@ -104,7 +104,7 @@ Inventory<InventoryItem*> Model::getWeaponItems() const {
 Inventory<InventoryItem*> Model::getShieldItems() const {
     Inventory<InventoryItem*> l;
     Inventory<InventoryItem*>::Iterator it;
-     for(it=inventory.begin(); it!=inventory.end(); ++it) {
+     for(it=inventory.begin(); it.hasFinished(); ++it) {
         InventoryItem* t = *it;
         if(t->getType() == "shield" || t->getType() == "weaponshield")
             l.pushBack(t);
@@ -115,7 +115,7 @@ Inventory<InventoryItem*> Model::getShieldItems() const {
 Inventory<InventoryItem*> Model::getRingItems() const {
     Inventory<InventoryItem*> l;
     Inventory<InventoryItem*>::Iterator it;
-     for(it=inventory.begin(); it!=inventory.end(); ++it) {
+     for(it=inventory.begin(); it.hasFinished(); ++it) {
         InventoryItem* t = *it;
         if(t->getType() == "ring")
             l.pushBack(t);

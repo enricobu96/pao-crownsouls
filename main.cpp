@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
     cout << endl << "ITERATORE" << endl;
     Inventory<InventoryItem*>::Iterator it;
 
-     for(it=ta.begin(); it!=ta.end(); ++it) {
+     for(it=ta.begin(); !it.hasFinished(); ++it) {
         InventoryItem* t = *it;
         cout << t->getName() << endl; //NON PRENDE L'ULTIMO
      }

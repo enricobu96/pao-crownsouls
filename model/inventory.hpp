@@ -79,12 +79,11 @@ public:
         friend class Inventory<T>;
     private:
         const typename Inventory<T>::SmartP* p;
-        U_INT i;
         bool isFinished;
     public:
 
         //COSTRUTTORI
-        Iterator(typename Inventory<T>::SmartP* =nullptr, U_INT =0, bool =false);
+        Iterator(Inventory<T>::SmartP* =nullptr, bool =true);
         ~Iterator() =default;
 
         //RIDEFINIZIONE OPERATORI ITERATOR
@@ -93,6 +92,9 @@ public:
         const T* operator-> () const;
         bool operator== (const Iterator&) const;
         bool operator!= (const Iterator&) const;
+
+        //METODI
+        bool hasFinished() const;
 
     };
 
@@ -324,7 +326,7 @@ T& Inventory<T>::operator[](unsigned int i) const { //potrebbe non funzionare, o
 
 //COSTRUTTORI ITERATOR
 template<class T>
-Inventory<T>::Iterator::Iterator(typename Inventory<T>::SmartP* _p, unsigned int _i, bool f) : p(_p), i(_i), isFinished(f) {}
+Inventory<T>::Iterator::Iterator(Inventory<T>::SmartP* _p, bool status) : p(_p), isFinished(status) {}
 
 template<class T>
 typename Inventory<T>::Iterator& Inventory<T>::Iterator::operator++() {
@@ -333,7 +335,6 @@ typename Inventory<T>::Iterator& Inventory<T>::Iterator::operator++() {
             isFinished = true;
         else
             p = p->next;
-        i++;
     } return *this;
 }
 
@@ -355,19 +356,23 @@ bool Inventory<T>::Iterator::operator== (const Iterator& s) const {
 
 template<class T>
 bool Inventory<T>::Iterator::operator!= (const Iterator& s) const {
-    return p != s.p;
+    return (p != s.p);
 }
 
 //METODI ITERATOR
 template<class T>
 typename Inventory<T>::Iterator Inventory<T>::begin() const {
-    return Iterator(first, 0, isEmpty());
+    return Iterator(first, false);
 }
 
 template<class T>
 typename Inventory<T>::Iterator Inventory<T>::end() const {
-    return Iterator(last, size, true);
+    return Iterator(last, true);
 }
 
+template<class T>
+bool Inventory<T>::Iterator::hasFinished() const {
+    return isFinished;
+}
 
 #endif // INVENTORY_H
