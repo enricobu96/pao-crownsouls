@@ -42,16 +42,18 @@ QVariant Model::data(const QModelIndex &index, int role) const {
     return QVariant();
 }
 
-/*bool Model::setData(const QModelIndex& index, const QVariant& value, int role) {
+bool Model::setData(const QModelIndex& index, const QVariant& value, int role) {
     if(!index.isValid())
         return false;
     if(role != Qt::EditRole)
         return false;
-    if(index.column() == 0) {
-
-        //inventory[index.row()]->setName(value.toStdString());
-    }
-} */
+    if(index.column() == 0)
+        inventory[index.row()]->setName(value.toString().toUtf8().constData());
+    if(index.column() == 1)
+        inventory[index.row()]->setDescription(value.toString().toUtf8().constData());
+    if(index.column() == 2)
+        inventory[index.row()]->setItemLevel(static_cast<unsigned int>(value.toInt()));
+}
 
 QVariant Model::headerData(int section, Qt::Orientation orientation, int role) const {
     if(role != Qt::DisplayRole)

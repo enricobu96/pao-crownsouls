@@ -36,7 +36,7 @@ public:
     //bool insertRows(int, int, const QModelIndex& =QModelIndex()) override;
     bool removeRows(int, int, const QModelIndex& =QModelIndex()) override;
     QVariant data(const QModelIndex&, int =Qt::DisplayRole) const override;
-    //bool setData(const QModelIndex&, const QVariant&, int =Qt::EditRole) override;
+    bool setData(const QModelIndex&, const QVariant&, int =Qt::EditRole) override;
     QVariant headerData(int, Qt::Orientation, int) const override;
 
     //METODI PROPRI
