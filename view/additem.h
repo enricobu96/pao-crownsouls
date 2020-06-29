@@ -40,6 +40,9 @@ public:
     QSpinBox *magicRes;
     QSpinBox *stsIncreasing;
 
+    enum ObjType{E_bodyArmor,E_gloves,E_attackweapon,E_attackshield,E_defenceshield,E_ring};
+public slots:
+    void obscurer(int i);
 private:
     QVBoxLayout *mainLayout;
     QGridLayout *gridLayout;

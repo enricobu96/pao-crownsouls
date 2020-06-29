@@ -108,10 +108,124 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     mainLayout->addLayout(gridLayout);
     setLayout(mainLayout);
 
+    //CHIAMATA PER LA PRIMA VOLTA
+    obscurer(0);
     //CONNECT
     connect(buttok,SIGNAL(clicked()),this,SLOT(accept()));
+    connect(typeItemBox,SIGNAL(currentIndexChanged(int)),this,SLOT(obscurer(int)));
 
     setWindowTitle(t);
 }
+
+void AddItem::obscurer(int i) {
+    switch (i){
+        case E_bodyArmor: {
+            physDef->setEnabled(true);
+            magicDef->setEnabled(true);
+            balance->setEnabled(true);
+            fallDef->setEnabled(true);
+            stabDef->setEnabled(true);
+            strScaling->setEnabled(false);
+            physDmg->setEnabled(false);
+            magicDmg->setEnabled(false);
+            dexScaling->setEnabled(false);
+            physRes->setEnabled(false);
+            magicRes->setEnabled(false);
+            stsIncreasing->setEnabled(false);
+            break;
+        };
+        case E_gloves: {
+            physDef->setEnabled(true);
+            magicDef->setEnabled(true);
+            balance->setEnabled(true);
+            fallDef->setEnabled(true);
+            stabDef->setEnabled(true);
+            strScaling->setEnabled(true);
+            physDmg->setEnabled(true);
+            magicDmg->setEnabled(true);
+             dexScaling->setEnabled(false);
+            physRes->setEnabled(false);
+            magicRes->setEnabled(false);
+            stsIncreasing->setEnabled(false);
+            break;
+        };
+        case E_attackweapon:{
+            physDef->setEnabled(false);
+            magicDef->setEnabled(false);
+            balance->setEnabled(false);
+            fallDef->setEnabled(false);
+            stabDef->setEnabled(false);
+            strScaling->setEnabled(true);
+            physDmg->setEnabled(true);
+            magicDmg->setEnabled(true);
+            dexScaling->setEnabled(true);
+            physRes->setEnabled(false);
+            magicRes->setEnabled(false);
+            stsIncreasing->setEnabled(false);
+            break;
+        };
+        case E_attackshield:{
+            physDef->setEnabled(false);
+            magicDef->setEnabled(false);
+            balance->setEnabled(false);
+            fallDef->setEnabled(false);
+            stabDef->setEnabled(false);
+            strScaling->setEnabled(true);
+            physDmg->setEnabled(true);
+            magicDmg->setEnabled(true);
+            dexScaling->setEnabled(true);
+            physRes->setEnabled(true);
+            magicRes->setEnabled(true);
+            stsIncreasing->setEnabled(false);
+            break;
+        };
+        case E_defenceshield:{
+            physDef->setEnabled(false);
+            magicDef->setEnabled(false);
+            balance->setEnabled(false);
+            fallDef->setEnabled(false);
+            stabDef->setEnabled(false);
+            strScaling->setEnabled(false);
+            physDmg->setEnabled(false);
+            magicDmg->setEnabled(false);
+            dexScaling->setEnabled(false);
+            physRes->setEnabled(true);
+            magicRes->setEnabled(true);
+            stsIncreasing->setEnabled(false);
+            break;
+        };
+        case E_ring:{
+            physDef->setEnabled(false);
+            magicDef->setEnabled(false);
+            balance->setEnabled(false);
+            fallDef->setEnabled(false);
+            stabDef->setEnabled(false);
+            strScaling->setEnabled(false);
+            physDmg->setEnabled(false);
+            magicDmg->setEnabled(false);
+            dexScaling->setEnabled(false);
+            physRes->setEnabled(false);
+            magicRes->setEnabled(false);
+            stsIncreasing->setEnabled(true);
+            break;
+        };
+        default:{
+            physDef->setEnabled(false);
+            magicDef->setEnabled(false);
+            balance->setEnabled(false);
+            fallDef->setEnabled(false);
+            stabDef->setEnabled(false);
+            strScaling->setEnabled(false);
+            physDmg->setEnabled(false);
+            magicDmg->setEnabled(false);
+            dexScaling->setEnabled(false);
+            physRes->setEnabled(false);
+            magicRes->setEnabled(false);
+            stsIncreasing->setEnabled(false);
+            break;
+        };
+    }
+}
+
 
 
