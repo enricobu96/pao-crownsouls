@@ -9,6 +9,9 @@
 #include<QLineEdit>
 #include<QTextEdit>
 #include<QObject>
+#include<QSpinBox>
+
+#include<QGroupBox>
 
 
 class AddItem : public QDialog
@@ -21,16 +24,35 @@ public:
     QTextEdit *flavourText;
     QLineEdit* itemLevelPlaceholder; //itemLevel
 
+    QComboBox *typeItemBox;
+
+    QSpinBox *levelItem;
+    QSpinBox *physDef;
+    QSpinBox *magicDef;
+    QSpinBox *balance;
+    QSpinBox *fallDef;
+    QSpinBox *stabDef;
+    QSpinBox *strScaling;
+    QSpinBox *physDmg;
+    QSpinBox *magicDmg;
+    QSpinBox *dexScaling;
+    QSpinBox *physRes;
+    QSpinBox *magicRes;
+    QSpinBox *stsIncreasing;
+
 private:
     QVBoxLayout *mainLayout;
     QGridLayout *gridLayout;
+    QGridLayout *gbLayout;
 
     QLabel *nameLabel;
     QLabel *typeLabel;
     QLabel *descLabel;
+    QLabel *ilvlLabel;
 
-    QComboBox *typeItemBox;
     QPushButton *buttok;
+
+    QGroupBox* information;
 };
 
 #endif // ADDITEM_H
