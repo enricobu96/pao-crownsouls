@@ -4,12 +4,18 @@
 #include<QHeaderView>
 #include<iostream>
 #include "tab.h"
+#include<iostream>
+using namespace std;
 
 
 Tab::Tab(QWidget *parent)
     : QWidget(parent),
       usertab(new QTabWidget())
 {
+    model = new Model(this);
+    proxyModel = new QSortFilterProxyModel(this);
+
+
     //APPLICAZIONE
     setMinimumSize(1024,720);
     horilayout = new QHBoxLayout(this);
@@ -24,6 +30,11 @@ Tab::Tab(QWidget *parent)
     usertab->addTab(shieldTab, "Shields");
     usertab->addTab(weaponTab,"Weapons");
 
+    proxyModel->setSourceModel(model);
+    armorTab->setModel(proxyModel);
+    ringTab->setModel(proxyModel);
+    shieldTab->setModel(proxyModel);
+    weaponTab->setModel(proxyModel);
 
 
     horilayout->addWidget(usertab);
@@ -32,6 +43,32 @@ Tab::Tab(QWidget *parent)
     //SIGNAL
     //connect(viewArmi,SIGNAL(clicked(QModelIndex)),this,SLOT(ShowData()));
     //connect(viewArmatura,SIGNAL(clicked(QModelIndex)),this,SLOT(ShowData()));
+}
+
+void Tab::addItem()
+{
+    cout << "OUUUUU" << endl;
+    AddItem aItem("Add Item"); //TUTTO MOLTO SKETCHY
+    cout << "0";
+    if(aItem.exec()) {
+
+        QString name = aItem.namePlaceholder->text();
+        cout << "2";
+        QString description = aItem.flavourText->toPlainText();
+        cout << "3";
+        QString il = aItem.itemLevelPlaceholder->text();
+        cout << "4";
+        InventoryItem* p;
+        cout << "5";
+        p = new Ring(name.toUtf8().constData(), 0, description.toUtf8().constData()); // 0 è un placeholder
+        cout << "6";
+        model->insertRows(0, 1, QModelIndex());
+        cout << "7";
+        QModelIndex i = model->index(0, 0, QModelIndex());
+        cout << "qmodelindex = ";
+        model->addInventoryItem(i, QVariant::fromValue(p), Qt::EditRole);
+
+    }
 }
 
 void Tab::ShowData(){

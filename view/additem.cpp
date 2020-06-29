@@ -9,10 +9,16 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     namePlaceholder = new QLineEdit;
     namePlaceholder->setPlaceholderText("Nome oggetto");
 
+    itemLevelPlaceholder = new QLineEdit;
+    itemLevelPlaceholder->setPlaceholderText("Item level");
+
+
+
+
     flavourText = new QTextEdit;
 
     buttok = new QPushButton("ACCETTA");
-    connect(buttok,SIGNAL(clicked()),this,SLOT(addOggetto()));
+
 
     typeItemBox = new QComboBox;
     typeItemBox->addItem("Arma");
@@ -28,14 +34,13 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     gridLayout->addWidget(flavourText,1,1,2,4);
     gridLayout->addWidget(buttok,3,2);
 
+    gridLayout->addWidget(itemLevelPlaceholder, 0,4);
+
     mainLayout = new QVBoxLayout;
     mainLayout->addLayout(gridLayout);
     setLayout(mainLayout);
     setWindowTitle(t);
-}
-
-void AddItem::addOggetto()
-{
+    connect(buttok,SIGNAL(clicked()),this,SLOT(accept()));
 }
 
 

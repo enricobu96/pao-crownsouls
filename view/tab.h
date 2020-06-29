@@ -19,14 +19,20 @@
 #include"ringtab.h"
 #include"shieldtab.h"
 #include"weapontab.h"
+#include"additem.h"
+#include"../model/model.h"
 
 
-class Tab : public  QWidget
+class Tab : public QWidget
 {
    Q_OBJECT
 public:
     Tab(QWidget *parent = nullptr);
-    //Model *modelArmi;
+    Model *model;
+    QSortFilterProxyModel* proxyModel;
+
+public slots:
+    void addItem();
 
 private:
 

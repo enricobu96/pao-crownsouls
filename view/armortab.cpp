@@ -4,9 +4,9 @@ ArmorTab::ArmorTab(QWidget* parent) : QTableView(parent) {
     setSelectionBehavior(QAbstractItemView::SelectRows);
     horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    model = new Model(this);
+    /*model = new Model(this);
 
     proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(model);
-    setModel(proxyModel);
+    setModel(proxyModel); */
 }

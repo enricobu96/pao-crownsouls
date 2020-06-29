@@ -14,6 +14,17 @@ int Model::columnCount(const QModelIndex &parent) const {
     return 3;
 }
 
+bool Model::insertRows(int position, int rows, const QModelIndex& parent) {
+    Q_UNUSED(parent);
+    beginInsertRows(QModelIndex(), position, position+rows-1);
+    for(int row = 0; row < rows; ++row) {
+        InventoryItem* p = nullptr;
+        inventory.pushBack(p);
+    }
+    endInsertRows();
+    return true;
+}
+
 
 bool Model::removeRows(int position, int rows, const QModelIndex &parent) {
     Q_UNUSED(parent);
@@ -142,3 +153,14 @@ int Model::shieldCount() const {
 int Model::weaponCount() const {
     return getWeaponItems().getSize();
 }
+
+//setter
+bool Model::addInventoryItem(const QModelIndex &index, const QVariant &value, int role) {
+    if(index.isValid() && role == Qt::EditRole) {
+        inventory.pushFront(value.value<InventoryItem*>());
+        emit(dataChanged(index, index));
+        return true;
+    }
+    return false;
+}
+

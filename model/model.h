@@ -14,6 +14,7 @@
 #include "model/core/weaponarmor_gloves.h"
 #include "model/core/weaponshield.h"
 #include "model/core/weaponshield_attackshield.h"
+#include<QObject>
 
 //CONTAINER
 #include "inventory.hpp"
@@ -22,8 +23,11 @@
 #include<QString>
 #include<QAbstractListModel>
 
+Q_DECLARE_METATYPE(InventoryItem*)
+
 class Model : public QAbstractListModel
 {
+    Q_OBJECT
 public:
     //COSTRUTTORI
     Model(QObject* =nullptr);
@@ -33,7 +37,7 @@ public:
     //@override QAbstractListModel
     int rowCount(const QModelIndex&  =QModelIndex()) const override;
     int columnCount(const QModelIndex&) const override;
-    //bool insertRows(int, int, const QModelIndex& =QModelIndex()) override;
+    bool insertRows(int, int, const QModelIndex& =QModelIndex()) override;
     bool removeRows(int, int, const QModelIndex& =QModelIndex()) override;
     QVariant data(const QModelIndex&, int =Qt::DisplayRole) const override;
     bool setData(const QModelIndex&, const QVariant&, int =Qt::EditRole) override;
@@ -51,6 +55,9 @@ public:
     int ringCount() const;
     int shieldCount() const;
     int weaponCount() const;
+
+    //setter
+    bool addInventoryItem(const QModelIndex&, const QVariant&, int);
 
 private:
     const QString name; //nome del programma
