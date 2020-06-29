@@ -41,7 +41,7 @@ public:
 
     //METODI PROPRI
     //getter
-    QString getName() const;
+    QString getProgramName() const;
     Inventory<InventoryItem*> getInventory() const;
     Inventory<InventoryItem*> getArmorItems() const;
     Inventory<InventoryItem*> getWeaponItems() const;

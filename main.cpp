@@ -21,12 +21,12 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    /*QApplication a(argc, argv);
+    QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    return a.exec(); */
+    return a.exec();
 
-    cout << "entrato nel main" << endl;
+    /*cout << "entrato nel main" << endl;
 
     //TESTING CREAZIONE OGGETTI DELLA GERARCHIA
 
@@ -110,16 +110,16 @@ int main(int argc, char *argv[])
 
     Inventory<InventoryItem*> copy(ta); //costruttore di copia
 
-    /*
+
     cout << "elemento in ta:" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
 
     cout << "test costruttore di copia" << copy.isEmpty() << " " << copy.getSize() << " " << copy.getFront()->getName() << " " <<
            copy.getBack()->getName() << endl;
-    */
+
 
     //test degli operatori del container - check
-    /*Inventory<InventoryItem*> terzo;
+    Inventory<InventoryItem*> terzo;
     if(ta == copy) cout << endl << "copy e ta sono uguali" << endl;
     if(ta == terzo) cout << "questo non deve comparire" << endl;
     if(ta!=terzo) cout << "ta e terzo non sono uguali" << endl;
@@ -136,15 +136,15 @@ int main(int argc, char *argv[])
 
     for(unsigned int i=0; i<ta.getSize(); ++i) { //operatore []
        cout << endl << ta[i]->getName();
-    } */
+    }
 
-    /*metodi del container
+    metodi del container
     Inventory<InventoryItem*> vuoto;
     if(vuoto.isEmpty()) cout << "vuoto è effettivamente vuoto" << endl;
-    */
+
 
     //diversi tipi di pop - check
-    /*ta.popFront();
+    ta.popFront();
     cout << "dopo popfront" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
     ta.popBack();
@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
     ta.popAtPosition(3);
     cout << "dopo popPosition in coda" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
             ta.getBack()->getName() << endl; //isEmpty, getSize, getfront, getback
-            */
+
 
     //iteratore - NON PRENDE L'ULTIMO
     cout << endl << "ITERATORE" << endl;
@@ -167,8 +167,8 @@ int main(int argc, char *argv[])
 
      for(it=ta.begin(); !it.hasFinished(); ++it) {
         InventoryItem* t = *it;
-        cout << t->getName() << endl; //NON PRENDE L'ULTIMO
-     }
+        cout << t->getName() << endl;
+     } */
 }
 
 /* TO FIX:

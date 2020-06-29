@@ -1,8 +1,6 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 #include "core/inventoryitem.h"
-#include<iostream>
-using namespace std;
 
 /*
  * A FUTURA MEMORIA:
@@ -14,6 +12,8 @@ using namespace std;
  * singolarmente puntata con l'aggiunta del nodo last, non necessario ma utile per diminuire la complessità
  * computazionale di alcune operazioni, tra cui il push in coda di un nuovo smartp.
  */
+
+//TODO: iteratore non costante, tirare fuori l'iteratore, <> per l'iteratore
 
 template<class T>
 class Inventory
@@ -61,7 +61,7 @@ public:
     bool operator== (const Inventory&) const;
     bool operator!= (const Inventory&) const;
     Inventory<T> operator= (const Inventory&);
-    T& operator[] (U_INT) const; //DA SISTEMARE
+    T& operator[] (U_INT) const;
 
     //FUNZIONALITÀ BASE
     bool isEmpty() const;
@@ -245,7 +245,7 @@ void Inventory<T>::popBack() {
 }
 
 template<class T>
-void Inventory<T>::popAtPosition(unsigned int i) {
+void Inventory<T>::popAtPosition(unsigned int i) { //spaghetti alla carbonara
     if(!this->isEmpty()) {
         if(i == 0) return popFront();
         if(first == last) {

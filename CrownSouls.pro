@@ -25,12 +25,18 @@ SOURCES += \
     model/core/weaponarmor_gloves.cpp \
     model/core/weaponshield_attackshield.cpp \
     model/model.cpp \
-    view/mainwindow.cpp \
+    view/additem.cpp \
+    view/armortab.cpp \
     model/core/ring.cpp \
     model/core/shield.cpp \
     model/core/weapon.cpp \
     model/core/weaponarmor.cpp \
-    model/core/weaponshield.cpp
+    model/core/weaponshield.cpp \
+    view/mainwindow.cpp \
+    view/tab.cpp \
+    view/ringtab.cpp \
+    view/shieldtab.cpp \
+    view/weapontab.cpp
 
 HEADERS += \
     model/core/armor.h \
@@ -42,15 +48,19 @@ HEADERS += \
     model/core/weaponshield_attackshield.h \
     model/inventory.hpp \
     model/model.h \
-    view/mainwindow.h \
+    view/additem.h \
+    view/armortab.h \
     model/core/ring.h \
     model/core/shield.h \
     model/core/weapon.h \
     model/core/weaponarmor.h \
-    model/core/weaponshield.h
+    model/core/weaponshield.h \
+    view/mainwindow.h \
+    view/tab.h \
+    view/ringtab.h \
+    view/shieldtab.h \
+    view/weapontab.h
 
-FORMS += \
-    style/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

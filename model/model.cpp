@@ -1,5 +1,6 @@
 #include "model.h"
-
+#include<iostream>
+using namespace std;
 //COSTRUTTORI
 Model::Model(QObject* parent) : QAbstractListModel(parent) , name("CrownSouls"), inventory() {}
 
@@ -10,7 +11,7 @@ int Model::rowCount(const QModelIndex &parent) const {
 
 int Model::columnCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
-    return 4;
+    return 3;
 }
 
 
@@ -25,18 +26,18 @@ bool Model::removeRows(int position, int rows, const QModelIndex &parent) {
 }
 
 QVariant Model::data(const QModelIndex &index, int role) const {
-    if(!index.isValid())
-        return QVariant();
-    if(role == Qt::DisplayRole && inventory[index.row()]) {
-        if(index.column() == 0) {
-            QString t = QString::fromStdString(inventory[index.row()]->getName());
-            return t;
-        } else if(index.column() == 1) {
-            QString t = QString::fromStdString(inventory[index.row()]->getDescription());
-            return t;
-        } else if (index.column() == 2) {
-            QString t = QString::number(inventory[index.row()]->getItemLevel());
-            return t;
+    if(index.isValid()) {
+        if(role == Qt::DisplayRole && inventory[index.row()]) {
+            if(index.column() == 0) {
+                QString t = QString::fromStdString(inventory[index.row()]->getName());
+                return t;
+            } else if(index.column() == 1) {
+                QString t = QString::fromStdString(inventory[index.row()]->getDescription());
+                return t;
+            } else if (index.column() == 2) {
+                QString t = QString::number(inventory[index.row()]->getItemLevel());
+                return t;
+            }
         }
     }
     return QVariant();
@@ -53,6 +54,7 @@ bool Model::setData(const QModelIndex& index, const QVariant& value, int role) {
         inventory[index.row()]->setDescription(value.toString().toUtf8().constData());
     if(index.column() == 2)
         inventory[index.row()]->setItemLevel(static_cast<unsigned int>(value.toInt()));
+    return true;
 }
 
 QVariant Model::headerData(int section, Qt::Orientation orientation, int role) const {
@@ -73,7 +75,7 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
 
 
 //GETTER
-QString Model::getName() const {
+QString Model::getProgramName() const {
     return name;
 }
 
@@ -140,4 +142,3 @@ int Model::shieldCount() const {
 int Model::weaponCount() const {
     return getWeaponItems().getSize();
 }
-
