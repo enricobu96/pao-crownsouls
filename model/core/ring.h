@@ -9,20 +9,20 @@ using std::string;
 class Ring : public InventoryItem {
 public:
 
-    Ring(string, U_SHORT, string, string ="Storia non definita");
-    virtual Ring* clone() const;
+    Ring(string, U_SHORT, string, U_INT =0);
+    virtual Ring* clone() const override;
 
     //SETTER
-    void setFlavour(const string&);
+    void setStatsIncreasing(const U_INT&);
 
     //GETTER
-    string getFlavour() const;
+    U_INT getStatsIncreasing() const;
 
     //METODI
     virtual string getType() const override;
 
 private:
-    string flavour;
+    U_INT statsIncreasing;
 };
 
 #endif // RING_H

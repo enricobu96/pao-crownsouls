@@ -11,8 +11,6 @@ public:
     ArmorTab(QWidget* =nullptr);
 
 private:
-    Model* model;
-    QSortFilterProxyModel* proxyModel;
 };
 
 #endif // ARMORTAB_H

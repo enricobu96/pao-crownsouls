@@ -1,8 +1,7 @@
 #ifndef TAB_H
 #define TAB_H
-// #include"mymodel.h"
-// #include"additem.h"
 
+//QT
 #include<QObject>
 #include<QWidget>
 #include<QVBoxLayout>
@@ -13,30 +12,33 @@
 #include<QModelIndex>
 #include<QTableView>
 #include<QKeyEvent>
-//Test
 #include<QTextEdit>
+#include<QAction>
+#include<QPushButton>
+#include<QHeaderView>
+
+//VIEW
 #include"armortab.h"
 #include"ringtab.h"
 #include"shieldtab.h"
 #include"weapontab.h"
 #include"additem.h"
+
+//MODEL
 #include"../model/model.h"
 
 
-class Tab : public QWidget
-{
+class Tab : public QWidget {
    Q_OBJECT
 public:
+    //COSTRUTTORE
     Tab(QWidget *parent = nullptr);
-    Model *model;
-    QSortFilterProxyModel* proxyModel;
-
-public slots:
-    void addItem();
 
 private:
 
-    //Model *modelArmatura;
+    //MODEL
+    Model *model;
+    QSortFilterProxyModel* proxyModel;
 
     //TABS
     ArmorTab* armorTab;
@@ -44,20 +46,17 @@ private:
     ShieldTab* shieldTab;
     WeaponTab* weaponTab;
 
+    //LAYOUT
     QHBoxLayout *horilayout;
+    QTabWidget *usertab;
 
-    QTabWidget *usertab;        //widget principale per "contenere" il resto
+    //ESTENSIONI
+    QTextEdit *informationTab;
 
-
-    QTextEdit *informationTab;  //tab per le informazioni, al momento è un textedit
-
-    void addtabs();
-
-    //funzioni da collegare
 public slots:
-     void ShowData();
-     void keyPressEvent(QKeyEvent *event);
-     //void addEntry();
+    void addItem();
+    void ShowData();
+    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // TAB_H

@@ -15,9 +15,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget* =nullptr);
 
-public slots:
-    //void addItem();
-
 private:
 
     QMenuBar* menubar;

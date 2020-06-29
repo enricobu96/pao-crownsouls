@@ -170,7 +170,3 @@ int main(int argc, char *argv[])
         cout << t->getName() << endl;
      } */
 }
-
-/* TO FIX:
- * - iteratore non prende l'ultimo elemento
- */

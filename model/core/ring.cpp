@@ -1,21 +1,21 @@
 #include "ring.h"
 
-Ring::Ring(string n, U_SHORT il, string d, string _flavour) : InventoryItem(n, il, d), flavour(_flavour) {}
+Ring::Ring(string n, U_SHORT il, string d, unsigned int _statsIncreasing) : InventoryItem(n, il, d), statsIncreasing(_statsIncreasing) {}
 
 Ring *Ring::clone() const {
     return new Ring(*this);
 }
 
 //SETTER
-void Ring::setFlavour(const std::string & _flavour) {
-    if(_flavour.size() > 100)
-        flavour = "unknown";
+void Ring::setStatsIncreasing(const U_INT & _statsIncreasing) {
+    if(_statsIncreasing > 3 || _statsIncreasing < 0)
+        statsIncreasing = 0;
     else
-        flavour = _flavour;
+        statsIncreasing = _statsIncreasing;
 }
 
 //GETTER
-std::string Ring::getFlavour() const { return flavour; }
+unsigned int Ring::getStatsIncreasing() const { return statsIncreasing; }
 
 //METODI
 std::string Ring::getType() const {
