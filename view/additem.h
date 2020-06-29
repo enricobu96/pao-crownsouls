@@ -8,10 +8,12 @@
 #include<QComboBox>
 #include<QLineEdit>
 #include<QTextEdit>
+#include<QObject>
 
 
 class AddItem : public QDialog
 {
+    Q_OBJECT
 public:
     AddItem(QString t,QWidget* parent=nullptr);
 private:
@@ -24,7 +26,9 @@ private:
     QTextEdit *flavourText;
     QComboBox *typeItemBox;
     QLineEdit *namePlaceholder;
-
+    QPushButton *buttok;
+public slots:
+    void addOggetto();
 };
 
 #endif // ADDITEM_H

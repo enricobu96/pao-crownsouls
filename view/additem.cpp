@@ -11,6 +11,9 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
 
     flavourText = new QTextEdit;
 
+    buttok = new QPushButton("ACCETTA");
+    connect(buttok,SIGNAL(clicked()),this,SLOT(addOggetto()));
+
     typeItemBox = new QComboBox;
     typeItemBox->addItem("Arma");
     typeItemBox->addItem("Armatura");
@@ -23,9 +26,16 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     gridLayout->addWidget(typeItemBox,0,3);
     gridLayout->addWidget(descLabel,1,0);
     gridLayout->addWidget(flavourText,1,1,2,4);
+    gridLayout->addWidget(buttok,3,2);
 
     mainLayout = new QVBoxLayout;
     mainLayout->addLayout(gridLayout);
     setLayout(mainLayout);
     setWindowTitle(t);
 }
+
+void AddItem::addOggetto()
+{
+}
+
+
