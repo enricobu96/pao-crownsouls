@@ -8,20 +8,16 @@
 class Proxy : public QSortFilterProxyModel {
     Q_OBJECT
 public:
+
+    //COSTRUTTORE
     Proxy(QObject* =nullptr);
 
-
+    //METODI
     QString getNomeTipo() const;
     void setNomeTipo(const QString &value);
 
-    //bool insertRows(int row, int count, const QModelIndex &parent) override;
-
-    //void invalidateFilter() {invalidateFilter();}
-    //QModelIndex mapToSource(const QModelIndex &) const;
-
 private:
     QString nomeTipo;
-
 protected:
     bool filterAcceptsRow(int, const QModelIndex&) const override;
 };

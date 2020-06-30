@@ -1,5 +1,6 @@
 #ifndef MODEL_H
 #define MODEL_H
+#include"../view/proxyarmor.h"
 
 //GERARCHIA
 #include "core/inventoryitem.h"
@@ -14,23 +15,23 @@
 #include "model/core/weaponarmor_gloves.h"
 #include "model/core/weaponshield.h"
 #include "model/core/weaponshield_attackshield.h"
-#include<QObject>
-#include"../view/proxyarmor.h"
 
 //CONTAINER
 #include "inventory.hpp"
 
 //QT
+#include<QObject>
 #include<QString>
 #include<QAbstractListModel>
-
 Q_DECLARE_METATYPE(InventoryItem*)
 
 class Model : public QAbstractListModel
 {
     Q_OBJECT
     friend class Proxy;
+
 public:
+
     //COSTRUTTORI
     Model(QObject* =nullptr);
     ~Model() =default;
@@ -60,13 +61,14 @@ public:
 
     //setter
     bool addInventoryItem(const QModelIndex&, const QVariant&, int);
+
+    //metodi
     bool filter(int, QString) const;
 
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    Inventory<InventoryItem*> inventory; //TO FIX
 
-    Inventory<InventoryItem*> inventory;
 private:
-    const QString name; //nome del programma
+    const QString name;
 
 };
 

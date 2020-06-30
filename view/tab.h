@@ -32,12 +32,9 @@
 class Tab : public QWidget {
    Q_OBJECT
 public:
+
     //COSTRUTTORE
     Tab(QWidget *parent = nullptr);
-
-public slots:
-    void updateFilterRows(int);
-
 
 private:
 
@@ -60,9 +57,12 @@ private:
     QTextEdit *informationTab;
 
 public slots:
+
     void addItem();
-    void ShowData();
+    void showData();
     void keyPressEvent(QKeyEvent *event);
+    void updateFilterRows(int);
+
 };
 
 #endif // TAB_H

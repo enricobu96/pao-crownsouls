@@ -1,11 +1,12 @@
 #include "model.h"
-#include<iostream>
-using namespace std;
+
 //COSTRUTTORI
 Model::Model(QObject* parent) : QAbstractListModel(parent) , name("CrownSouls") {
     inventory = Inventory<InventoryItem*>();
 }
 
+//METODI
+//@override QAbstractListModel
 int Model::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
     return inventory.getSize();
@@ -54,7 +55,6 @@ QVariant Model::data(const QModelIndex &index, int role) const {
             return t;
         }
     }
-
     return QVariant();
 
 }
@@ -92,11 +92,6 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
     return QVariant();
 }
 
-Qt::ItemFlags Model::flags(const QModelIndex& index) const {
-    if(!index.isValid())
-        return Qt::ItemIsEnabled;
-    return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
-}
 
 //GETTER
 QString Model::getProgramName() const {
@@ -177,19 +172,7 @@ bool Model::addInventoryItem(const QModelIndex &index, const QVariant &value, in
     return false;
 }
 
+//metodi
 bool Model::filter(int i, QString s) const {
-    cout << i;
-    /*if(inventory.isEmpty()) return false;
-    auto it=inventory.begin();
-    for(; !it.hasFinished() && i!=0; ++it) {--i;}
-    InventoryItem* t = *it;
-
-    cout << t->getName();*/
-    //return true;
-    //return t->getType() == s.toUtf8().constData();
-
-
-    //return asda[0]->getType() == s.toUtf8().constData();
     return inventory[i]->getType() == s.toUtf8().constData();
 }
-

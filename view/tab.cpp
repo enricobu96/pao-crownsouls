@@ -12,6 +12,9 @@ Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
     setMinimumSize(1024,720);
     horilayout = new QHBoxLayout(this);
 
+    //LAYOUT
+    horilayout->addWidget(usertab);
+
     //TABS
     armorTab = new ArmorTab(this);
     ringTab = new RingTab(this);
@@ -27,13 +30,13 @@ Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
     shieldTab->setModel(proxy);
     weaponTab->setModel(proxy);
 
-    //LAYOUT
-    horilayout->addWidget(usertab);
+    updateFilterRows(0);
 
     //CONNECT
     connect(usertab, SIGNAL(currentChanged(int)), this, SLOT(updateFilterRows(int)));
 }
 
+//AGGIUNTA DI ELEMENTI
 void Tab::addItem() {
     AddItem aItem("Add Item");
     if(aItem.exec()) {
@@ -91,10 +94,12 @@ void Tab::addItem() {
     }
 }
 
-void Tab::ShowData(){
+//POP-UP LATERALE
+void Tab::showData(){
     informationTab->setHidden(false);
 }
 
+//SIGNAL ON ESC
 void Tab::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Escape){
@@ -104,15 +109,17 @@ void Tab::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void Tab::updateFilterRows(int a) { //to be continued
-    if(a == 0) {
+//DIVSIONE CORRETTA NELLE DIVERSE TAB
+void Tab::updateFilterRows(int a) {
+    if(a == 0)
         proxy->setNomeTipo("armor");
-    } else if(a== 1) proxy->setNomeTipo("ring");
-    else if(a==2) proxy->setNomeTipo("shield");
-    else if(a==3) proxy->setNomeTipo("weapon");
+    else if(a == 1)
+        proxy->setNomeTipo("ring");
+    else if(a==2)
+        proxy->setNomeTipo("shield");
+    else if(a==3)
+        proxy->setNomeTipo("weapon");
 
     QRegExp regex(proxy->getNomeTipo(), Qt::CaseInsensitive, QRegExp::Wildcard);
     proxy->setFilterRegExp(regex);
-    //proxy->filterAcceptsRow();
-    //model->filter()
 }
