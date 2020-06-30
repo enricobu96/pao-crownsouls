@@ -4,7 +4,9 @@
 Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
     //MODEL
     model = new Model(this);
-    proxyModel = new QSortFilterProxyModel(this);
+    proxy = new Proxy(this);
+
+    model->inventory.pushFront(new Ring("Anello anti-covid", 1, "Anello contro il coronavirus")); //TO FIX
 
     //APPLICAZIONE
     setMinimumSize(1024,720);
@@ -19,18 +21,20 @@ Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
     usertab->addTab(ringTab, "Rings");
     usertab->addTab(shieldTab, "Shields");
     usertab->addTab(weaponTab,"Weapons");
+    proxy->setSourceModel(model);
+    armorTab->setModel(proxy);
+    ringTab->setModel(proxy);
+    shieldTab->setModel(proxy);
+    weaponTab->setModel(proxy);
 
-    proxyModel->setSourceModel(model);
-    ringTab->setModel(proxyModel);
-    shieldTab->setModel(proxyModel);
-    weaponTab->setModel(proxyModel);
-    armorTab->setModel(proxyModel);
-
+    //LAYOUT
     horilayout->addWidget(usertab);
+
+    //CONNECT
+    connect(usertab, SIGNAL(currentChanged(int)), this, SLOT(updateFilterRows(int)));
 }
 
 void Tab::addItem() {
-
     AddItem aItem("Add Item");
     if(aItem.exec()) {
         QString name = aItem.namePlaceholder->text();
@@ -81,20 +85,9 @@ void Tab::addItem() {
             U_INT statsIncreasing = aItem.stsIncreasing->value();
             t = new Ring(name.toUtf8().constData(), il, description.toUtf8().constData(), statsIncreasing);
         }
-
         model->insertRows(0, 1, QModelIndex());
         QModelIndex i = model->index(0, 0, QModelIndex());
         model->addInventoryItem(i, QVariant::fromValue(t), Qt::EditRole);
-
-
-        /*QString name = aItem.namePlaceholder->text();
-        QString description = aItem.flavourText->toPlainText();
-        QString il = aItem.itemLevelPlaceholder->text();
-        InventoryItem* p;
-        p = new Ring(name.toUtf8().constData(), 0, description.toUtf8().constData()); // 0 è un placeholder
-        model->insertRows(0, 1, QModelIndex());
-        QModelIndex i = model->index(0, 0, QModelIndex());
-        model->addInventoryItem(i, QVariant::fromValue(p), Qt::EditRole); */
     }
 }
 
@@ -109,4 +102,17 @@ void Tab::keyPressEvent(QKeyEvent *event)
             informationTab->setHidden(true);
         }
     }
+}
+
+void Tab::updateFilterRows(int a) { //to be continued
+    if(a == 0) {
+        proxy->setNomeTipo("armor");
+    } else if(a== 1) proxy->setNomeTipo("ring");
+    else if(a==2) proxy->setNomeTipo("shield");
+    else if(a==3) proxy->setNomeTipo("weapon");
+
+    QRegExp regex(proxy->getNomeTipo(), Qt::CaseInsensitive, QRegExp::Wildcard);
+    proxy->setFilterRegExp(regex);
+    //proxy->filterAcceptsRow();
+    //model->filter()
 }

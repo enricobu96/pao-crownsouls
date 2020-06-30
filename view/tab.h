@@ -26,6 +26,7 @@
 
 //MODEL
 #include"../model/model.h"
+#include"proxyarmor.h"
 
 
 class Tab : public QWidget {
@@ -34,11 +35,16 @@ public:
     //COSTRUTTORE
     Tab(QWidget *parent = nullptr);
 
+public slots:
+    void updateFilterRows(int);
+
+
 private:
 
     //MODEL
     Model *model;
     QSortFilterProxyModel* proxyModel;
+    Proxy* proxy;
 
     //TABS
     ArmorTab* armorTab;

@@ -15,6 +15,7 @@
 #include "model/core/weaponshield.h"
 #include "model/core/weaponshield_attackshield.h"
 #include<QObject>
+#include"../view/proxyarmor.h"
 
 //CONTAINER
 #include "inventory.hpp"
@@ -28,6 +29,7 @@ Q_DECLARE_METATYPE(InventoryItem*)
 class Model : public QAbstractListModel
 {
     Q_OBJECT
+    friend class Proxy;
 public:
     //COSTRUTTORI
     Model(QObject* =nullptr);
@@ -58,10 +60,14 @@ public:
 
     //setter
     bool addInventoryItem(const QModelIndex&, const QVariant&, int);
+    bool filter(int, QString) const;
 
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+
+    Inventory<InventoryItem*> inventory;
 private:
     const QString name; //nome del programma
-    Inventory<InventoryItem*> inventory;
+
 };
 
 #endif // MODEL_H

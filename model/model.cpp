@@ -2,7 +2,9 @@
 #include<iostream>
 using namespace std;
 //COSTRUTTORI
-Model::Model(QObject* parent) : QAbstractListModel(parent) , name("CrownSouls"), inventory() {}
+Model::Model(QObject* parent) : QAbstractListModel(parent) , name("CrownSouls") {
+    inventory = Inventory<InventoryItem*>();
+}
 
 int Model::rowCount(const QModelIndex &parent) const {
     Q_UNUSED(parent);
@@ -37,35 +39,40 @@ bool Model::removeRows(int position, int rows, const QModelIndex &parent) {
 }
 
 QVariant Model::data(const QModelIndex &index, int role) const {
-    if(index.isValid()) {
-        if(role == Qt::DisplayRole && inventory[index.row()]) {
-            if(index.column() == 0) {
-                QString t = QString::fromStdString(inventory[index.row()]->getName());
-                return t;
-            } else if(index.column() == 1) {
-                QString t = QString::fromStdString(inventory[index.row()]->getDescription());
-                return t;
-            } else if (index.column() == 2) {
-                QString t = QString::number(inventory[index.row()]->getItemLevel());
-                return t;
-            }
+    if(!index.isValid())
+        return QVariant();
+
+    if(role == Qt::DisplayRole && inventory[index.row()]) {
+        if(index.column() == 0) {
+            QString t = QString::fromStdString(inventory[index.row()]->getName());
+            return t;
+        } else if(index.column() == 1) {
+            QString t = QString::fromStdString(inventory[index.row()]->getDescription());
+            return t;
+        } else if (index.column() == 2) {
+            QString t = QString::number(inventory[index.row()]->getItemLevel());
+            return t;
         }
     }
+
     return QVariant();
+
 }
 
 bool Model::setData(const QModelIndex& index, const QVariant& value, int role) {
-    if(!index.isValid())
-        return false;
-    if(role != Qt::EditRole)
-        return false;
+    if(index.isValid() && role == Qt::EditRole) {
     if(index.column() == 0)
         inventory[index.row()]->setName(value.toString().toUtf8().constData());
-    if(index.column() == 1)
+    else if(index.column() == 1)
         inventory[index.row()]->setDescription(value.toString().toUtf8().constData());
-    if(index.column() == 2)
+    else if(index.column() == 2)
         inventory[index.row()]->setItemLevel(static_cast<unsigned int>(value.toInt()));
+    else
+        return false;
+    emit(dataChanged(index, index));
     return true;
+    }
+    return false;
 }
 
 QVariant Model::headerData(int section, Qt::Orientation orientation, int role) const {
@@ -79,11 +86,17 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
             return "Descrizione";
         else if(section == 2)
             return "Livello";
+        else
+            return QVariant();
     }
     return QVariant();
 }
 
-
+Qt::ItemFlags Model::flags(const QModelIndex& index) const {
+    if(!index.isValid())
+        return Qt::ItemIsEnabled;
+    return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
+}
 
 //GETTER
 QString Model::getProgramName() const {
@@ -162,5 +175,21 @@ bool Model::addInventoryItem(const QModelIndex &index, const QVariant &value, in
         return true;
     }
     return false;
+}
+
+bool Model::filter(int i, QString s) const {
+    cout << i;
+    /*if(inventory.isEmpty()) return false;
+    auto it=inventory.begin();
+    for(; !it.hasFinished() && i!=0; ++it) {--i;}
+    InventoryItem* t = *it;
+
+    cout << t->getName();*/
+    //return true;
+    //return t->getType() == s.toUtf8().constData();
+
+
+    //return asda[0]->getType() == s.toUtf8().constData();
+    return inventory[i]->getType() == s.toUtf8().constData();
 }
 
