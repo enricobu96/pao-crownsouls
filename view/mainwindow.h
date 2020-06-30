@@ -26,7 +26,6 @@ private:
     Tab* tabWidget;
 
     void addmenu();
-
 };
 
 #endif // MAINWINDOW_H

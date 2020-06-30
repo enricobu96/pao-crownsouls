@@ -14,8 +14,8 @@ public:
     void setStabbingDef(const U_INT&);
 
     //GETTER
-    U_INT getFallingDef() const;
-    U_INT getStabbingDef() const;
+    virtual U_INT getFallingDef() const;
+    virtual U_INT getStabbingDef() const;
 
     //METODI
     virtual double getTotalDef() const;

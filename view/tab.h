@@ -16,6 +16,7 @@
 #include<QAction>
 #include<QPushButton>
 #include<QHeaderView>
+#include<QMessageBox>
 
 //VIEW
 #include"armortab.h"
@@ -49,6 +50,33 @@ private:
     ShieldTab* shieldTab;
     WeaponTab* weaponTab;
 
+    //TAB AGGIUNTIVA
+    QGroupBox* information;
+    QLabel* infPhysDefL;
+    QLabel* infPhysDef;
+    QLabel* infMagicDefL;
+    QLabel* infMagicDef;
+    QLabel* infBalanceL;
+    QLabel* infBalance;
+    QLabel* infFallingL;
+    QLabel* infFalling;
+    QLabel* infStabL;
+    QLabel* infStab;
+    QLabel* infstrScalL;
+    QLabel* infstrScal;
+    QLabel* infPhysDmgL;
+    QLabel* infPhysDmg;
+    QLabel* infMagicalDmgL;
+    QLabel* infMagicalDmg;
+    QLabel* infDxtScalL;
+    QLabel* infDxtScal;
+    QLabel* infPhysResL;
+    QLabel* infPhysRes;
+    QLabel* infMagicResL;
+    QLabel* infMagicRes;
+    QLabel* infStatsIncL;
+    QLabel* infStatsInc;
+
     //LAYOUT
     QHBoxLayout *horilayout;
     QTabWidget *usertab;
@@ -60,7 +88,7 @@ public slots:
 
     void addItem();
     void removeItem();
-    void showData();
+    void showData(QModelIndex index);
     void keyPressEvent(QKeyEvent *event);
     void updateFilterRows(int);
 

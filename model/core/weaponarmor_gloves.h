@@ -18,6 +18,8 @@ public:
     //METODI
     virtual double getTotalDef() const;
 
+
+
 private:
     U_SHORT strScaling;
 };

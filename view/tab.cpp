@@ -1,4 +1,5 @@
 #include "tab.h"
+
 #include<iostream>
 using std::cout;
 
@@ -11,11 +12,75 @@ Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
     model->inventory.pushFront(new Ring("Anello anti-covid", 1, "Anello contro il coronavirus")); //TO FIX
 
     //APPLICAZIONE
-    setMinimumSize(1024,720);
+    //setMinimumSize(1024,720);
     horilayout = new QHBoxLayout(this);
+    QGridLayout *groupLayout = new QGridLayout;
+    information = new QGroupBox("Information");
+    //information->setMinimumWidth(500);
+    information->setLayout(groupLayout);
+    information->setHidden(true);
+
+    //ELEMENTI NECESSARI PER INFORMAZIONI AGGIUNTIVE
+    infPhysDefL = new QLabel("Physical Defense: ");
+    infPhysDef = new QLabel("N/A");
+    infMagicDefL = new QLabel("Magic Defense: ");
+    infMagicDef = new QLabel("N/A");
+    infBalanceL = new QLabel("Balance: ");
+    infBalance = new QLabel("N/A");
+    infFallingL = new QLabel("Falling defense: ");
+    infFalling = new QLabel("N/A");
+    infStabL = new QLabel("Stabbing defense: ");
+    infStab = new QLabel("N/A");
+    infstrScalL = new QLabel("Strenght scaling: ");
+    infstrScal = new QLabel("N/A");
+    infPhysDmgL = new QLabel("Physical damage: ");
+    infPhysDmg = new QLabel("N/A");
+    infMagicalDmgL = new QLabel("Magical damage: ");
+    infMagicalDmg = new QLabel("N/A");
+    infDxtScalL = new QLabel("Dexterity scaling: ");
+    infDxtScal = new QLabel("N/A");
+    infPhysResL = new QLabel("Physical resistance: ");
+    infPhysRes = new QLabel("N/A");
+    infMagicResL = new QLabel("Magical resistance: ");
+    infMagicRes = new QLabel("N/A");
+    infStatsIncL = new QLabel("Stats increased: ");
+    infStatsInc = new QLabel("N/A");
+
+    //E INSERIMENTO NEL LAYOUT DEL BOX (Divisi per row)
+    groupLayout->addWidget(infPhysDefL,0,0);
+    groupLayout->addWidget(infPhysDef,0,1);
+    groupLayout->addWidget(infMagicDefL,0,2);
+    groupLayout->addWidget(infMagicDef,0,3);
+    //
+    groupLayout->addWidget(infBalanceL,1,0);
+    groupLayout->addWidget(infBalance,1,1);
+    groupLayout->addWidget(infFallingL,1,2);
+    groupLayout->addWidget(infFalling,1,3);
+    //
+    groupLayout->addWidget(infStabL,2,0);
+    groupLayout->addWidget(infStab,2,1);
+    groupLayout->addWidget(infstrScalL,2,2);
+    groupLayout->addWidget(infstrScal,2,3);
+    //
+    groupLayout->addWidget(infPhysDmgL,3,0);
+    groupLayout->addWidget(infPhysDmg,3,1);
+    groupLayout->addWidget(infMagicalDmgL,3,2);
+    groupLayout->addWidget(infMagicalDmg,3,3);
+    //
+    groupLayout->addWidget(infDxtScalL,4,0);
+    groupLayout->addWidget(infDxtScal,4,1);
+    groupLayout->addWidget(infPhysResL,4,2);
+    groupLayout->addWidget(infPhysRes,4,3);
+    //
+    groupLayout->addWidget(infMagicResL,5,0);
+    groupLayout->addWidget(infMagicRes,5,1);
+    groupLayout->addWidget(infStatsIncL,5,2);
+    groupLayout->addWidget(infstrScal,5,3);
+
 
     //LAYOUT
     horilayout->addWidget(usertab);
+    horilayout->addWidget(information);
 
     //TABS
     armorTab = new ArmorTab(this);
@@ -36,6 +101,11 @@ Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
 
     //CONNECT
     connect(usertab, SIGNAL(currentChanged(int)), this, SLOT(updateFilterRows(int)));
+
+    connect(armorTab,SIGNAL(clicked(QModelIndex)),this,SLOT(showData(QModelIndex)));
+    connect(ringTab,SIGNAL(clicked(QModelIndex)),this,SLOT(showData(QModelIndex)));
+    connect(shieldTab,SIGNAL(clicked(QModelIndex)),this,SLOT(showData(QModelIndex)));
+    connect(weaponTab,SIGNAL(clicked(QModelIndex)),this,SLOT(showData(QModelIndex)));
 }
 
 //AGGIUNTA DI ELEMENTI
@@ -96,12 +166,12 @@ void Tab::addItem() {
     }
 }
 
+//RIMOZIONE DELL'ELEMENTO SELEZIONATO (Non funziona con oggetti di base)
 void Tab::removeItem()
 {
    QItemSelectionModel* s = armorTab->selectionModel();
    if(!s->hasSelection()){
-       //gestione errore
-       cout << "sbagliato";
+       QMessageBox::warning(this,tr("Error"),tr("Nessun oggetto selezionato"),QMessageBox::Ok);
    }
    else {
        model->removeRows(s->selectedRows()[0].row(),1,QModelIndex());
@@ -109,16 +179,30 @@ void Tab::removeItem()
 }
 
 //POP-UP LATERALE
-void Tab::showData(){
-    informationTab->setHidden(false);
+void Tab::showData(QModelIndex index){
+    if(model->getInventory()[index.row()]->getType() == "armor"){
+        Armor* s  = dynamic_cast<Armor*>(model->getInventory()[index.row()]);
+        infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
+        infMagicDef->setNum(static_cast<int>(s->getMagicalDef()));
+        infBalance->setNum(static_cast<int>(s->getBalance()));
+        infFalling->setNum(static_cast<int>(static_cast<BodyArmor*>(s)->getFallingDef()));
+        infStab->setNum(static_cast<int>(static_cast<BodyArmor*>(s)->getStabbingDef()));
+        infPhysDmg->setText("N/A");
+        infMagicalDmg->setText("N/A");
+        infDxtScal->setText("N/A");
+        infPhysRes->setText("N/A");
+        infMagicRes->setText("N/A");
+        infStatsInc->setText("N/A");
+    }
+    information->setHidden(false);
 }
 
 //SIGNAL ON ESC
 void Tab::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Escape){
-        if(!informationTab->isHidden()){
-            informationTab->setHidden(true);
+        if(!information->isHidden()){
+            information->setHidden(true);
         }
     }
 }

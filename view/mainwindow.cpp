@@ -21,7 +21,6 @@ void MainWindow::addmenu()
     action2 = new QAction("Elimina oggetto",this);
     menuBar()->addAction(action2);
     connect(action2,SIGNAL(triggered()),tabWidget,SLOT(removeItem()));
-
 }
 
 
