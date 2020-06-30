@@ -59,6 +59,7 @@ private:
 public slots:
 
     void addItem();
+    void removeItem();
     void showData();
     void keyPressEvent(QKeyEvent *event);
     void updateFilterRows(int);

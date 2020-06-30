@@ -1,4 +1,6 @@
 #include "tab.h"
+#include<iostream>
+using std::cout;
 
 //COSTRUTTORE
 Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
@@ -92,6 +94,18 @@ void Tab::addItem() {
         QModelIndex i = model->index(0, 0, QModelIndex());
         model->addInventoryItem(i, QVariant::fromValue(t), Qt::EditRole);
     }
+}
+
+void Tab::removeItem()
+{
+   QItemSelectionModel* s = armorTab->selectionModel();
+   if(!s->hasSelection()){
+       //gestione errore
+       cout << "sbagliato";
+   }
+   else {
+       model->removeRows(s->selectedRows()[0].row(),1,QModelIndex());
+   }
 }
 
 //POP-UP LATERALE
