@@ -23,6 +23,7 @@
 #include<QObject>
 #include<QString>
 #include<QAbstractListModel>
+#include<QXmlStreamReader>
 Q_DECLARE_METATYPE(InventoryItem*)
 
 class Model : public QAbstractListModel
@@ -64,7 +65,6 @@ public:
 
     //metodi
     bool filter(int, QString) const;
-
     Inventory<InventoryItem*> inventory; //TO FIX
 
 private:

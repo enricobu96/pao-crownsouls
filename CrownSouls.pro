@@ -24,6 +24,7 @@ SOURCES += \
     model/core/weapon_attackweapon.cpp \
     model/core/weaponarmor_gloves.cpp \
     model/core/weaponshield_attackshield.cpp \
+    model/io.cpp \
     model/model.cpp \
     view/additem.cpp \
     view/armortab.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     model/core/weaponarmor_gloves.h \
     model/core/weaponshield_attackshield.h \
     model/inventory.hpp \
+    model/io.h \
     model/model.h \
     view/additem.h \
     view/armortab.h \

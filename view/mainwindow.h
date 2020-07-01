@@ -22,6 +22,9 @@ private:
     QMenu* menuext;
     QAction* action1;
     QAction* action2;
+    QMenu* file;
+    QAction* loadFile;
+    QAction* saveFile;
     QVBoxLayout *mainlayout;
     Tab* tabWidget;
 

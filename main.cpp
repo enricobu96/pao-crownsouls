@@ -16,6 +16,7 @@
 #include "model/core/weaponshield.h"
 #include "model/core/weaponshield_attackshield.h"
 #include "model/inventory.hpp"
+#include "model/io.h"
 
 using namespace std;
 
@@ -39,9 +40,9 @@ int main(int argc, char *argv[])
     //ASTRATTE EREDITARIETÀ MULTIPLA - check
     //WeaponArmor wa = new WeaponArmor("aaa", 63, "bbb", 5, 5, 5, 5, 5); //non compila e questo è esattamente quello che voglio
     //WeaponShield ws = new WeaponShield("aaa", 54, "bbb", 3, 3, 3, 3); //non compila e questo è esattamente quello che voglio
-
+    */
     //CONCRETE - check
-    BodyArmor* ba = new BodyArmor("bodyarmor", 5, "bbbodyarmor", 4, 4, 4, 4, 4);
+    /*BodyArmor* ba = new BodyArmor("bodyarmor", 5, "bbbodyarmor", 4, 4, 4, 4, 4);
     cout << "prima bodyarmor be liek:" << endl;
     cout << ba->getName() << " " << ba->getItemLevel() << " " << ba->getDescription() << " " << ba->getPhysicalDef() << " " <<
             ba->getMagicalDef() << " " << ba->getBalance()<< " " <<ba->getFallingDef()<< " " << ba->getStabbingDef() << endl;
@@ -72,26 +73,26 @@ int main(int argc, char *argv[])
 
 
 
-    DefenseShield* ds = new DefenseShield("defenseshield", 3, "dddefenseshield", 3, 3, 3);
+    DefenseShield* ds = new DefenseShield("defenseshield", 3, "dddefenseshield", 3, 3);
     cout << "prima defenseshield be liek:" << endl;
     cout << ds->getName() << " " << ds->getItemLevel() << " " << ds->getDescription() << " " <<
-            ds->getPhysicalRed() << " " << ds->getMagicalRed() << " " << ds->getSpeedPenality() << endl;
+            ds->getPhysicalRed() << " " << ds->getMagicalRed() << " " ;
 
 
 
-    Ring* r = new Ring("primo anello", 5, "descrizione primo anello", "storia del primo anello");
+    Ring* r = new Ring("primo anello", 5, "descrizione primo anello", 8);
     cout << "primo anello be liek:" <<endl;
-    cout << r->getName() << " " << r->getItemLevel() << " " << r->getDescription() << " " << r->getFlavour() << endl;
+    //cout << r->getName() << " " << r->getItemLevel() << " " << r->getDescription() << " " << r->getFlavour() << endl;
 
     //delete r;
     //delete ass;
 
     //TEST DEI METODI DELLA GERARCHIA - check
-    cout << "bodyarmor: " << ba->getTotalDef() << ba->getType() << endl;
-    cout << "gloves: " << g->getTotalDef() << " " << g->getTotalDmg() << g->getType() << endl;
-    cout << "attackweapon: " << aw->getTotalDmg() << aw->getType() << endl;
-    cout << "attackshield: " << ass->getTotalDmg() << " " << ass->getTotalRed() << ass->getType() << endl;
-    cout << "defenseshield: " << ds->getTotalRed() << ds->getType()<< endl;
+    //cout << "bodyarmor: " << ba->getTotalDef() << ba->getType() << endl;
+    //cout << "gloves: " << g->getTotalDef() << " " << g->getTotalDmg() << g->getType() << endl;
+    //cout << "attackweapon: " << aw->getTotalDmg() << aw->getType() << endl;
+    //cout << "attackshield: " << ass->getTotalDmg() << " " << ass->getTotalRed() << ass->getType() << endl;
+    //cout << "defenseshield: " << ds->getTotalRed() << ds->getType()<< endl;
 
 
     //TEST DEL CONTAINER
@@ -99,7 +100,7 @@ int main(int argc, char *argv[])
     //costruttore - check
     Inventory<InventoryItem*> ta;
     //diversi tipi di push
-    ta.pushFront(ass);
+    ta.pushBack(ass);
     ta.pushBack(aw);
     ta.pushBack(ds);
     ta.pushBack(r);
@@ -107,8 +108,8 @@ int main(int argc, char *argv[])
     ta.pushBack(ba);
     ta.pushBack(r);
     ta.pushBack(ds);
-
-    Inventory<InventoryItem*> copy(ta); //costruttore di copia
+    */
+    /*Inventory<InventoryItem*> copy(ta); //costruttore di copia
 
 
     cout << "elemento in ta:" << ta.isEmpty() << " " << ta.getSize() << " " << ta.getFront()->getName() << " " <<
@@ -169,4 +170,11 @@ int main(int argc, char *argv[])
         InventoryItem* t = *it;
         cout << t->getName() << endl;
      } */
+
+    /*IO input("/home/enrico/prova");
+    Inventory<InventoryItem*> letsee = input.readFile();
+
+    cout << input.readFile().getSize();
+
+    //input.write(ta); */
 }

@@ -1,4 +1,6 @@
 #include "model.h"
+#include<iostream>
+using namespace std;
 
 //COSTRUTTORI
 Model::Model(QObject* parent) : QAbstractListModel(parent) , name("CrownSouls") {
@@ -171,6 +173,7 @@ bool Model::addInventoryItem(const QModelIndex &index, const QVariant &value, in
     }
     return false;
 }
+
 
 //metodi
 bool Model::filter(int i, QString s) const {
