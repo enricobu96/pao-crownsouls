@@ -78,6 +78,15 @@ private:
     QLabel* infMagicRes;
     QLabel* infStatsIncL;
     QLabel* infStatsInc;
+    //INFORMAZIONI AGGIUNTIVE IN TAB AGGIUNTIVA
+    QLabel* infTotalDefL;
+    QLabel* infTotalDef;
+    QLabel* infTotalRedL;
+    QLabel* infTotalRed;
+    QLabel* infTotalDmgL;
+    QLabel* infTotalDmg;
+    QLabel* infLevelDmgL;
+    QLabel* infLevelDmg;
 
     //LAYOUT
     QHBoxLayout *horilayout;
@@ -92,6 +101,7 @@ public slots:
     void removeItem();
     void createinformation();
     void showData(QModelIndex index);
+    //void resetInformation();
     void keyPressEvent(QKeyEvent *event);
     void updateFilterRows(int);
 
