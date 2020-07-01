@@ -51,6 +51,8 @@ private:
     WeaponTab* weaponTab;
 
     //TAB AGGIUNTIVA
+    QSpacerItem* spacer;
+    QGridLayout* groupLayout;
     QGroupBox* information;
     QLabel* infPhysDefL;
     QLabel* infPhysDef;
@@ -88,6 +90,7 @@ public slots:
 
     void addItem();
     void removeItem();
+    void createinformation();
     void showData(QModelIndex index);
     void keyPressEvent(QKeyEvent *event);
     void updateFilterRows(int);

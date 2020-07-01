@@ -12,71 +12,14 @@ Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
     model->inventory.pushFront(new Ring("Anello anti-covid", 1, "Anello contro il coronavirus")); //TO FIX
 
     //APPLICAZIONE
-    //setMinimumSize(1024,720);
     horilayout = new QHBoxLayout(this);
-    QGridLayout *groupLayout = new QGridLayout;
+
+    //BARRA LATERALE
+    groupLayout = new QGridLayout;
     information = new QGroupBox("Information");
-    //information->setMinimumWidth(500);
     information->setLayout(groupLayout);
     information->setHidden(true);
-
-    //ELEMENTI NECESSARI PER INFORMAZIONI AGGIUNTIVE
-    infPhysDefL = new QLabel("Physical Defense: ");
-    infPhysDef = new QLabel("N/A");
-    infMagicDefL = new QLabel("Magic Defense: ");
-    infMagicDef = new QLabel("N/A");
-    infBalanceL = new QLabel("Balance: ");
-    infBalance = new QLabel("N/A");
-    infFallingL = new QLabel("Falling defense: ");
-    infFalling = new QLabel("N/A");
-    infStabL = new QLabel("Stabbing defense: ");
-    infStab = new QLabel("N/A");
-    infstrScalL = new QLabel("Strenght scaling: ");
-    infstrScal = new QLabel("N/A");
-    infPhysDmgL = new QLabel("Physical damage: ");
-    infPhysDmg = new QLabel("N/A");
-    infMagicalDmgL = new QLabel("Magical damage: ");
-    infMagicalDmg = new QLabel("N/A");
-    infDxtScalL = new QLabel("Dexterity scaling: ");
-    infDxtScal = new QLabel("N/A");
-    infPhysResL = new QLabel("Physical resistance: ");
-    infPhysRes = new QLabel("N/A");
-    infMagicResL = new QLabel("Magical resistance: ");
-    infMagicRes = new QLabel("N/A");
-    infStatsIncL = new QLabel("Stats increased: ");
-    infStatsInc = new QLabel("N/A");
-
-    //E INSERIMENTO NEL LAYOUT DEL BOX (Divisi per row)
-    groupLayout->addWidget(infPhysDefL,0,0);
-    groupLayout->addWidget(infPhysDef,0,1);
-    groupLayout->addWidget(infMagicDefL,0,2);
-    groupLayout->addWidget(infMagicDef,0,3);
-    //
-    groupLayout->addWidget(infBalanceL,1,0);
-    groupLayout->addWidget(infBalance,1,1);
-    groupLayout->addWidget(infFallingL,1,2);
-    groupLayout->addWidget(infFalling,1,3);
-    //
-    groupLayout->addWidget(infStabL,2,0);
-    groupLayout->addWidget(infStab,2,1);
-    groupLayout->addWidget(infstrScalL,2,2);
-    groupLayout->addWidget(infstrScal,2,3);
-    //
-    groupLayout->addWidget(infPhysDmgL,3,0);
-    groupLayout->addWidget(infPhysDmg,3,1);
-    groupLayout->addWidget(infMagicalDmgL,3,2);
-    groupLayout->addWidget(infMagicalDmg,3,3);
-    //
-    groupLayout->addWidget(infDxtScalL,4,0);
-    groupLayout->addWidget(infDxtScal,4,1);
-    groupLayout->addWidget(infPhysResL,4,2);
-    groupLayout->addWidget(infPhysRes,4,3);
-    //
-    groupLayout->addWidget(infMagicResL,5,0);
-    groupLayout->addWidget(infMagicRes,5,1);
-    groupLayout->addWidget(infStatsIncL,5,2);
-    groupLayout->addWidget(infstrScal,5,3);
-
+    createinformation();
 
     //LAYOUT
     horilayout->addWidget(usertab);
@@ -177,7 +120,73 @@ void Tab::removeItem()
        model->removeRows(s->selectedRows()[0].row(),1,QModelIndex());
    }
 }
+//SIDE INFORMATION
+void Tab::createinformation(){
 
+    //ELEMENTI NECESSARI PER INFORMAZIONI AGGIUNTIVE
+    infPhysDefL = new QLabel("Physical Defense: ");
+    infPhysDef = new QLabel("N/A");
+    infMagicDefL = new QLabel("Magic Defense: ");
+    infMagicDef = new QLabel("N/A");
+    //
+    infBalanceL = new QLabel("Balance: ");
+    infBalance = new QLabel("N/A");
+    infFallingL = new QLabel("Falling defense: ");
+    infFalling = new QLabel("N/A");
+    //
+    infStabL = new QLabel("Stabbing defense: ");
+    infStab = new QLabel("N/A");
+    infstrScalL = new QLabel("Strenght scaling: ");
+    infstrScal = new QLabel("N/A");
+    //
+    infPhysDmgL = new QLabel("Physical damage: ");
+    infPhysDmg = new QLabel("N/A");
+    infMagicalDmgL = new QLabel("Magical damage: ");
+    infMagicalDmg = new QLabel("N/A");
+    //
+    infDxtScalL = new QLabel("Dexterity scaling: ");
+    infDxtScal = new QLabel("N/A");
+    infPhysResL = new QLabel("Physical resistance: ");
+    infPhysRes = new QLabel("N/A");
+    //
+    infMagicResL = new QLabel("Magical resistance: ");
+    infMagicRes = new QLabel("N/A");
+    infStatsIncL = new QLabel("Stats increased: ");
+    infStatsInc = new QLabel("N/A");
+
+    //E INSERIMENTO NEL LAYOUT DEL BOX (Divisi per row)
+    groupLayout->addWidget(infPhysDefL,0,0);
+    groupLayout->addWidget(infPhysDef,0,1);
+    groupLayout->addWidget(infMagicDefL,0,2);
+    groupLayout->addWidget(infMagicDef,0,3);
+    //
+    groupLayout->addWidget(infBalanceL,1,0);
+    groupLayout->addWidget(infBalance,1,1);
+    groupLayout->addWidget(infFallingL,1,2);
+    groupLayout->addWidget(infFalling,1,3);
+    //
+    groupLayout->addWidget(infStabL,2,0);
+    groupLayout->addWidget(infStab,2,1);
+    groupLayout->addWidget(infstrScalL,2,2);
+    groupLayout->addWidget(infstrScal,2,3);
+    //
+    groupLayout->addWidget(infPhysDmgL,3,0);
+    groupLayout->addWidget(infPhysDmg,3,1);
+    groupLayout->addWidget(infMagicalDmgL,3,2);
+    groupLayout->addWidget(infMagicalDmg,3,3);
+    //
+    groupLayout->addWidget(infDxtScalL,4,0);
+    groupLayout->addWidget(infDxtScal,4,1);
+    groupLayout->addWidget(infPhysResL,4,2);
+    groupLayout->addWidget(infPhysRes,4,3);
+    //
+    groupLayout->addWidget(infMagicResL,5,0);
+    groupLayout->addWidget(infMagicRes,5,1);
+    groupLayout->addWidget(infStatsIncL,5,2);
+    groupLayout->addWidget(infStatsInc,5,3);
+
+    groupLayout->setRowStretch(5,1);
+}
 //POP-UP LATERALE
 void Tab::showData(QModelIndex index){
     if(model->getInventory()[index.row()]->getType() == "armor"){
@@ -187,12 +196,57 @@ void Tab::showData(QModelIndex index){
         infBalance->setNum(static_cast<int>(s->getBalance()));
         infFalling->setNum(static_cast<int>(static_cast<BodyArmor*>(s)->getFallingDef()));
         infStab->setNum(static_cast<int>(static_cast<BodyArmor*>(s)->getStabbingDef()));
+        infstrScal->setText("N/A");
         infPhysDmg->setText("N/A");
         infMagicalDmg->setText("N/A");
         infDxtScal->setText("N/A");
         infPhysRes->setText("N/A");
         infMagicRes->setText("N/A");
         infStatsInc->setText("N/A");
+    }
+    else if (model->getInventory()[index.row()]->getType() == "weapon") {
+        Weapon* s = dynamic_cast<Weapon*>(model->getInventory()[index.row()]);
+        infPhysDef->setText("N/A");
+        infMagicDef->setText("N/A");
+        infBalance->setText("N/A");
+        infFalling->setText("N/A");
+        infStab->setText("N/A");
+        infstrScal->setNum(static_cast<int>(static_cast<AttackWeapon*>(s)->getStrScaling()));
+        infPhysDmg->setNum(static_cast<int>(s->getPhysicalDmg()));
+        infMagicalDmg->setNum(static_cast<int>(s->getMagicalDmg()));
+        infDxtScal->setNum(static_cast<int>(static_cast<AttackWeapon*>(s)->getDexScaling()));
+        infPhysRes->setText("N/A");
+        infMagicRes->setText("N/A");
+        infStatsInc->setText("N/A");
+    }
+    else if (model->getInventory()[index.row()]->getType() == "shield"){
+        Shield* s = dynamic_cast<Shield*>(model->getInventory()[index.row()]);
+        infPhysDef->setText("N/A");
+        infMagicDef->setText("N/A");
+        infBalance->setText("N/A");
+        infFalling->setText("N/A");
+        infStab->setText("N/A");
+        infstrScal->setText("N/A");
+        infPhysDmg->setText("N/A");
+        infMagicalDmg->setText("N/A");
+        infDxtScal->setText("N/A");
+        infPhysRes->setNum(static_cast<int>(s->getPhysicalRed()));
+        infMagicRes->setNum(static_cast<int>(s->getPhysicalRed()));
+        infStatsInc->setText("N/A");
+    }
+    else if (model->getInventory()[index.row()]->getType() == "ring"){
+        infPhysDef->setText("N/A");
+        infMagicDef->setText("N/A");
+        infBalance->setText("N/A");
+        infFalling->setText("N/A");
+        infStab->setText("N/A");
+        infstrScal->setText("N/A");
+        infPhysDmg->setText("N/A");
+        infMagicalDmg->setText("N/A");
+        infDxtScal->setText("N/A");
+        infPhysRes->setText("N/A");
+        infMagicRes->setText("N/A");
+        infStatsInc->setNum(static_cast<int>((dynamic_cast<Ring*>(model->getInventory()[index.row()]))->getStatsIncreasing()));
     }
     information->setHidden(false);
 }
