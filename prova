@@ -1,0 +1,9 @@
+<Inventory>
+	<InventoryItem>
+		<name>AAA</name>
+		<itemLevel>69</itemLevel>
+		<description>Descrizione</description>
+		<type>ring</type>
+		<statsIncreasing>4</statsIncreasing>
+	</InventoryItem>
+</Inventory>

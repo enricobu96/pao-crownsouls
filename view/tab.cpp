@@ -348,3 +348,28 @@ void Tab::updateFilterRows(int a) {
     QRegExp regex(proxy->getNomeTipo(), Qt::CaseInsensitive, QRegExp::Wildcard);
     proxy->setFilterRegExp(regex);
 }
+
+void Tab::loadFileDialog()
+{
+    loadDialog = new QFileDialog(this);
+    if(loadDialog->exec()) {
+        QString path = loadDialog->selectedFiles()[0];
+        IO input(path);
+        //model->setInventory(input.readFile());
+        Inventory<InventoryItem*> t = input.readFile();
+        Inventory<InventoryItem*>::Iterator it;
+        for(it=t.begin(); it!=t.end(); ++it) {
+            model->insertRows(0, 1, QModelIndex());
+            QModelIndex i = model->index(0,0, QModelIndex());
+            model->addInventoryItem(i, QVariant::fromValue(*it), Qt::EditRole);
+        }
+    }
+}
+
+void Tab::saveFileDialog() {
+        saveDialog = new QFileDialog(this);
+        QString path = saveDialog->getSaveFileName(this, tr("Save File"), "/home/untitled.xml", tr(".xml"));
+        IO input(path);
+        input.write(Inventory<InventoryItem*>(model->getInventory()));
+}
+

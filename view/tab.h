@@ -17,6 +17,7 @@
 #include<QPushButton>
 #include<QHeaderView>
 #include<QMessageBox>
+#include<QFileDialog>
 
 //VIEW
 #include"armortab.h"
@@ -28,6 +29,8 @@
 //MODEL
 #include"../model/model.h"
 #include"proxyarmor.h"
+
+#include"../model/io.h"
 
 
 class Tab : public QWidget {
@@ -88,6 +91,9 @@ private:
     QLabel* infLevelDmgL;
     QLabel* infLevelDmg;
 
+    QFileDialog* loadDialog;
+    QFileDialog* saveDialog;
+
     //LAYOUT
     QHBoxLayout *horilayout;
     QTabWidget *usertab;
@@ -104,6 +110,8 @@ public slots:
     //void resetInformation();
     void keyPressEvent(QKeyEvent *event);
     void updateFilterRows(int);
+    void loadFileDialog();
+    void saveFileDialog();
 
 };
 
