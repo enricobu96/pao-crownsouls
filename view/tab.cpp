@@ -11,7 +11,6 @@ Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
     model = new Model(this);
     proxy = new Proxy(this);
 
-    model->inventory.pushFront(new Ring("Anello anti-covid", 1, "Anello contro il coronavirus")); //TO FIX
 
     //APPLICAZIONE
     horilayout = new QHBoxLayout(this);
@@ -114,14 +113,35 @@ void Tab::addItem() {
 //RIMOZIONE DELL'ELEMENTO SELEZIONATO (Non funziona con oggetti di base)
 void Tab::removeItem()
 {
-   QItemSelectionModel* s = armorTab->selectionModel();
-   if(!s->hasSelection()){
-       QMessageBox::warning(this,tr("Error"),tr("Nessun oggetto selezionato"),QMessageBox::Ok);
-   }
-   else {
-       model->removeRows(s->selectedRows()[0].row(),1,QModelIndex());
-   }
+   //QItemSelectionModel* s = armorTab->selectionModel();
+
+    QModelIndexList a = armorTab->selectionModel()->selectedRows();
+    QModelIndexList b = ringTab->selectionModel()->selectedRows();
+    QModelIndexList c = shieldTab->selectionModel()->selectedRows();
+    QModelIndexList d = weaponTab->selectionModel()->selectedRows();
+
+    if(!a.isEmpty()) {
+        QModelIndex t = proxy->mapToSource(a[0]);
+        model->removeRows(t.row(), 1, QModelIndex());
+    }
+    else if(!b.isEmpty()) {
+        QModelIndex t = proxy->mapToSource(b[0]);
+        model->removeRows(t.row(), 1, QModelIndex());
+    }
+    else if(!c.isEmpty()) {
+        QModelIndex t = proxy->mapToSource(c[0]);
+        model->removeRows(t.row(), 1, QModelIndex());
+    }
+    else if(!d.isEmpty()) {
+        QModelIndex t = proxy->mapToSource(d[0]);
+        model->removeRows(t.row(), 1, QModelIndex());
+    }
+    else {
+        QMessageBox::warning(this,tr("Error"),tr("Nessun oggetto selezionato"),QMessageBox::Ok);
+    }
 }
+
+
 //SIDE INFORMATION
 void Tab::createinformation(){
 
@@ -221,6 +241,7 @@ void Tab::resetInformation(){
 
 //POP-UP LATERALE
 void Tab::showData(QModelIndex index){
+    index = proxy->mapToSource(index);
     std::cout << "index =" << model->getInventory()[index.row()]->getType() << std::endl ;
     std::cout << "Nome =" << model->getInventory()[index.row()]->getName() << std::endl;
     //resetInformation();
