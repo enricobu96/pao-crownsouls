@@ -1,7 +1,9 @@
 #include "tab.h"
 
+
 #include<iostream>
 using std::cout;
+using std::endl;
 
 //COSTRUTTORE
 Tab::Tab(QWidget *parent) : QWidget(parent), usertab(new QTabWidget()) {
@@ -190,11 +192,41 @@ void Tab::createinformation(){
     blank->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Expanding);
     groupLayout->addWidget(blank,6,0);
 
+    /*
+    //INFORMAZIONI AGGIUNTIVE PER ALCUNI TIPI DI OGGETTO (METODI PROPRI)
+    infTotalDefL = new QLabel("Total defense: ");
+    infTotalDef = new QLabel("N/A");
+    infTotalRedL = new QLabel("Total reduction: ");
+    infTotalRed = new QLabel("N/A");
+    infTotalDmgL = new QLabel("Total damage: ");
+    infTotalDmg = new QLabel("N/A");
+    infLevelDmgL = new QLabel("Total level damage: ");
+    infLevelDmg = new QLabel("N/A");
+    */
 }
+//RESET VALUE "Complessi"
+/*
+void Tab::resetInformation(){
+    //sembra non crashare tutti i widget vengono tolti a prescindere
+    groupLayout->removeWidget(infTotalDefL);
+    groupLayout->removeWidget(infTotalDef);
+    groupLayout->removeWidget(infTotalRedL);
+    groupLayout->removeWidget(infTotalRed);
+    groupLayout->removeWidget(infTotalDmgL);
+    groupLayout->removeWidget(infTotalDmg);
+    groupLayout->removeWidget(infLevelDmgL);
+    groupLayout->removeWidget(infLevelDmg);
+}
+*/
+
 //POP-UP LATERALE
 void Tab::showData(QModelIndex index){
+    std::cout << "index =" << model->getInventory()[index.row()]->getType() << std::endl ;
+    std::cout << "Nome =" << model->getInventory()[index.row()]->getName() << std::endl;
+    //resetInformation();
+    string t = model->getInventory()[index.row()]->getType();
     //VALORI PER ARMOR
-    if(model->getInventory()[index.row()]->getType() == "armor"){
+    if(t == "armor"){
         Armor* s  = dynamic_cast<Armor*>(model->getInventory()[index.row()]);
         infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
         infMagicDef->setNum(static_cast<int>(s->getMagicalDef()));
@@ -210,7 +242,7 @@ void Tab::showData(QModelIndex index){
         infStatsInc->setText("N/A");
     }
     //VALORI PER WEAPON
-    else if (model->getInventory()[index.row()]->getType() == "weapon") {
+    else if (t == "weapon") {
         Weapon* s = dynamic_cast<Weapon*>(model->getInventory()[index.row()]);
         infPhysDef->setText("N/A");
         infMagicDef->setText("N/A");
@@ -226,7 +258,7 @@ void Tab::showData(QModelIndex index){
         infStatsInc->setText("N/A");
     }
     //VALORI PER SHIELD
-    else if (model->getInventory()[index.row()]->getType() == "shield"){
+    else if (t == "shield"){
         Shield* s = dynamic_cast<Shield*>(model->getInventory()[index.row()]);
         infPhysDef->setText("N/A");
         infMagicDef->setText("N/A");
@@ -242,7 +274,7 @@ void Tab::showData(QModelIndex index){
         infStatsInc->setText("N/A");
     }
     //VALORI PER RING
-    else if (model->getInventory()[index.row()]->getType() == "ring"){
+    else if (t == "ring"){
         infPhysDef->setText("N/A");
         infMagicDef->setText("N/A");
         infBalance->setText("N/A");
@@ -257,7 +289,7 @@ void Tab::showData(QModelIndex index){
         infStatsInc->setNum(static_cast<int>((dynamic_cast<Ring*>(model->getInventory()[index.row()]))->getStatsIncreasing()));
     }
     //VALORI PER GLOVES
-    else if (model->getInventory()[index.row()]->getType() == "weaponarmor"){
+    else if (t == "weaponarmor"){
         Gloves* s = dynamic_cast<Gloves*>(model->getInventory()[index.row()]);
         infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
         infMagicDef->setNum(static_cast<int>(s->getMagicalDef()));
@@ -273,7 +305,7 @@ void Tab::showData(QModelIndex index){
         infStatsInc->setText("N/A");
     }
     //VALORI ATTACK SHIELD
-    else if (model->getInventory()[index.row()]->getType() == "weaponshield"){
+    else if (t == "weaponshield"){
         WeaponShield* s = dynamic_cast<WeaponShield*>(model->getInventory()[index.row()]);
         infPhysDef->setText("N/A");
         infMagicDef->setText("N/A");
