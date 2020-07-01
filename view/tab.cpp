@@ -212,39 +212,26 @@ void Tab::createinformation(){
     blank->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Expanding);
     groupLayout->addWidget(blank,6,0);
 
-    /*
+
     //INFORMAZIONI AGGIUNTIVE PER ALCUNI TIPI DI OGGETTO (METODI PROPRI)
-    infTotalDefL = new QLabel("Total defense: ");
-    infTotalDef = new QLabel("N/A");
-    infTotalRedL = new QLabel("Total reduction: ");
-    infTotalRed = new QLabel("N/A");
-    infTotalDmgL = new QLabel("Total damage: ");
-    infTotalDmg = new QLabel("N/A");
-    infLevelDmgL = new QLabel("Total level damage: ");
-    infLevelDmg = new QLabel("N/A");
-    */
+    infadditionalL = new QLabel();
+    infadditionl = new QLabel();
+
+    groupLayout->addWidget(infadditionalL,7,0);
+    groupLayout->addWidget(infadditionl,7,1);
 }
 //RESET VALUE "Complessi"
-/*
 void Tab::resetInformation(){
-    //sembra non crashare tutti i widget vengono tolti a prescindere
-    groupLayout->removeWidget(infTotalDefL);
-    groupLayout->removeWidget(infTotalDef);
-    groupLayout->removeWidget(infTotalRedL);
-    groupLayout->removeWidget(infTotalRed);
-    groupLayout->removeWidget(infTotalDmgL);
-    groupLayout->removeWidget(infTotalDmg);
-    groupLayout->removeWidget(infLevelDmgL);
-    groupLayout->removeWidget(infLevelDmg);
+    infadditionalL->clear();
+    infadditionl->clear();
 }
-*/
 
 //POP-UP LATERALE
 void Tab::showData(QModelIndex index){
     index = proxy->mapToSource(index);
     std::cout << "index =" << model->getInventory()[index.row()]->getType() << std::endl ;
     std::cout << "Nome =" << model->getInventory()[index.row()]->getName() << std::endl;
-    //resetInformation();
+    resetInformation();
     string t = model->getInventory()[index.row()]->getType();
     //VALORI PER ARMOR
     if(t == "armor"){
@@ -261,6 +248,9 @@ void Tab::showData(QModelIndex index){
         infPhysRes->setText("N/A");
         infMagicRes->setText("N/A");
         infStatsInc->setText("N/A");
+
+        infadditionl->setNum(static_cast<BodyArmor*>(s)->getTotalDef());
+        infadditionalL->setText("Total defense: ");
     }
     //VALORI PER WEAPON
     else if (t == "weapon") {
@@ -277,6 +267,9 @@ void Tab::showData(QModelIndex index){
         infPhysRes->setText("N/A");
         infMagicRes->setText("N/A");
         infStatsInc->setText("N/A");
+
+        infadditionl->setNum(s->getTotalDmg());
+        infadditionalL->setText("Total damage: ");
     }
     //VALORI PER SHIELD
     else if (t == "shield"){
@@ -293,6 +286,9 @@ void Tab::showData(QModelIndex index){
         infPhysRes->setNum(static_cast<int>(s->getPhysicalRed()));
         infMagicRes->setNum(static_cast<int>(s->getPhysicalRed()));
         infStatsInc->setText("N/A");
+
+        infadditionl->setNum(s->getTotalRed());
+        infadditionalL->setText("Total damage reduction: ");
     }
     //VALORI PER RING
     else if (t == "ring"){

@@ -82,6 +82,9 @@ private:
     QLabel* infStatsIncL;
     QLabel* infStatsInc;
     //INFORMAZIONI AGGIUNTIVE IN TAB AGGIUNTIVA
+    QLabel* infadditionalL;
+    QLabel* infadditionl;
+    /*
     QLabel* infTotalDefL;
     QLabel* infTotalDef;
     QLabel* infTotalRedL;
@@ -90,6 +93,7 @@ private:
     QLabel* infTotalDmg;
     QLabel* infLevelDmgL;
     QLabel* infLevelDmg;
+    */
 
     QFileDialog* loadDialog;
     QFileDialog* saveDialog;
@@ -107,7 +111,7 @@ public slots:
     void removeItem();
     void createinformation();
     void showData(QModelIndex index);
-    //void resetInformation();
+    void resetInformation();
     void keyPressEvent(QKeyEvent *event);
     void updateFilterRows(int);
     void loadFileDialog();
