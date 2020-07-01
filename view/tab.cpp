@@ -185,10 +185,15 @@ void Tab::createinformation(){
     groupLayout->addWidget(infStatsIncL,5,2);
     groupLayout->addWidget(infStatsInc,5,3);
 
-    groupLayout->setRowStretch(5,1);
+    //QWIDGET COMPLETAMENTE BIANCO PER MATENERE LA SPAZIATURA
+    QWidget* blank = new QWidget();
+    blank->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Expanding);
+    groupLayout->addWidget(blank,6,0);
+
 }
 //POP-UP LATERALE
 void Tab::showData(QModelIndex index){
+    //VALORI PER ARMOR
     if(model->getInventory()[index.row()]->getType() == "armor"){
         Armor* s  = dynamic_cast<Armor*>(model->getInventory()[index.row()]);
         infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
@@ -204,6 +209,7 @@ void Tab::showData(QModelIndex index){
         infMagicRes->setText("N/A");
         infStatsInc->setText("N/A");
     }
+    //VALORI PER WEAPON
     else if (model->getInventory()[index.row()]->getType() == "weapon") {
         Weapon* s = dynamic_cast<Weapon*>(model->getInventory()[index.row()]);
         infPhysDef->setText("N/A");
@@ -219,6 +225,7 @@ void Tab::showData(QModelIndex index){
         infMagicRes->setText("N/A");
         infStatsInc->setText("N/A");
     }
+    //VALORI PER SHIELD
     else if (model->getInventory()[index.row()]->getType() == "shield"){
         Shield* s = dynamic_cast<Shield*>(model->getInventory()[index.row()]);
         infPhysDef->setText("N/A");
@@ -234,6 +241,7 @@ void Tab::showData(QModelIndex index){
         infMagicRes->setNum(static_cast<int>(s->getPhysicalRed()));
         infStatsInc->setText("N/A");
     }
+    //VALORI PER RING
     else if (model->getInventory()[index.row()]->getType() == "ring"){
         infPhysDef->setText("N/A");
         infMagicDef->setText("N/A");
@@ -248,6 +256,39 @@ void Tab::showData(QModelIndex index){
         infMagicRes->setText("N/A");
         infStatsInc->setNum(static_cast<int>((dynamic_cast<Ring*>(model->getInventory()[index.row()]))->getStatsIncreasing()));
     }
+    //VALORI PER GLOVES
+    else if (model->getInventory()[index.row()]->getType() == "weaponarmor"){
+        Gloves* s = dynamic_cast<Gloves*>(model->getInventory()[index.row()]);
+        infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
+        infMagicDef->setNum(static_cast<int>(s->getMagicalDef()));
+        infBalance->setText("N/A");
+        infFalling->setText("N/A");
+        infStab->setText("N/A");
+        infstrScal->setNum(static_cast<int>(s->getStrScaling()));
+        infPhysDmg->setNum(static_cast<int>(s->getPhysicalDmg()));
+        infMagicalDmg->setNum(static_cast<int>(s->getMagicalDmg()));
+        infDxtScal->setText("N/A");
+        infPhysRes->setText("N/A");
+        infMagicRes->setText("N/A");
+        infStatsInc->setText("N/A");
+    }
+    //VALORI ATTACK SHIELD
+    else if (model->getInventory()[index.row()]->getType() == "weaponshield"){
+        WeaponShield* s = dynamic_cast<WeaponShield*>(model->getInventory()[index.row()]);
+        infPhysDef->setText("N/A");
+        infMagicDef->setText("N/A");
+        infBalance->setText("N/A");
+        infFalling->setText("N/A");
+        infStab->setText("N/A");
+        infstrScal->setText("N/A");
+        infPhysDmg->setNum(static_cast<int>(s->getPhysicalDmg()));
+        infMagicalDmg->setNum(static_cast<int>(s->getMagicalDmg()));
+        infDxtScal->setNum(static_cast<int>(static_cast<AttackShield*>(s)->getDexScaling()));
+        infPhysRes->setNum(static_cast<int>(s->getPhysicalRed()));
+        infMagicRes->setNum(static_cast<int>(s->getMagicalRed()));
+        infStatsInc->setText("N/A");
+    }
+    //APPARE LA BARRA LATERALE
     information->setHidden(false);
 }
 
