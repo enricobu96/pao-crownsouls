@@ -13,22 +13,27 @@ AttackWeapon *AttackWeapon::clone() const {
 
 //SETTER
 void AttackWeapon::setStrScaling(const unsigned short & _strScaling) {
-    if(_strScaling >= 0 && _strScaling <= 4)
+    if(_strScaling <= 4)
         strScaling = _strScaling;
     else
         strScaling = 0;
 }
 
 void AttackWeapon::setDexScaling(const unsigned short & _dexScaling) {
-    if(_dexScaling >= 0 && _dexScaling <= 4)
+    if(_dexScaling <= 4)
         dexScaling = _dexScaling;
     else
         dexScaling = 0;
 }
 
 //GETTER
-unsigned short AttackWeapon::getStrScaling() const { return strScaling; }
-unsigned short AttackWeapon::getDexScaling() const { return dexScaling; }
+unsigned short AttackWeapon::getStrScaling() const {
+    return strScaling;
+}
+
+unsigned short AttackWeapon::getDexScaling() const {
+    return dexScaling;
+}
 
 //METODI
 double AttackWeapon::getTotalDmg() const {

@@ -26,8 +26,13 @@ void BodyArmor::setStabbingDef(const unsigned int & _stabbingDef) {
 }
 
 //GETTER
-unsigned int BodyArmor::getFallingDef() const { return fallingDef; }
-unsigned int BodyArmor::getStabbingDef() const { return stabbingDef; }
+unsigned int BodyArmor::getFallingDef() const {
+    return fallingDef;
+}
+
+unsigned int BodyArmor::getStabbingDef() const {
+    return stabbingDef;
+}
 
 //METODI
 double BodyArmor::getTotalDef() const {

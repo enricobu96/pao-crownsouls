@@ -31,9 +31,17 @@ void Armor::setBalance(const unsigned short & _balance) {
 
 
 //GETTER
-unsigned int Armor::getPhysicalDef() const { return physicalDef; }
-unsigned int Armor::getMagicalDef() const { return magicalDef; }
-unsigned short Armor::getBalance() const { return balance; }
+unsigned int Armor::getPhysicalDef() const {
+    return physicalDef;
+}
+
+unsigned int Armor::getMagicalDef() const {
+    return magicalDef;
+}
+
+unsigned short Armor::getBalance() const {
+    return balance;
+}
 
 //METODI
 double Armor::getTotalDef() const {

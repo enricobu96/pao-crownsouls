@@ -8,14 +8,16 @@ Ring *Ring::clone() const {
 
 //SETTER
 void Ring::setStatsIncreasing(const U_INT & _statsIncreasing) {
-    if(_statsIncreasing > 3 || _statsIncreasing < 0)
+    if(_statsIncreasing > 3)
         statsIncreasing = 0;
     else
         statsIncreasing = _statsIncreasing;
 }
 
 //GETTER
-unsigned int Ring::getStatsIncreasing() const { return statsIncreasing; }
+unsigned int Ring::getStatsIncreasing() const {
+    return statsIncreasing;
+}
 
 //METODI
 std::string Ring::getType() const {

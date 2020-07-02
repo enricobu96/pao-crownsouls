@@ -6,6 +6,7 @@
 
 class WeaponShield : public Weapon , public Shield {
 public:
+
     WeaponShield(U_INT, U_INT, U_INT, U_INT);
     virtual ~WeaponShield() =default;
 
@@ -13,6 +14,7 @@ public:
     virtual double getTotalDmg() const override;
     virtual double getTotalRed() const override;
     virtual string getType() const override;
+
 };
 
 #endif // WEAPONSHIELD_H

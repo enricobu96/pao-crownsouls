@@ -3,7 +3,6 @@
 #include "core/inventoryitem.h"
 
 /*
- * A FUTURA MEMORIA:
  * Classe container, corrispondente all'inventario composto da più InventoryItem.
  * La classe è templatizzata, ergo può essere utilizzata anche in altri contesti; nel caso del nostro programma,
  * il tipo T del template corrisponde a un puntatore a InventoryItem.
@@ -13,57 +12,57 @@
  * computazionale di alcune operazioni, tra cui il push in coda di un nuovo smartp.
  */
 
-//TODO: iteratore non costante, tirare fuori l'iteratore, <> per l'iteratore
-
 template<class T>
 class Inventory
 {
     friend class Iterator;
 private:
 
-    //CLASSE INTERNA SMART POINTER
+    //CLASSE INTERNA SMART POINTER - SmartP
     class SmartP {
     public:
-        //COSTRUTTORI SMARTP
+
+        //COSTRUTTORI SmartP
         SmartP(const T&, SmartP* =nullptr);
         SmartP(const SmartP&);
         ~SmartP();
 
-        //RIDEFINIZIONE OPERATORI SMARTP
+        //RIDEFINIZIONE OPERATORI SmartP
         SmartP& operator=(const SmartP&);
         T* operator->() const;
         T& operator*() const;
         bool operator== (const SmartP&) const;
         bool operator!= (const SmartP&) const;
 
-        //CAMPI DATI SMARTP
+        //CAMPI DATI SmartP
         T item;
         SmartP* next;
+
     };
 
-    //CAMPI DATI INVENTORY
+    //CAMPI DATI Inventory
     SmartP* first;
     SmartP* last;
     U_INT size;
 
-    //METODI DI UTILITÀ PRIVATI
+    //METODI DI UTILITÀ PRIVATI Inventory
     SmartP* cloneList(SmartP*);
     bool isSame(SmartP*, SmartP*) const;
 
 public:
 
-    //COSTRUTTORI INVENTORY
+    //COSTRUTTORI Inventory
     Inventory();
     Inventory(const Inventory&);
     ~Inventory();
 
-    //OVERLOADING DEGLI OPERATORI
+    //OVERLOADING DEGLI OPERATORI Inventory
     bool operator== (const Inventory&) const;
     bool operator!= (const Inventory&) const;
     Inventory<T> operator= (const Inventory&);
     T& operator[] (U_INT) const;
 
-    //FUNZIONALITÀ BASE
+    //FUNZIONALITÀ Inventory
     bool isEmpty() const;
     void pushFront(const T&);
     void pushBack(const T&);
@@ -74,7 +73,7 @@ public:
     T getBack() const;
     U_INT getSize() const;
 
-    //ITERATORE
+    //ITERATORE - Iterator
     class Iterator{
         friend class Inventory<T>;
     private:
@@ -82,39 +81,40 @@ public:
         bool isFinished;
     public:
 
-        //COSTRUTTORI
+        //COSTRUTTORI Iterator
         Iterator(Inventory<T>::SmartP* =nullptr, bool =true);
         ~Iterator() =default;
 
-        //RIDEFINIZIONE OPERATORI ITERATOR
+        //RIDEFINIZIONE OPERATORI Iterator
         Iterator& operator++();
         const T& operator* () const;
         const T* operator-> () const;
         bool operator== (const Iterator&) const;
         bool operator!= (const Iterator&) const;
 
-        //METODI
+        //METODI Iterator
         bool hasFinished() const;
 
     };
 
-    //METODI PER ITERATORE
+    //METODI DI UTILITÀ PER Iterator
     Iterator begin() const;
     Iterator end() const;
-};
 
+};
 
 /**************************
  * DEFINIZIONE DEI METODI *
  **************************/
 
-
 //METODI E OVERLOADING OPERATORI CLASSE INTERNA SmartP
 template<class T>
-Inventory<T>::SmartP::SmartP(const T & i, SmartP * n) : item(i), next(n) {}
+Inventory<T>::SmartP::SmartP(const T & i, SmartP * n) :
+    item(i), next(n) {}
 
 template<class T>
-Inventory<T>::SmartP::SmartP(const Inventory::SmartP &s) : item(s.item != nullptr ? (s.item)->clone() : nullptr) {}
+Inventory<T>::SmartP::SmartP(const Inventory::SmartP &s) :
+    item(s.item != nullptr ? (s.item)->clone() : nullptr) {}
 
 template<class T>
 Inventory<T>::SmartP::~SmartP() {
@@ -131,10 +131,14 @@ typename Inventory<T>::SmartP &Inventory<T>::SmartP::operator=(const Inventory::
 }
 
 template<class T>
-T *Inventory<T>::SmartP::operator->() const { return item; }
+T *Inventory<T>::SmartP::operator->() const {
+    return item;
+}
 
 template<class T>
-T &Inventory<T>::SmartP::operator*() const { return *item; }
+T &Inventory<T>::SmartP::operator*() const {
+    return *item;
+}
 
 template<class T>
 bool Inventory<T>::SmartP::operator==(const SmartP & s) const {
@@ -146,8 +150,7 @@ bool Inventory<T>::SmartP::operator!=(const SmartP & s) const {
     return !(*this==s);
 }
 
-
-//METODI D'UTILITÀ PRIVATI
+//METODI D'UTILITÀ PRIVATI Inventory
 template<class T>
 typename Inventory<T>::SmartP* Inventory<T>::cloneList(Inventory<T>::SmartP* p) {
     if(!p)
@@ -164,12 +167,14 @@ bool Inventory<T>::isSame(SmartP* a, SmartP* b) const {
     return isSame(a->next, b->next);
 }
 
-//COSTRUTTORI CONTAINER
+//COSTRUTTORI Inventory
 template<class T>
-Inventory<T>::Inventory() : first(nullptr), last(nullptr), size(0) {}
+Inventory<T>::Inventory() :
+    first(nullptr), last(nullptr), size(0) {}
 
 template<class T>
-Inventory<T>::Inventory(const Inventory & t) : first(cloneList(t.first)), size(t.size) {}
+Inventory<T>::Inventory(const Inventory & t) :
+    first(cloneList(t.first)), size(t.size) {}
 
 template<class T>
 Inventory<T>::~Inventory() {
@@ -177,7 +182,7 @@ Inventory<T>::~Inventory() {
         delete first;
 }
 
-//FUNZIONALITÀ BASE
+//FUNZIONALITÀ BASE Inventory
 template<class T>
 bool Inventory<T>::isEmpty() const {
     return size == 0;
@@ -188,8 +193,7 @@ void Inventory<T>::pushFront(const T& t) {
     if(this->isEmpty()) {
         first = new SmartP(t);
         last = first;
-    }
-    else
+    } else
         first = new SmartP(t, first);
     ++size;
 }
@@ -199,8 +203,7 @@ void Inventory<T>::pushBack(const T& t) {
     if(this->isEmpty()) {
         first = new SmartP(t);
         last = first;
-    }
-    else {
+    } else {
         last->next = new SmartP(t);
         last = last->next;
     }
@@ -245,7 +248,9 @@ void Inventory<T>::popBack() {
 }
 
 template<class T>
-void Inventory<T>::popAtPosition(unsigned int i) { //spaghetti alla carbonara
+void Inventory<T>::popAtPosition(unsigned int i) {
+    if(i > this->getSize())
+        return;
     if(!this->isEmpty()) {
         if(i == 0) return popFront();
         if(first == last) {
@@ -292,11 +297,11 @@ unsigned int Inventory<T>::getSize() const {
     return size;
 }
 
-
-//RIDEFINIZIONE DEGLI OPERATORI DI INVENTORY
+//RIDEFINIZIONE DEGLI OPERATORI DI Inventory
 template<class T>
 bool Inventory<T>::operator==(const Inventory& s) const {
-    if(size != s.size) return false;
+    if(size != s.size)
+        return false;
     return isSame(first, s.first);
 }
 
@@ -317,16 +322,19 @@ Inventory<T> Inventory<T>::operator=(const Inventory & s) {
 }
 
 template<class T>
-T& Inventory<T>::operator[](unsigned int i) const { //potrebbe non funzionare, occhio!
-    SmartP* t = first;
+T& Inventory<T>::operator[](unsigned int i) const {
+    SmartP* t;
+    if(first)
+        t = first;
     while(i-- && t != nullptr)
         t=t->next;
     return t->item;
 }
 
-//COSTRUTTORI ITERATOR
+//COSTRUTTORI Iterator
 template<class T>
-Inventory<T>::Iterator::Iterator(Inventory<T>::SmartP* _p, bool status) : p(_p), isFinished(status) {}
+Inventory<T>::Iterator::Iterator(Inventory<T>::SmartP* _p, bool status) :
+    p(_p), isFinished(status) {}
 
 template<class T>
 typename Inventory<T>::Iterator& Inventory<T>::Iterator::operator++() {
@@ -338,7 +346,7 @@ typename Inventory<T>::Iterator& Inventory<T>::Iterator::operator++() {
     } return *this;
 }
 
-//RIDEFINIZIONE OPERATORI ITERATOR
+//RIDEFINIZIONE OPERATORI Iterator
 template<class T>
 const T& Inventory<T>::Iterator::operator*() const {
     return p->item;
@@ -359,7 +367,7 @@ bool Inventory<T>::Iterator::operator!= (const Iterator& s) const {
     return (p != s.p);
 }
 
-//METODI ITERATOR
+//METODI Iterator
 template<class T>
 typename Inventory<T>::Iterator Inventory<T>::begin() const {
     return Iterator(first, false);

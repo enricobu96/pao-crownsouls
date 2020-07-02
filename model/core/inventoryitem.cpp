@@ -15,7 +15,7 @@ void InventoryItem::setName(const std::string & _name) {
 }
 
 void InventoryItem::setItemLevel(const U_SHORT & _itemLevel) {
-    if(_itemLevel < 0 || _itemLevel > 99)
+    if(_itemLevel > 99)
         itemLevel = 0;
     else
         itemLevel=_itemLevel;
@@ -30,6 +30,14 @@ void InventoryItem::setDescription(const std::string & _description) {
 
 
 //GETTER
-std::string InventoryItem::getName() const { return name; }
-U_SHORT InventoryItem::getItemLevel() const { return itemLevel; }
-std::string InventoryItem::getDescription() const { return description; }
+std::string InventoryItem::getName() const {
+    return name;
+}
+
+U_SHORT InventoryItem::getItemLevel() const {
+    return itemLevel;
+}
+
+std::string InventoryItem::getDescription() const {
+    return description;
+}

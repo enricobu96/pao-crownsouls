@@ -18,7 +18,9 @@ void AttackShield::setDexScaling(const unsigned short & _dexScaling) {
 }
 
 //GETTER
-unsigned short AttackShield::getDexScaling() const { return dexScaling; }
+unsigned short AttackShield::getDexScaling() const {
+    return dexScaling;
+}
 
 //METODI
 double AttackShield::getTotalRed() const {

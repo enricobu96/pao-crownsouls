@@ -18,10 +18,11 @@ void Gloves::setStrScaling(const unsigned short & _strScaling) {
 }
 
 //GETTER
-unsigned short Gloves::getStrScaling() const { return strScaling; }
+unsigned short Gloves::getStrScaling() const {
+    return strScaling;
+}
 
 //METODI
 double Gloves::getTotalDef() const {
-    //IL +1 SU STR SCALING È PER EVITARE CHE SIA 0
-    return WeaponArmor::getTotalDef()*(strScaling+1)*0.25;
+    return WeaponArmor::getTotalDef()+strScaling*0.25;
 }
