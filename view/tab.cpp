@@ -200,7 +200,12 @@ void Tab::createinformation(){
     //QWIDGET COMPLETAMENTE BIANCO PER MATENERE LA SPAZIATURA
     QWidget* blank = new QWidget();
     blank->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Expanding);
-    groupLayout->addWidget(blank,6,0);
+
+    desctiption = new QLabel();
+    desctiption->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Preferred);
+    desctiption->setWordWrap(true);
+    groupLayout->addWidget(desctiption,6,0,6,3);
+    groupLayout->addWidget(blank,7,0);
 
     //INFORMAZIONI AGGIUNTIVE PER ALCUNI TIPI DI OGGETTO (METODI PROPRI)
     infadditionalL = new QLabel();
@@ -208,10 +213,10 @@ void Tab::createinformation(){
     infadditional2L = new QLabel();
     infadditional2 = new QLabel();
 
-    groupLayout->addWidget(infadditional2L,7,0);
-    groupLayout->addWidget(infadditional2,7,1);
-    groupLayout->addWidget(infadditionalL,8,0);
-    groupLayout->addWidget(infadditionl,8,1);
+    groupLayout->addWidget(infadditional2L,8,0);
+    groupLayout->addWidget(infadditional2,8,1);
+    groupLayout->addWidget(infadditionalL,9,0);
+    groupLayout->addWidget(infadditionl,9,1);
 }
 
 //RESET VALUE
@@ -244,6 +249,8 @@ void Tab::showData(QModelIndex index){
         infStatsInc->setText("N/A");
         infadditionl->setNum(static_cast<BodyArmor*>(s)->getTotalDef());
         infadditionalL->setText("Total defense: ");
+        QString show = QString::fromStdString( s->getDescription());
+        desctiption->setText(show);
     }
     //VALORI PER WEAPON
     else if (t == "weapon") {
@@ -263,6 +270,8 @@ void Tab::showData(QModelIndex index){
 
         infadditionl->setNum(s->getTotalDmg());
         infadditionalL->setText("Total damage: ");
+        QString show = QString::fromStdString( s->getDescription());
+        desctiption->setText(show);
     }
     //VALORI PER SHIELD
     else if (t == "shield"){
@@ -282,6 +291,8 @@ void Tab::showData(QModelIndex index){
 
         infadditionl->setNum(s->getTotalRed());
         infadditionalL->setText("Total damage reduction: ");
+        QString show = QString::fromStdString( s->getDescription());
+        desctiption->setText(show);
     }
     //VALORI PER RING
     else if (t == "ring"){
@@ -297,6 +308,8 @@ void Tab::showData(QModelIndex index){
         infPhysRes->setText("N/A");
         infMagicRes->setText("N/A");
         infStatsInc->setNum(static_cast<int>((dynamic_cast<Ring*>(model->getInventory()[index.row()]))->getStatsIncreasing()));
+        QString show = QString::fromStdString((dynamic_cast<Ring*>(model->getInventory()[index.row()])->getDescription()));
+        desctiption->setText(show);
     }
     //VALORI PER GLOVES
     else if (t == "weaponarmor"){
@@ -318,6 +331,8 @@ void Tab::showData(QModelIndex index){
         infadditionalL->setText("Total damage: ");
         infadditional2->setNum(s->getTotalDef());
         infadditional2L->setText("Total defense: ");
+        QString show = QString::fromStdString( s->getDescription());
+        desctiption->setText(show);
     }
     //VALORI ATTACK SHIELD
     else if (t == "weaponshield"){
@@ -339,6 +354,8 @@ void Tab::showData(QModelIndex index){
         infadditionalL->setText("Total damage: ");
         infadditional2->setNum(s->getTotalRed());
         infadditional2L->setText("Total damage reduction: ");
+        QString show = QString::fromStdString( s->getDescription());
+        desctiption->setText(show);
     }
     //APPARE LA BARRA LATERALE
     information->setHidden(false);
