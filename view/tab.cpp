@@ -61,6 +61,7 @@ void Tab::addItem() {
         U_INT il = aItem.levelItem->value();
         QString type = aItem.typeItemBox->currentText();
 
+        try {
         InventoryItem* t;
 
         if(type == "Body Armor") {
@@ -105,9 +106,16 @@ void Tab::addItem() {
             t = new Ring(name.toUtf8().constData(), il, description.toUtf8().constData(), statsIncreasing);
         }
 
-        model->insertRows(0, 1, QModelIndex());
-        QModelIndex i = model->index(0, 0, QModelIndex());
-        model->addInventoryItem(i, QVariant::fromValue(t), Qt::EditRole);
+
+        //QModelIndex i = model->index(0, 0, QModelIndex());
+        //cout << "qmodelindex i in tab = " << i.row() << endl;
+        model->addInventoryItem(QModelIndex(), QVariant::fromValue(t), Qt::EditRole);
+        model->insertRow(0);
+        //showData(i);
+        } catch(std::exception e) {
+            throw 1;
+            cout << "catch";
+        }
     }
 }
 
@@ -238,6 +246,7 @@ void Tab::showData(QModelIndex index){
     index = proxy->mapToSource(index);
     std::cout << "index =" << model->getInventory()[index.row()]->getType() << std::endl ;
     std::cout << "Nome =" << model->getInventory()[index.row()]->getName() << std::endl;
+    std::cout << "il cazzo di index.row è : " << index.row() << endl;
     resetInformation();
     string t = model->getInventory()[index.row()]->getType();
     //VALORI PER ARMOR

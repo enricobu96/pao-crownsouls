@@ -20,15 +20,17 @@ int Model::columnCount(const QModelIndex &parent) const {
 }
 
 bool Model::insertRows(int position, int rows, const QModelIndex& parent) {
-    Q_UNUSED(parent);
-    beginInsertRows(QModelIndex(), position, position+rows-1);
-    for(int row = 0; row < rows; ++row) {
+    //Q_UNUSED(parent);
+    beginInsertRows(parent, position, position+rows-1);
+    /*for(int row = 0; row < rows; ++row) {
         InventoryItem* p = nullptr;
-        inventory.pushBack(p);
-    }
+        inventory.pushAtPosition(position, p);
+    }*/
     endInsertRows();
     return true;
 }
+
+
 
 
 bool Model::removeRows(int position, int rows, const QModelIndex &parent) {
@@ -166,12 +168,14 @@ int Model::weaponCount() const {
 
 //setter
 bool Model::addInventoryItem(const QModelIndex &index, const QVariant &value, int role) {
-    if(index.isValid() && role == Qt::EditRole) {
+    //if(index.isValid() && role == Qt::EditRole) {
+        cout << "addInventoryItem";
+        //inventory.pushAtPosition(index.row(), value.value<InventoryItem*>());
         inventory.pushFront(value.value<InventoryItem*>());
         emit(dataChanged(index, index));
         return true;
-    }
-    return false;
+    //}
+    //return false;
 }
 
 

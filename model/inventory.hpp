@@ -1,7 +1,8 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 #include "core/inventoryitem.h"
-
+#include<iostream>
+using namespace std;
 /*
  * Classe container, corrispondente all'inventario composto da più InventoryItem.
  * La classe è templatizzata, ergo può essere utilizzata anche in altri contesti; nel caso del nostro programma,
@@ -66,12 +67,14 @@ public:
     bool isEmpty() const;
     void pushFront(const T&);
     void pushBack(const T&);
+    void pushAtPosition(int, const T&);
     void popFront();
     void popBack();
     void popAtPosition(U_INT);
     T getFront() const;
     T getBack() const;
     U_INT getSize() const;
+    void insertAtPosition(int, const T&);
 
     //ITERATORE - Iterator
     class Iterator{
@@ -185,11 +188,19 @@ Inventory<T>::~Inventory() {
 //FUNZIONALITÀ BASE Inventory
 template<class T>
 bool Inventory<T>::isEmpty() const {
+    /*int i = 0;
+    SmartP* t = first;
+    while(t) {
+        t = t->next;
+        i++;
+    }
+    return i == 0; */
     return size == 0;
 }
 
 template<class T>
 void Inventory<T>::pushFront(const T& t) {
+    cout << endl << "pushFront" << endl;
     if(this->isEmpty()) {
         first = new SmartP(t);
         last = first;
@@ -200,6 +211,7 @@ void Inventory<T>::pushFront(const T& t) {
 
 template<class T>
 void Inventory<T>::pushBack(const T& t) {
+    cout << endl << "pushBack" << endl;
     if(this->isEmpty()) {
         first = new SmartP(t);
         last = first;
@@ -208,6 +220,29 @@ void Inventory<T>::pushBack(const T& t) {
         last = last->next;
     }
     ++size;
+}
+
+template<class T>
+void Inventory<T>::pushAtPosition(int i, const T& s) {
+    if(i>size)
+        return;
+    if(i == 0) {
+        pushFront(s);
+        return;
+    }
+    if(i == size) {
+        pushBack(s);
+        return;
+    }
+    SmartP* t = first;
+    while(i>1) {
+        first = first->next;
+        i--;
+    }
+    SmartP* prox = first->next;
+    first->next = new SmartP(s, prox);
+    first = t;
+    size++;
 }
 
 template<class T>
@@ -253,6 +288,7 @@ void Inventory<T>::popAtPosition(unsigned int i) {
         return;
     if(!this->isEmpty()) {
         if(i == 0) return popFront();
+        if(i == size-1) return popBack();
         if(first == last) {
             delete first;
             first = nullptr;
@@ -297,6 +333,34 @@ unsigned int Inventory<T>::getSize() const {
     return size;
 }
 
+template<class T>
+void Inventory<T>::insertAtPosition(int i, const T& s) {
+    if(i>size)
+        return;
+    if(i == 0) {
+        SmartP* cristo = new SmartP(s);
+        cristo->next = nullptr;
+        first->item = cristo->item;
+        return;
+    }
+
+    if(i == size) {
+        SmartP* cristo = new SmartP(s);
+        cristo->next = nullptr;
+        last->item = cristo->item;
+        return;
+    }
+
+    SmartP* t = first;
+    while(i > 0 && first != nullptr) {
+        first = first->next;
+        i--;
+    }
+    first->item = s;
+    first = t;
+    //size++;
+}
+
 //RIDEFINIZIONE DEGLI OPERATORI DI Inventory
 template<class T>
 bool Inventory<T>::operator==(const Inventory& s) const {
@@ -323,12 +387,19 @@ Inventory<T> Inventory<T>::operator=(const Inventory & s) {
 
 template<class T>
 T& Inventory<T>::operator[](unsigned int i) const {
-    SmartP* t;
-    if(first)
-        t = first;
-    while(i-- && t != nullptr)
+    if(!isEmpty()) {
+    if(i==size-1)
+        return last->item;
+    SmartP* a = first;
+    while(i-- && a!=nullptr) a = a->next;
+    return a->item;
+    }
+    /*SmartP* t = first;
+    while(i && t != nullptr) {
         t=t->next;
-    return t->item;
+        i--;
+    }
+    return t->item; */
 }
 
 //COSTRUTTORI Iterator
