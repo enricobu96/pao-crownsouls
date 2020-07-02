@@ -1,6 +1,4 @@
 #include "model.h"
-#include<iostream>
-using namespace std;
 
 //COSTRUTTORI
 Model::Model(QObject* parent) : QAbstractListModel(parent) , name("CrownSouls") {
@@ -20,12 +18,7 @@ int Model::columnCount(const QModelIndex &parent) const {
 }
 
 bool Model::insertRows(int position, int rows, const QModelIndex& parent) {
-    //Q_UNUSED(parent);
     beginInsertRows(parent, position, position+rows-1);
-    /*for(int row = 0; row < rows; ++row) {
-        InventoryItem* p = nullptr;
-        inventory.pushAtPosition(position, p);
-    }*/
     endInsertRows();
     return true;
 }
@@ -167,17 +160,11 @@ int Model::weaponCount() const {
 }
 
 //setter
-bool Model::addInventoryItem(const QModelIndex &index, const QVariant &value, int role) {
-    //if(index.isValid() && role == Qt::EditRole) {
-        cout << "addInventoryItem";
-        //inventory.pushAtPosition(index.row(), value.value<InventoryItem*>());
-        inventory.pushFront(value.value<InventoryItem*>());
-        emit(dataChanged(index, index));
-        return true;
-    //}
-    //return false;
+bool Model::addInventoryItem(const QModelIndex &index, const QVariant &value) {
+    inventory.pushFront(value.value<InventoryItem*>());
+    emit(dataChanged(index, index));
+    return true;
 }
-
 
 //metodi
 bool Model::filter(int i, QString s) const {

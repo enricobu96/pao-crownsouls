@@ -1,6 +1,4 @@
 #include "io.h"
-#include<iostream>
-using namespace std;
 
 IO::IO(const QString & s) : name(s) {}
 
@@ -15,7 +13,7 @@ Inventory<InventoryItem*> IO::readFile() const { //questo dovrà ritornare a tab
         while(xml.readNextStartElement() && xml.name() == "InventoryItem") {
             try {
                 t.pushFront(readFromXml(xml));
-            } catch(std::exception e) {
+            } catch(const std::exception& e) {
                 QMessageBox box(QMessageBox::Warning, "File mal formato", "Errore nell'apertura del file.", QMessageBox::Ok);
                 throw 1;
                 return t;
@@ -43,7 +41,7 @@ void IO::write(const Inventory<InventoryItem *>& inv) const {
             for(it=inv.begin(); !it.hasFinished() && *it; ++it) {
                 writeToXml(*it, xml);
             }
-        } catch (std::exception e) {
+        } catch (const std::exception& e) {
             QMessageBox box(QMessageBox::Warning, "Errore in scrittura", "Errore nella scrittura del file.", QMessageBox::Ok);
             throw 1;
             return;

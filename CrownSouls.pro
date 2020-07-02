@@ -34,7 +34,7 @@ SOURCES += \
     model/core/weaponarmor.cpp \
     model/core/weaponshield.cpp \
     view/mainwindow.cpp \
-    view/proxyarmor.cpp \
+    view/proxy.cpp \
     view/tab.cpp \
     view/ringtab.cpp \
     view/shieldtab.cpp \
@@ -59,7 +59,7 @@ HEADERS += \
     model/core/weaponarmor.h \
     model/core/weaponshield.h \
     view/mainwindow.h \
-    view/proxyarmor.h \
+    view/proxy.h \
     view/tab.h \
     view/ringtab.h \
     view/shieldtab.h \

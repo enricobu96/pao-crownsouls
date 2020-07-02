@@ -110,6 +110,7 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
 
     //CHIAMATA PER LA PRIMA VOLTA
     obscurer(0);
+
     //CONNECT
     connect(buttok,SIGNAL(clicked()),this,SLOT(accept()));
     connect(typeItemBox,SIGNAL(currentIndexChanged(int)),this,SLOT(obscurer(int)));
@@ -226,6 +227,3 @@ void AddItem::obscurer(int i) {
         };
     }
 }
-
-
-

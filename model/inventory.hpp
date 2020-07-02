@@ -1,8 +1,7 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 #include "core/inventoryitem.h"
-#include<iostream>
-using namespace std;
+
 /*
  * Classe container, corrispondente all'inventario composto da più InventoryItem.
  * La classe è templatizzata, ergo può essere utilizzata anche in altri contesti; nel caso del nostro programma,
@@ -188,19 +187,11 @@ Inventory<T>::~Inventory() {
 //FUNZIONALITÀ BASE Inventory
 template<class T>
 bool Inventory<T>::isEmpty() const {
-    /*int i = 0;
-    SmartP* t = first;
-    while(t) {
-        t = t->next;
-        i++;
-    }
-    return i == 0; */
     return size == 0;
 }
 
 template<class T>
 void Inventory<T>::pushFront(const T& t) {
-    cout << endl << "pushFront" << endl;
     if(this->isEmpty()) {
         first = new SmartP(t);
         last = first;
@@ -211,7 +202,6 @@ void Inventory<T>::pushFront(const T& t) {
 
 template<class T>
 void Inventory<T>::pushBack(const T& t) {
-    cout << endl << "pushBack" << endl;
     if(this->isEmpty()) {
         first = new SmartP(t);
         last = first;
@@ -358,7 +348,6 @@ void Inventory<T>::insertAtPosition(int i, const T& s) {
     }
     first->item = s;
     first = t;
-    //size++;
 }
 
 //RIDEFINIZIONE DEGLI OPERATORI DI Inventory
@@ -388,18 +377,13 @@ Inventory<T> Inventory<T>::operator=(const Inventory & s) {
 template<class T>
 T& Inventory<T>::operator[](unsigned int i) const {
     if(!isEmpty()) {
-    if(i==size-1)
-        return last->item;
-    SmartP* a = first;
-    while(i-- && a!=nullptr) a = a->next;
-    return a->item;
+        if(i==size-1)
+            return last->item;
+        SmartP* a = first;
+        while(i-- && a!=nullptr) a = a->next;
+        return a->item;
     }
-    /*SmartP* t = first;
-    while(i && t != nullptr) {
-        t=t->next;
-        i--;
-    }
-    return t->item; */
+    return last->item;
 }
 
 //COSTRUTTORI Iterator

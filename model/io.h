@@ -7,12 +7,14 @@
 #include<QSaveFile>
 #include<QString>
 #include<QMessageBox>
+
 #include"inventory.hpp"
 #include"model.h"
 
 
 class IO {
 public:
+
     //COSTRUTTORE
     IO(const QString&);
 

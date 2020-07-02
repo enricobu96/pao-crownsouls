@@ -1,6 +1,6 @@
 #ifndef MODEL_H
 #define MODEL_H
-#include"../view/proxyarmor.h"
+#include"../view/proxy.h"
 
 //GERARCHIA
 #include "core/inventoryitem.h"
@@ -24,6 +24,7 @@
 #include<QString>
 #include<QAbstractListModel>
 #include<QXmlStreamReader>
+
 Q_DECLARE_METATYPE(InventoryItem*)
 
 class Model : public QAbstractListModel
@@ -62,16 +63,14 @@ public:
     int weaponCount() const;
 
     //setter
-    bool addInventoryItem(const QModelIndex&, const QVariant&, int);
+    bool addInventoryItem(const QModelIndex&, const QVariant&);
 
     //metodi
     bool filter(int, QString) const;
 
-
 private:
     const QString name;
     Inventory<InventoryItem*> inventory;
-
 };
 
 #endif // MODEL_H

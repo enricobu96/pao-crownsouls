@@ -29,7 +29,7 @@
 
 //MODEL
 #include"../model/model.h"
-#include"proxyarmor.h"
+#include"proxy.h"
 
 #include"../model/io.h"
 

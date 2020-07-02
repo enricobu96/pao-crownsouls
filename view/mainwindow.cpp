@@ -1,8 +1,5 @@
 #include "mainwindow.h"
-#include<iostream>
-using namespace std;
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-
     //TABS
     tabWidget = new Tab(this);
     setCentralWidget(tabWidget);
@@ -16,6 +13,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
 void MainWindow::addmenu()
 {
+    //I/O
     loadFile = new QAction("Carica inventario", this);
     saveFile = new QAction("Salva inventario", this);
     file = new QMenu("File", this);
@@ -25,7 +23,7 @@ void MainWindow::addmenu()
     connect(loadFile, SIGNAL(triggered()), tabWidget, SLOT(loadFileDialog()));
     connect(saveFile, SIGNAL(triggered()), tabWidget, SLOT(saveFileDialog()));
 
-
+    //AGGIUNTA - RIMOZIONE
     action1 = new QAction("Aggiungi oggetto",this);
     menuBar()->addAction(action1);
     connect(action1, SIGNAL(triggered()), tabWidget, SLOT(addItem()));

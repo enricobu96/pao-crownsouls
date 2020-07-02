@@ -1,15 +1,15 @@
 #ifndef PROXYARMOR_H
 #define PROXYARMOR_H
 
-#include <QObject>
+#include<QObject>
 #include<QSortFilterProxyModel>
-#include "../model/model.h"
+
+#include"../model/model.h"
 
 class Proxy : public QSortFilterProxyModel {
     Q_OBJECT
 public:
 
-    //COSTRUTTORE
     Proxy(QObject* =nullptr);
 
     //METODI
@@ -18,6 +18,7 @@ public:
 
 private:
     QString nomeTipo;
+
 protected:
     bool filterAcceptsRow(int, const QModelIndex&) const override;
 };

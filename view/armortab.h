@@ -3,11 +3,13 @@
 
 #include<QTableView>
 #include<QHeaderView>
-#include"../model/model.h"
 #include<QSortFilterProxyModel>
+
+#include"../model/model.h"
 
 class ArmorTab: public QTableView {
 public:
+
     ArmorTab(QWidget* =nullptr);
 
 private:
