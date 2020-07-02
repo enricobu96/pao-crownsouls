@@ -1,0 +1,12 @@
+QLabel {
+    color: #2a9d8f;
+}
+
+QMainWindow {
+    background-color: #253247;
+}
+
+QMenuBar {
+    background-color: #253247;
+    color: #FFF;
+}

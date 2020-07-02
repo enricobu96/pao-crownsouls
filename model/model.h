@@ -65,10 +65,11 @@ public:
 
     //metodi
     bool filter(int, QString) const;
-    Inventory<InventoryItem*> inventory; //TO FIX
+
 
 private:
     const QString name;
+    Inventory<InventoryItem*> inventory;
 
 };
 
