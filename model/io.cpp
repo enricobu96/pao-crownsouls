@@ -16,11 +16,17 @@ Inventory<InventoryItem*> IO::readFile() const { //questo dovrà ritornare a tab
             try {
                 t.pushFront(readFromXml(xml));
             } catch(std::exception e) {
+                QMessageBox box(QMessageBox::Warning, "File mal formato", "Errore nell'apertura del file.", QMessageBox::Ok);
                 throw 1;
+                return t;
             }
         }
-
-    } else { throw 1;}
+    } else {
+        QMessageBox box(QMessageBox::Warning, "File mal formato", "Errore nell'apertura del file.", QMessageBox::Ok);
+        box.exec();
+        throw 1;
+        return t;
+    }
     file.close();
     return t;
 }
@@ -34,21 +40,22 @@ void IO::write(const Inventory<InventoryItem *>& inv) const {
         xml.writeStartElement("Inventory");
         try {
             Inventory<InventoryItem*>::Iterator it;
-            for(it=inv.begin(); it!=inv.end(); ++it) {
+            for(it=inv.begin(); !it.hasFinished() && *it; ++it) {
                 writeToXml(*it, xml);
             }
-        } catch (...) {
-            //gestione errore
+        } catch (std::exception e) {
+            QMessageBox box(QMessageBox::Warning, "Errore in scrittura", "Errore nella scrittura del file.", QMessageBox::Ok);
+            throw 1;
+            return;
         }
         xml.writeEndElement();
         xml.writeEndDocument();
         file.commit();
     }
-    file.commit();
-    //errore in apertura
+    QMessageBox box(QMessageBox::Warning, "Errore in scrittura", "Errore nella scrittura del file.", QMessageBox::Ok);
+    return;
 }
 
-//concettualmente questo sotto è meglio spostarlo in altre classi
 
 InventoryItem* IO::readFromXml(QXmlStreamReader & xml) const {
     string name = "";

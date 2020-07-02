@@ -6,6 +6,7 @@
 #include<iostream>
 #include<QSaveFile>
 #include<QString>
+#include<QMessageBox>
 #include"inventory.hpp"
 #include"model.h"
 

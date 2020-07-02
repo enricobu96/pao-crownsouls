@@ -18,6 +18,7 @@
 #include<QHeaderView>
 #include<QMessageBox>
 #include<QFileDialog>
+#include<QDir>
 
 //VIEW
 #include"armortab.h"
