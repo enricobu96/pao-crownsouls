@@ -104,6 +104,7 @@ void Tab::addItem() {
             U_INT statsIncreasing = aItem.stsIncreasing->value();
             t = new Ring(name.toUtf8().constData(), il, description.toUtf8().constData(), statsIncreasing);
         }
+
         model->insertRows(0, 1, QModelIndex());
         QModelIndex i = model->index(0, 0, QModelIndex());
         model->addInventoryItem(i, QVariant::fromValue(t), Qt::EditRole);
@@ -216,14 +217,20 @@ void Tab::createinformation(){
     //INFORMAZIONI AGGIUNTIVE PER ALCUNI TIPI DI OGGETTO (METODI PROPRI)
     infadditionalL = new QLabel();
     infadditionl = new QLabel();
+    infadditional2L = new QLabel();
+    infadditional2 = new QLabel();
 
-    groupLayout->addWidget(infadditionalL,7,0);
-    groupLayout->addWidget(infadditionl,7,1);
+    groupLayout->addWidget(infadditional2L,7,0);
+    groupLayout->addWidget(infadditional2,7,1);
+    groupLayout->addWidget(infadditionalL,8,0);
+    groupLayout->addWidget(infadditionl,8,1);
 }
 //RESET VALUE "Complessi"
 void Tab::resetInformation(){
     infadditionalL->clear();
     infadditionl->clear();
+    infadditional2->clear();
+    infadditional2L->clear();
 }
 
 //POP-UP LATERALE
@@ -320,6 +327,11 @@ void Tab::showData(QModelIndex index){
         infPhysRes->setText("N/A");
         infMagicRes->setText("N/A");
         infStatsInc->setText("N/A");
+
+        infadditionl->setNum(s->getTotalDmg());
+        infadditionalL->setText("Total damage: ");
+        infadditional2->setNum(s->getTotalDef());
+        infadditional2L->setText("Total defense: ");
     }
     //VALORI ATTACK SHIELD
     else if (t == "weaponshield"){
@@ -336,6 +348,11 @@ void Tab::showData(QModelIndex index){
         infPhysRes->setNum(static_cast<int>(s->getPhysicalRed()));
         infMagicRes->setNum(static_cast<int>(s->getMagicalRed()));
         infStatsInc->setText("N/A");
+
+        infadditionl->setNum(s->getTotalDmg());
+        infadditionalL->setText("Total damage: ");
+        infadditional2->setNum(s->getTotalRed());
+        infadditional2L->setText("Total damage reduction: ");
     }
     //APPARE LA BARRA LATERALE
     information->setHidden(false);
@@ -362,7 +379,8 @@ void Tab::updateFilterRows(int a) {
     else if(a==3)
         proxy->setNomeTipo("weapon");
 
-    QRegExp regex(proxy->getNomeTipo(), Qt::CaseInsensitive, QRegExp::Wildcard);
+    //PATTERN MATCHING SUL TIPO DI OGGETTO (PER QUELLI CHE EREDITANO DA DUE CLASSI)
+    QRegExp regex("*"+proxy->getNomeTipo()+"*",Qt::CaseInsensitive, QRegExp::Wildcard);
     proxy->setFilterRegExp(regex);
 }
 

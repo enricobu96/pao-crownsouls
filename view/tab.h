@@ -84,16 +84,8 @@ private:
     //INFORMAZIONI AGGIUNTIVE IN TAB AGGIUNTIVA
     QLabel* infadditionalL;
     QLabel* infadditionl;
-    /*
-    QLabel* infTotalDefL;
-    QLabel* infTotalDef;
-    QLabel* infTotalRedL;
-    QLabel* infTotalRed;
-    QLabel* infTotalDmgL;
-    QLabel* infTotalDmg;
-    QLabel* infLevelDmgL;
-    QLabel* infLevelDmg;
-    */
+    QLabel* infadditional2L;
+    QLabel* infadditional2;
 
     QFileDialog* loadDialog;
     QFileDialog* saveDialog;

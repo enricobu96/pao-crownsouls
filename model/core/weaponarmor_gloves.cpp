@@ -22,5 +22,6 @@ unsigned short Gloves::getStrScaling() const { return strScaling; }
 
 //METODI
 double Gloves::getTotalDef() const {
-    return WeaponArmor::getTotalDef()*strScaling*0.25;
+    //IL +1 SU STR SCALING È PER EVITARE CHE SIA 0
+    return WeaponArmor::getTotalDef()*(strScaling+1)*0.25;
 }
