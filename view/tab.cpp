@@ -2,7 +2,7 @@
 
 Tab::Tab(QWidget *parent) :
     QWidget(parent), usertab(new QTabWidget()) {
-
+    setProperty("class", "tab");
     //MODEL
     model = new Model(this);
     proxy = new Proxy(this);

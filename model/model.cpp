@@ -75,7 +75,6 @@ bool Model::setData(const QModelIndex& index, const QVariant& value, int role) {
 QVariant Model::headerData(int section, Qt::Orientation orientation, int role) const {
     if(role != Qt::DisplayRole)
         return QVariant();
-
     if(orientation == Qt::Horizontal) {
         if(section == 0)
             return "Nome";

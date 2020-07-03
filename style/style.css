@@ -3,10 +3,27 @@ QLabel {
 }
 
 QMainWindow {
-    background-color: #253247;
+    background-image: url(":/extra/background.jpg");
+    background-repeat: repeat-xy;
 }
 
 QMenuBar {
-    background-color: #253247;
+    background-image: url(":/extra/background.jpg");
+    background-repeat: repeat-xy;
     color: #FFF;
+}
+
+QWidget.tab {
+    background-image: url(":/extra/background.jpg");
+    background-repeat: repeat-xy;
+}
+
+QTabWidget {
+    background-image: url(":/extra/background.jpg");
+    background-repeat: repeat-xy;
+}
+
+QTableView {
+    background-image: url(":/extra/background.jpg");
+    background-repeat: repeat-xy;
 }

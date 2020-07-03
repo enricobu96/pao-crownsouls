@@ -22,7 +22,7 @@ void InventoryItem::setItemLevel(const U_SHORT & _itemLevel) {
 }
 
 void InventoryItem::setDescription(const std::string & _description) {
-    if(_description.size() > 500)
+    if(_description.size() > 5000)
         description = "";
     else
         description=_description;
