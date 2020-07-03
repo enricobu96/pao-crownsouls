@@ -1,5 +1,8 @@
 #include "tab.h"
 
+#include<QStandardItem>
+#include<QListWidgetItem>
+
 Tab::Tab(QWidget *parent) :
     QWidget(parent), usertab(new QTabWidget()) {
     setProperty("class", "tab");
@@ -50,56 +53,7 @@ Tab::Tab(QWidget *parent) :
 void Tab::addItem() {
     AddItem aItem("Add Item");
     if(aItem.exec()) {
-        QString name = aItem.namePlaceholder->text();
-        QString description = aItem.flavourText->toPlainText();
-        U_INT il = aItem.levelItem->value();
-        QString type = aItem.typeItemBox->currentText();
-        try {
-        InventoryItem* t;
-        if(type == "Body Armor") {
-            U_INT pdef = aItem.physDef->value();
-            U_INT mdef = aItem.magicDef->value();
-            U_SHORT b = aItem.balance->value();
-            U_INT fallingDef = aItem.fallDef->value();
-            U_INT stabbingDef = aItem.stabDef->value();
-            t = new BodyArmor(name.toUtf8().constData(), il, description.toUtf8().constData(), pdef, mdef, b, fallingDef, stabbingDef);
-        } else if(type == "Gloves") {
-            U_INT pdef = aItem.physDef->value();
-            U_INT mdef = aItem.magicDef->value();
-            U_SHORT b = aItem.balance->value();
-            U_INT pdmg = aItem.physDmg->value();
-            U_INT mdmg = aItem.magicDmg->value();
-            U_SHORT strScaling = aItem.strScaling->value();
-            t = new Gloves(name.toUtf8().constData(), il, description.toUtf8().constData(), pdef, mdef, b, pdmg, mdmg, strScaling);
-        } else if(type == "Attack Weapon") {
-            U_INT pdmg = aItem.physDmg->value();
-            U_INT mdmg = aItem.magicDmg->value();
-            U_SHORT strScaling = aItem.strScaling->value();
-            U_SHORT dexScaling = aItem.dexScaling->value();
-            t = new AttackWeapon(name.toUtf8().constData(), il, description.toUtf8().constData(), pdmg, mdmg, strScaling, dexScaling);
-        }
-        else if(type == "Attack Shield") {
-            U_INT pdmg = aItem.physDmg->value();
-            U_INT mdmg = aItem.magicDmg->value();
-            U_INT pred = aItem.physRes->value();
-            U_INT mred = aItem.magicRes->value();
-            U_SHORT dexScaling = aItem.dexScaling->value();
-            t = new AttackShield(name.toUtf8().constData(), il, description.toUtf8().constData(), pdmg, mdmg, pred, mred, dexScaling);
-        } else if(type == "Defense Shield") {
-            U_INT pred = aItem.physRes->value();
-            U_INT mred = aItem.magicRes->value();
-            t = new DefenseShield(name.toUtf8().constData(), il, description.toUtf8().constData(), pred, mred);
-        } else if(type == "Ring") {
-            U_INT statsIncreasing = aItem.stsIncreasing->value();
-            t = new Ring(name.toUtf8().constData(), il, description.toUtf8().constData(), statsIncreasing);
-        }
-
-        model->addInventoryItem(QModelIndex(), QVariant::fromValue(t));
-        model->insertRow(0);
-        } catch(std::exception e) {
-            QMessageBox err(QMessageBox::Warning, "Errore aggiunta elemento", "Errore nell'aggiunta dell'elemento", QMessageBox::Ok);
-            throw 1;
-        }
+        setInformation(aItem,true, QModelIndex());
     }
 }
 
@@ -110,6 +64,8 @@ void Tab::removeItem()
     QModelIndexList b = ringTab->selectionModel()->selectedRows();
     QModelIndexList c = shieldTab->selectionModel()->selectedRows();
     QModelIndexList d = weaponTab->selectionModel()->selectedRows();
+
+    AddItem mitem("Modifica");
 
     if(!a.isEmpty()) {
         QModelIndex t = proxy->mapToSource(a[0]);
@@ -129,6 +85,101 @@ void Tab::removeItem()
     }
     else {
         QMessageBox::warning(this,tr("Error"),tr("Nessun oggetto selezionato"),QMessageBox::Ok);
+    }
+}
+
+void Tab::modifyItem()
+{
+    QModelIndexList a = armorTab->selectionModel()->selectedRows();
+    QModelIndexList b = ringTab->selectionModel()->selectedRows();
+    QModelIndexList c = shieldTab->selectionModel()->selectedRows();
+    QModelIndexList d = weaponTab->selectionModel()->selectedRows();
+
+    AddItem mItem("Modifica");
+
+    QModelIndex t = QModelIndex();
+    if(!a.isEmpty()){
+        t = proxy->mapToSource(a[0]);
+        Armor* sel = dynamic_cast<Armor*>(model->getInventory()[t.row()]);
+        mItem.physDef->setValue(sel->getPhysicalDef());
+        mItem.magicDef->setValue(sel->getMagicalDef());
+        mItem.balance->setValue(sel->getBalance());
+        mItem.fallDef->setValue(static_cast<BodyArmor*>(sel)->getFallingDef());
+        mItem.stabDef->setValue(static_cast<BodyArmor*>(sel)->getStabbingDef());
+        mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
+        mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
+    }
+    else if (!b.isEmpty()){
+
+    }
+    else if (!c.isEmpty()){
+
+    }
+    else if(!d.isEmpty()){
+
+    }
+    else{
+        QMessageBox::warning(this,tr("Error"),tr("Nessun oggetto selezionato"),QMessageBox::Ok);
+    }
+    if(mItem.exec())
+        setInformation(mItem,false, t);
+
+}
+
+void Tab::setInformation(AddItem &aItem,bool aggiungi, QModelIndex index){
+
+    QString name = aItem.namePlaceholder->text();
+    QString description = aItem.flavourText->toPlainText();
+    U_INT il = aItem.levelItem->value();
+    QString type = aItem.typeItemBox->currentText();
+    try {
+    InventoryItem* t;
+    if(type == "Body Armor") {
+        U_INT pdef = aItem.physDef->value();
+        U_INT mdef = aItem.magicDef->value();
+        U_SHORT b = aItem.balance->value();
+        U_INT fallingDef = aItem.fallDef->value();
+        U_INT stabbingDef = aItem.stabDef->value();
+        t = new BodyArmor(name.toUtf8().constData(), il, description.toUtf8().constData(), pdef, mdef, b, fallingDef, stabbingDef);
+    } else if(type == "Gloves") {
+        U_INT pdef = aItem.physDef->value();
+        U_INT mdef = aItem.magicDef->value();
+        U_SHORT b = aItem.balance->value();
+        U_INT pdmg = aItem.physDmg->value();
+        U_INT mdmg = aItem.magicDmg->value();
+        U_SHORT strScaling = aItem.strScaling->value();
+        t = new Gloves(name.toUtf8().constData(), il, description.toUtf8().constData(), pdef, mdef, b, pdmg, mdmg, strScaling);
+    } else if(type == "Attack Weapon") {
+        U_INT pdmg = aItem.physDmg->value();
+        U_INT mdmg = aItem.magicDmg->value();
+        U_SHORT strScaling = aItem.strScaling->value();
+        U_SHORT dexScaling = aItem.dexScaling->value();
+        t = new AttackWeapon(name.toUtf8().constData(), il, description.toUtf8().constData(), pdmg, mdmg, strScaling, dexScaling);
+    }
+    else if(type == "Attack Shield") {
+        U_INT pdmg = aItem.physDmg->value();
+        U_INT mdmg = aItem.magicDmg->value();
+        U_INT pred = aItem.physRes->value();
+        U_INT mred = aItem.magicRes->value();
+        U_SHORT dexScaling = aItem.dexScaling->value();
+        t = new AttackShield(name.toUtf8().constData(), il, description.toUtf8().constData(), pdmg, mdmg, pred, mred, dexScaling);
+    } else if(type == "Defense Shield") {
+        U_INT pred = aItem.physRes->value();
+        U_INT mred = aItem.magicRes->value();
+        t = new DefenseShield(name.toUtf8().constData(), il, description.toUtf8().constData(), pred, mred);
+    } else if(type == "Ring") {
+        U_INT statsIncreasing = aItem.stsIncreasing->value();
+        t = new Ring(name.toUtf8().constData(), il, description.toUtf8().constData(), statsIncreasing);
+    }
+    if(aggiungi){
+        model->addInventoryItem(QModelIndex(), QVariant::fromValue(t));
+        model->insertRow(0);
+    } else { //ramo modifica
+        model->setInventoryItem(index, QVariant::fromValue(t));
+    }
+    } catch(std::exception e) {
+        QMessageBox err(QMessageBox::Warning, "Errore aggiunta elemento", "Errore nell'aggiunta dell'elemento", QMessageBox::Ok);
+        throw 1;
     }
 }
 
@@ -407,4 +458,8 @@ void Tab::saveFileDialog() {
         QString path = saveDialog->getSaveFileName(this, tr("Save inventory"), QDir::home().path().append("/untitledInventory.xml"), tr("XML file (.xml)"));
         IO input(path);
         input.write(model->getInventory());
+}
+
+void Tab::destroyInventory() {
+    model->removeRows(0, model->getInventory().getSize(), QModelIndex());
 }

@@ -165,6 +165,11 @@ bool Model::addInventoryItem(const QModelIndex &index, const QVariant &value) {
     return true;
 }
 
+void Model::setInventoryItem(const QModelIndex &index, const QVariant & value) {
+    inventory.insertAtPosition(index.row(), value.value<InventoryItem*>());
+    emit(dataChanged(index, index));
+}
+
 //metodi
 bool Model::filter(int i, QString s) const {
     return inventory[i]->getType() == s.toUtf8().constData();

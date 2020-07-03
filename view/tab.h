@@ -100,10 +100,13 @@ private:
     //ESTENSIONI
     QTextEdit *informationTab;
 
+    void setInformation(AddItem&,bool, QModelIndex);
+
 public slots:
 
     void addItem();
     void removeItem();
+    void modifyItem();
     void createinformation();
     void showData(QModelIndex index);
     void resetInformation();
@@ -111,6 +114,7 @@ public slots:
     void updateFilterRows(int);
     void loadFileDialog();
     void saveFileDialog();
+    void destroyInventory();
 
 };
 

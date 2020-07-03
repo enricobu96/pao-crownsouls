@@ -64,6 +64,7 @@ public:
 
     //setter
     bool addInventoryItem(const QModelIndex&, const QVariant&);
+    void setInventoryItem(const QModelIndex&, const QVariant&);
 
     //metodi
     bool filter(int, QString) const;

@@ -2,28 +2,3 @@ QLabel {
     color: #2a9d8f;
 }
 
-QMainWindow {
-    background-image: url(":/extra/background.jpg");
-    background-repeat: repeat-xy;
-}
-
-QMenuBar {
-    background-image: url(":/extra/background.jpg");
-    background-repeat: repeat-xy;
-    color: #FFF;
-}
-
-QWidget.tab {
-    background-image: url(":/extra/background.jpg");
-    background-repeat: repeat-xy;
-}
-
-QTabWidget {
-    background-image: url(":/extra/background.jpg");
-    background-repeat: repeat-xy;
-}
-
-QTableView {
-    background-image: url(":/extra/background.jpg");
-    background-repeat: repeat-xy;
-}
