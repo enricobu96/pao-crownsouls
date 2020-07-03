@@ -87,6 +87,8 @@ private:
     QLabel* infadditionl;
     QLabel* infadditional2L;
     QLabel* infadditional2;
+    //test description
+    QLabel* desctiption;
 
     QFileDialog* loadDialog;
     QFileDialog* saveDialog;
