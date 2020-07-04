@@ -179,8 +179,12 @@ void Tab::modifyItem()
     else{
         QMessageBox::warning(this,tr("Error"),tr("Nessun oggetto selezionato"),QMessageBox::Ok);
     }
-    if(mItem.exec())
-        setInformation(mItem,false, t);
+
+    if(!(a.isEmpty() && b.isEmpty() && c.isEmpty() && d.isEmpty())) {
+        if(mItem.exec())
+            setInformation(mItem,false, t);
+    }
+
 
 }
 
