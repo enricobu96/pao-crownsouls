@@ -32,6 +32,7 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     //TEST GROUPBOX
     gbLayout = new QGridLayout;
     information = new QGroupBox("Additional Information");
+    information->setMinimumSize(525,100);
     information->setLayout(gbLayout);
 
     //INFORMAZIONI AGGIUNTIVE
@@ -116,6 +117,24 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     connect(typeItemBox,SIGNAL(currentIndexChanged(int)),this,SLOT(obscurer(int)));
 
     setWindowTitle(t);
+
+    //THEMING
+    nameLabel->setProperty("type", "addInformation");
+    descLabel->setProperty("type", "addInformation");
+    ilvlLabel->setProperty("type", "addInformation");
+    typeLabel->setProperty("type", "addInformation");
+    physDefL->setProperty("type", "addInformation");
+    magicDefL->setProperty("type", "addInformation");
+    balanceL->setProperty("type", "addInformation");
+    fallDefL->setProperty("type", "addInformation");
+    stabDefL->setProperty("type", "addInformation");
+    strScalingL->setProperty("type", "addInformation");
+    physDmgL->setProperty("type", "addInformation");
+    magicDmgL->setProperty("type", "addInformation");
+    dexScalingL->setProperty("type", "addInformation");
+    physResL->setProperty("type", "addInformation");
+    magicResL->setProperty("type", "addInformation");
+    stsIncreasingL->setProperty("type", "addInformation");
 }
 
 void AddItem::obscurer(int i) {

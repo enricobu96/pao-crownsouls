@@ -330,8 +330,39 @@ void Tab::createinformation(){
     groupLayout->addWidget(infadditional2,8,1);
     groupLayout->addWidget(infadditionalL,9,0);
     groupLayout->addWidget(infadditionl,9,1);
-}
 
+    //THEMING
+    infPhysDefL->setProperty("type", "stats");
+    infPhysDef->setProperty("type", "statsInfo");
+    infMagicDefL->setProperty("type", "stats");
+    infMagicDef->setProperty("type", "statsInfo");
+    //
+    infBalanceL->setProperty("type", "stats");
+    infBalance->setProperty("type", "statsInfo");
+    infFallingL->setProperty("type", "stats");
+    infFalling->setProperty("type", "statsInfo");
+    //
+    infStabL->setProperty("type", "stats");
+    infStab->setProperty("type", "statsInfo");
+    infstrScalL->setProperty("type", "stats");
+    infstrScal->setProperty("type", "statsInfo");
+    //
+    infPhysDmgL->setProperty("type", "stats");
+    infPhysDmg->setProperty("type", "statsInfo");
+    infMagicalDmgL->setProperty("type", "stats");
+    infMagicalDmg->setProperty("type", "statsInfo");
+    //
+    infDxtScalL->setProperty("type", "stats");
+    infDxtScal->setProperty("type", "statsInfo");
+    infPhysResL->setProperty("type", "stats");
+    infPhysRes->setProperty("type", "statsInfo");
+    //
+    infMagicResL->setProperty("type", "stats");
+    infMagicRes->setProperty("type", "statsInfo");
+    infStatsIncL->setProperty("type", "stats");
+    infStatsInc->setProperty("type", "statsInfo");
+
+}
 //RESET VALUE
 void Tab::resetInformation(){
     infadditionalL->clear();

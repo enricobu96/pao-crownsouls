@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>style/style.css</file>
         <file>extra/background.jpg</file>
+        <file>style/images/down_arrow.png</file>
+        <file>style/images/minus-button.png</file>
+        <file>style/images/plus_button.png</file>
     </qresource>
 </RCC>

@@ -1,5 +1,6 @@
 #include "view/mainwindow.h"
 #include<QApplication>
+#include<QStyleFactory>
 
 /*#include<QString>
 #include<QFile>
@@ -31,6 +32,7 @@ int main(int argc, char *argv[])
     stylePath.open(QFile::ReadOnly);
     QString StyleSheet(stylePath.readAll());
     a.setStyleSheet(StyleSheet);
+    a.setStyle(QStyleFactory::create("Fusion"));
     w.show();
     return a.exec();
 
