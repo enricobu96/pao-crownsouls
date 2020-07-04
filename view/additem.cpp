@@ -139,12 +139,12 @@ void AddItem::obscurer(int i) {
             physDef->setEnabled(true);
             magicDef->setEnabled(true);
             balance->setEnabled(true);
-            fallDef->setEnabled(true);
-            stabDef->setEnabled(true);
+            fallDef->setEnabled(false);
+            stabDef->setEnabled(false);
             strScaling->setEnabled(true);
             physDmg->setEnabled(true);
             magicDmg->setEnabled(true);
-             dexScaling->setEnabled(false);
+            dexScaling->setEnabled(false);
             physRes->setEnabled(false);
             magicRes->setEnabled(false);
             stsIncreasing->setEnabled(false);
@@ -171,7 +171,7 @@ void AddItem::obscurer(int i) {
             balance->setEnabled(false);
             fallDef->setEnabled(false);
             stabDef->setEnabled(false);
-            strScaling->setEnabled(true);
+            strScaling->setEnabled(false);
             physDmg->setEnabled(true);
             magicDmg->setEnabled(true);
             dexScaling->setEnabled(true);

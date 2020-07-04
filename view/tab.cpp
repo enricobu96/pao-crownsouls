@@ -3,6 +3,8 @@
 #include<QStandardItem>
 #include<QListWidgetItem>
 
+#include<iostream>
+
 Tab::Tab(QWidget *parent) :
     QWidget(parent), usertab(new QTabWidget()) {
     setProperty("class", "tab");
@@ -101,21 +103,77 @@ void Tab::modifyItem()
     if(!a.isEmpty()){
         t = proxy->mapToSource(a[0]);
         Armor* sel = dynamic_cast<Armor*>(model->getInventory()[t.row()]);
+        if(model->getInventory()[t.row()]->getType() == "weaponarmor"){
+            //VALORI PROPRI DI GLOVES
+            mItem.physDmg->setValue(static_cast<Gloves*>(sel)->getPhysicalDmg());
+            mItem.magicDmg->setValue(static_cast<Gloves*>(sel)->getMagicalDmg());
+            mItem.strScaling->setValue(static_cast<Gloves*>(sel)->getStrScaling());
+            mItem.typeItemBox->setCurrentIndex(1);
+        }
+        else {
+            //VALORI PROPRI DI ARMOR
+        mItem.fallDef->setValue(static_cast<BodyArmor*>(sel)->getFallingDef());
+        mItem.stabDef->setValue(static_cast<BodyArmor*>(sel)->getStabbingDef());
+        mItem.typeItemBox->setCurrentIndex(0);
+        }
+        //VALORI IN COMUNE TRA GLOVES E BODYARMOR
         mItem.physDef->setValue(sel->getPhysicalDef());
         mItem.magicDef->setValue(sel->getMagicalDef());
         mItem.balance->setValue(sel->getBalance());
-        mItem.fallDef->setValue(static_cast<BodyArmor*>(sel)->getFallingDef());
-        mItem.stabDef->setValue(static_cast<BodyArmor*>(sel)->getStabbingDef());
         mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
         mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
     }
     else if (!b.isEmpty()){
-
+        t = proxy->mapToSource(b[0]);
+        Ring* sel = dynamic_cast<Ring*>(model->getInventory()[t.row()]);
+        mItem.stsIncreasing->setValue(sel->getStatsIncreasing());
+        mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
+        mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
+        mItem.typeItemBox->setCurrentIndex(5);
     }
     else if (!c.isEmpty()){
-
+        t = proxy->mapToSource(c[0]);
+        Shield* sel = dynamic_cast<Shield*>(model->getInventory()[t.row()]);
+        if(model->getInventory()[t.row()]->getType() == "weaponshield"){
+            mItem.physDmg->setValue(static_cast<AttackShield*>(sel)->getPhysicalDmg());
+            mItem.magicDmg->setValue(static_cast<AttackShield*>(sel)->getMagicalDmg());
+            mItem.dexScaling->setValue(static_cast<AttackShield*>(sel)->getDexScaling());
+            mItem.typeItemBox->setCurrentIndex(3);
+        }
+        else{
+            mItem.typeItemBox->setCurrentIndex(4);
+        }
+        mItem.physRes->setValue(sel->getPhysicalRed());
+        mItem.magicRes->setValue(sel->getMagicalRed());
+        mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
+        mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
     }
     else if(!d.isEmpty()){
+        t = proxy->mapToSource(d[0]);
+        Weapon* sel = dynamic_cast<Weapon*>(model->getInventory()[t.row()]);
+        if(model->getInventory()[t.row()]->getType() == "weaponshield"){
+            mItem.physRes->setValue(static_cast<AttackShield*>(sel)->getPhysicalRed());
+            mItem.magicRes->setValue(static_cast<AttackShield*>(sel)->getMagicalRed());
+            mItem.dexScaling->setValue(static_cast<AttackShield*>(sel)->getDexScaling());
+            mItem.typeItemBox->setCurrentIndex(3);
+        }
+        else if(model->getInventory()[t.row()]->getType() == "weaponarmor") {
+            mItem.physDef->setValue(static_cast<Gloves*>(sel)->getPhysicalDef());
+            mItem.magicDef->setValue(static_cast<Gloves*>(sel)->getMagicalDef());
+            mItem.balance->setValue(static_cast<Gloves*>(sel)->getBalance());
+            mItem.strScaling->setValue(static_cast<Gloves*>(sel)->getStrScaling());
+            mItem.typeItemBox->setCurrentIndex(1);
+
+        }
+        else{
+            mItem.strScaling->setValue(static_cast<AttackWeapon*>(sel)->getStrScaling());
+            mItem.dexScaling->setValue(static_cast<AttackWeapon*>(sel)->getDexScaling());
+            mItem.typeItemBox->setCurrentIndex(2);
+        }
+        mItem.physDmg->setValue(sel->getPhysicalDmg());
+        mItem.magicDmg->setValue(sel->getPhysicalDmg());
+        mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
+        mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
 
     }
     else{
@@ -288,7 +346,7 @@ void Tab::showData(QModelIndex index){
         Armor* s  = dynamic_cast<Armor*>(model->getInventory()[index.row()]);
         infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
         infMagicDef->setNum(static_cast<int>(s->getMagicalDef()));
-        infBalance->setNum(static_cast<int>(s->getBalance()));
+        infBalance->setNum(s->getBalance());
         infFalling->setNum(static_cast<int>(static_cast<BodyArmor*>(s)->getFallingDef()));
         infStab->setNum(static_cast<int>(static_cast<BodyArmor*>(s)->getStabbingDef()));
         infstrScal->setText("N/A");
