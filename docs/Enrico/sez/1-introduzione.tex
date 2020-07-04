@@ -1,16 +1,28 @@
 \section{Introduzione}
-prova fdsfds
-\subsection{subsection name}
-dsgfcx gfdsgf
-\subsubsection{subsubsection name}
-fgdsgfdgfxd
-\paragraph{paragraph name} \mbox{} \\
-ciao
+\subsection{Abstract}
+Si vuole realizzare un programma per la gestione di un inventario giocatore per il gioco \textit{Action RPG} \textfb{"Dark Souls"}. Il giocatore possiede svariati elementi di diversi tipi; questi tipi possono essere:
+\begin{itemize}
+  \item \textbf{Armature}: oggetti indossati dal giocatore per aumentare la resistenza al danno;
+  \item \textbf{Armi}: oggetti utilizzati dal giocatore per infliggere danno ai nemici;
+  \item \textbf{Anelli}: oggetti utili al giocatore per l'aumento delle proprie statistiche;
+  \item \textbf{Scudi}: oggetti utilizzati dal giocatore per ridurre il danno dai colpi nemici;
+  \item \textbf{Guanti}: oggetti utilizzati sia come armatura, poiché aumentano la resistenza al danno, sia come arma, poiché permettono di infliggere danno;
+  \item \textbf{Scudi d'attacco}: oggetti utilizzati sia come scudo, poiché riducono il danno dai colpi nemici, sia come arma, poiché permettono di infliggere danno.
+\end{itemize}
 
-\textbf{Bold}
+Un inventario è composto da un insieme di oggetti appartenenti alle diverse tipologie; ogni oggetto presente nell'inventario possiede delle caratteristiche tecniche proprie della categoria di appartenenza.
 
-\textsc{maiuscoletto}
 
-\textit{corsivo}
+\subsection{Funzionalità}
+Per facilitare la visualizzazione degli oggetti dell'inventario, questi sono suddivisi all'interno del programma in quattro diverse schede; ogni scheda rappresenta una sottosezione dell'inventario, e mostra al suo interno solo gli elementi appartenenti alla categoria indicata dal titolo. Per la gestione degli oggetti dell'inventario sono presenti le seguenti funzionalità:
 
-\texttt{tipografico}
+\begin{itemize}
+  \item Caricamento ed esportazione dell'intero inventario da e su file XML;
+  \item Aggiunta di un nuovo oggetto all'inventario;
+  \item Modifica di un elemento già presente nell'inventario;
+  \item Rimozione di un elemento dell'inventario;
+  \item Rimozione di tutti gli elementi presenti;
+  \item Visualizzazione di oggetti dell'inventario divisi per categoria di appartenenza;
+  \item Visualizzazione delle caratteristiche di ogni elemento dell'inventario, comprese alcune statistiche calcolate automaticamente dal programma;
+  \item Visualizzazione di avvisi d'errore.
+\end{itemize}

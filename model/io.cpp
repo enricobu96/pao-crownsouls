@@ -62,13 +62,13 @@ InventoryItem* IO::readFromXml(QXmlStreamReader & xml) const {
     string type = "";
     U_INT pdef = 0;
     U_INT mdef = 0;
-    U_SHORT b = 0;
+    U_INT b = 0;
     U_INT fallingDef = 0;
     U_INT stabbingDef = 0;
     U_INT pdmg = 0;
     U_INT mdmg = 0;
-    U_SHORT strScaling = 0;
-    U_SHORT dexScaling = 0;
+    U_INT strScaling = 0;
+    U_INT dexScaling = 0;
     U_INT statsIncreasing = 0;
     U_INT pred = 0;
     U_INT mred = 0;

@@ -6,7 +6,7 @@
 class BodyArmor : public Armor {
 public:
 
-    BodyArmor(string, U_SHORT, string, U_INT, U_INT, U_SHORT, U_INT =0, U_INT =0);
+    BodyArmor(string, U_INT, string, U_INT, U_INT, U_INT, U_INT =0, U_INT =0);
     virtual BodyArmor* clone() const;
 
     //SETTER

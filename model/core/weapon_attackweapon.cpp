@@ -1,6 +1,6 @@
 #include "weapon_attackweapon.h"
 
-AttackWeapon::AttackWeapon(string n, U_SHORT il, string d, U_INT pdmg, U_INT mdmg, U_SHORT _strScaling, U_SHORT _dexScaling) :
+AttackWeapon::AttackWeapon(string n, U_INT il, string d, U_INT pdmg, U_INT mdmg, U_INT _strScaling, U_INT _dexScaling) :
 InventoryItem(n, il, d), Weapon(pdmg, mdmg) {
     setStrScaling(_strScaling);
     setDexScaling(_dexScaling);
@@ -12,14 +12,14 @@ AttackWeapon *AttackWeapon::clone() const {
 
 
 //SETTER
-void AttackWeapon::setStrScaling(const unsigned short & _strScaling) {
+void AttackWeapon::setStrScaling(const U_INT & _strScaling) {
     if(_strScaling <= 4)
         strScaling = _strScaling;
     else
         strScaling = 0;
 }
 
-void AttackWeapon::setDexScaling(const unsigned short & _dexScaling) {
+void AttackWeapon::setDexScaling(const U_INT & _dexScaling) {
     if(_dexScaling <= 4)
         dexScaling = _dexScaling;
     else
@@ -27,11 +27,11 @@ void AttackWeapon::setDexScaling(const unsigned short & _dexScaling) {
 }
 
 //GETTER
-unsigned short AttackWeapon::getStrScaling() const {
+U_INT AttackWeapon::getStrScaling() const {
     return strScaling;
 }
 
-unsigned short AttackWeapon::getDexScaling() const {
+U_INT AttackWeapon::getDexScaling() const {
     return dexScaling;
 }
 

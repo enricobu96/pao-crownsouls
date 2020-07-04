@@ -1,6 +1,6 @@
 #include "armor.h"
 
-Armor::Armor(U_INT _physicalDef, U_INT _magicalDef, U_SHORT _balance) {
+Armor::Armor(U_INT _physicalDef, U_INT _magicalDef, U_INT _balance) {
     setPhysicalDef(_physicalDef);
     setMagicalDef(_magicalDef);
     setBalance(_balance);
@@ -22,7 +22,7 @@ void Armor::setMagicalDef(const unsigned int & _magicalDef) {
 }
 
 
-void Armor::setBalance(const unsigned short & _balance) {
+void Armor::setBalance(const U_INT & _balance) {
     if(_balance > 0 && _balance < 30)
         balance = _balance;
     else
@@ -39,7 +39,7 @@ unsigned int Armor::getMagicalDef() const {
     return magicalDef;
 }
 
-unsigned short Armor::getBalance() const {
+U_INT Armor::getBalance() const {
     return balance;
 }
 

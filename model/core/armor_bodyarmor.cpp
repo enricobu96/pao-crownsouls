@@ -1,6 +1,6 @@
 #include "armor_bodyarmor.h"
 
-BodyArmor::BodyArmor(string n, U_SHORT il, string d, U_INT pdef, U_INT mdef, U_SHORT b, U_INT _fallingDef, U_INT _stabbingDef) :
+BodyArmor::BodyArmor(string n, U_INT il, string d, U_INT pdef, U_INT mdef, U_INT b, U_INT _fallingDef, U_INT _stabbingDef) :
 InventoryItem(n, il, d), Armor(pdef, mdef, b) {
     setFallingDef(_fallingDef);
     setStabbingDef(_stabbingDef);

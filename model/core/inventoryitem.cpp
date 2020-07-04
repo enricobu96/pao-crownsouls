@@ -1,6 +1,6 @@
 #include "inventoryitem.h"
 
-InventoryItem::InventoryItem(std::string _name, U_SHORT _itemLevel, std::string _description) {
+InventoryItem::InventoryItem(std::string _name, U_INT _itemLevel, std::string _description) {
     setName(_name);
     setItemLevel(_itemLevel);
     setDescription(_description);
@@ -14,7 +14,7 @@ void InventoryItem::setName(const std::string & _name) {
         name=_name;
 }
 
-void InventoryItem::setItemLevel(const U_SHORT & _itemLevel) {
+void InventoryItem::setItemLevel(const U_INT & _itemLevel) {
     if(_itemLevel > 99)
         itemLevel = 0;
     else
@@ -34,7 +34,7 @@ std::string InventoryItem::getName() const {
     return name;
 }
 
-U_SHORT InventoryItem::getItemLevel() const {
+U_INT InventoryItem::getItemLevel() const {
     return itemLevel;
 }
 

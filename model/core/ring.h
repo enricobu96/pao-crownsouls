@@ -9,7 +9,7 @@ using std::string;
 class Ring : public InventoryItem {
 public:
 
-    Ring(string, U_SHORT, string, U_INT =0);
+    Ring(string, U_INT, string, U_INT =0);
     virtual Ring* clone() const override;
 
     //SETTER

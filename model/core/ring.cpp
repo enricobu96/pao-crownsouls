@@ -1,6 +1,6 @@
 #include "ring.h"
 
-Ring::Ring(string n, U_SHORT il, string d, unsigned int _statsIncreasing) : InventoryItem(n, il, d), statsIncreasing(_statsIncreasing) {}
+Ring::Ring(string n, U_INT il, string d, unsigned int _statsIncreasing) : InventoryItem(n, il, d), statsIncreasing(_statsIncreasing) {}
 
 Ring *Ring::clone() const {
     return new Ring(*this);

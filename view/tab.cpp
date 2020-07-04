@@ -195,23 +195,23 @@ void Tab::setInformation(AddItem &aItem,bool aggiungi, QModelIndex index){
     if(type == "Body Armor") {
         U_INT pdef = aItem.physDef->value();
         U_INT mdef = aItem.magicDef->value();
-        U_SHORT b = aItem.balance->value();
+        U_INT b = aItem.balance->value();
         U_INT fallingDef = aItem.fallDef->value();
         U_INT stabbingDef = aItem.stabDef->value();
         t = new BodyArmor(name.toUtf8().constData(), il, description.toUtf8().constData(), pdef, mdef, b, fallingDef, stabbingDef);
     } else if(type == "Gloves") {
         U_INT pdef = aItem.physDef->value();
         U_INT mdef = aItem.magicDef->value();
-        U_SHORT b = aItem.balance->value();
+        U_INT b = aItem.balance->value();
         U_INT pdmg = aItem.physDmg->value();
         U_INT mdmg = aItem.magicDmg->value();
-        U_SHORT strScaling = aItem.strScaling->value();
+        U_INT strScaling = aItem.strScaling->value();
         t = new Gloves(name.toUtf8().constData(), il, description.toUtf8().constData(), pdef, mdef, b, pdmg, mdmg, strScaling);
     } else if(type == "Attack Weapon") {
         U_INT pdmg = aItem.physDmg->value();
         U_INT mdmg = aItem.magicDmg->value();
-        U_SHORT strScaling = aItem.strScaling->value();
-        U_SHORT dexScaling = aItem.dexScaling->value();
+        U_INT strScaling = aItem.strScaling->value();
+        U_INT dexScaling = aItem.dexScaling->value();
         t = new AttackWeapon(name.toUtf8().constData(), il, description.toUtf8().constData(), pdmg, mdmg, strScaling, dexScaling);
     }
     else if(type == "Attack Shield") {
@@ -219,7 +219,7 @@ void Tab::setInformation(AddItem &aItem,bool aggiungi, QModelIndex index){
         U_INT mdmg = aItem.magicDmg->value();
         U_INT pred = aItem.physRes->value();
         U_INT mred = aItem.magicRes->value();
-        U_SHORT dexScaling = aItem.dexScaling->value();
+        U_INT dexScaling = aItem.dexScaling->value();
         t = new AttackShield(name.toUtf8().constData(), il, description.toUtf8().constData(), pdmg, mdmg, pred, mred, dexScaling);
     } else if(type == "Defense Shield") {
         U_INT pred = aItem.physRes->value();
@@ -346,7 +346,7 @@ void Tab::showData(QModelIndex index){
         Armor* s  = dynamic_cast<Armor*>(model->getInventory()[index.row()]);
         infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
         infMagicDef->setNum(static_cast<int>(s->getMagicalDef()));
-        infBalance->setNum(s->getBalance());
+        infBalance->setNum(static_cast<int>(s->getBalance()));
         infFalling->setNum(static_cast<int>(static_cast<BodyArmor*>(s)->getFallingDef()));
         infStab->setNum(static_cast<int>(static_cast<BodyArmor*>(s)->getStabbingDef()));
         infstrScal->setText("N/A");

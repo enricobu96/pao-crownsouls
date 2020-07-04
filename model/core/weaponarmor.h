@@ -7,7 +7,7 @@
 class WeaponArmor : public Armor , public Weapon {
 public:
 
-    WeaponArmor(U_INT, U_INT, U_SHORT, U_INT =0, U_INT =0);
+    WeaponArmor(U_INT, U_INT, U_INT, U_INT =0, U_INT =0);
     virtual ~WeaponArmor() =default;
 
     //METODI
