@@ -31,16 +31,13 @@
 #include"../model/model.h"
 #include"proxy.h"
 
+//IO
 #include"../model/io.h"
-
 
 class Tab : public QWidget {
    Q_OBJECT
 public:
-
-    //COSTRUTTORE
     Tab(QWidget *parent = nullptr);
-
 private:
 
     //MODEL
@@ -82,14 +79,13 @@ private:
     QLabel* infMagicRes;
     QLabel* infStatsIncL;
     QLabel* infStatsInc;
-    //INFORMAZIONI AGGIUNTIVE IN TAB AGGIUNTIVA
     QLabel* infadditionalL;
     QLabel* infadditionl;
     QLabel* infadditional2L;
     QLabel* infadditional2;
-    //test description
     QTextEdit* desctiption;
 
+    //DIALOG I/O
     QFileDialog* loadDialog;
     QFileDialog* saveDialog;
 

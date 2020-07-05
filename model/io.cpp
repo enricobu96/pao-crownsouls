@@ -2,7 +2,7 @@
 
 IO::IO(const QString & s) : name(s) {}
 
-Inventory<InventoryItem*> IO::readFile() const { //questo dovrà ritornare a tab
+Inventory<InventoryItem*> IO::readFile() const {
     Inventory<InventoryItem*> t;
     QFile file(name);
     if(file.open(QIODevice::ReadOnly)) {
@@ -74,7 +74,6 @@ InventoryItem* IO::readFromXml(QXmlStreamReader & xml) const {
     U_INT mred = 0;
 
     xml.readNext();
-
 
     if(xml.readNextStartElement() && xml.name() == "name")
         name = xml.readElementText().toUtf8().constData();
@@ -280,5 +279,5 @@ void IO::writeToXml(InventoryItem* inv, QXmlStreamWriter& xml) const {
 
     }
 
-    xml.writeEndElement(); //InventoryItem
+    xml.writeEndElement();
 }

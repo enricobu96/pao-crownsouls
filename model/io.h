@@ -1,6 +1,7 @@
 #ifndef IO_H
 #define IO_H
 
+//QT
 #include<QFile>
 #include<QXmlStreamReader>
 #include<iostream>

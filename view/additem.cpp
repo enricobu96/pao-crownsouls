@@ -67,27 +67,22 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     gbLayout->addWidget(physDef,0,1);
     gbLayout->addWidget(magicDefL,0,2);
     gbLayout->addWidget(magicDef,0,3);
-    //
     gbLayout->addWidget(balanceL,1,0);
     gbLayout->addWidget(balance,1,1);
     gbLayout->addWidget(fallDefL,1,2);
     gbLayout->addWidget(fallDef,1,3);
-    //
     gbLayout->addWidget(stabDefL,2,0);
     gbLayout->addWidget(stabDef,2,1);
     gbLayout->addWidget(strScalingL,2,2);
     gbLayout->addWidget(strScaling,2,3);
-    //
     gbLayout->addWidget(physDmgL,3,0);
     gbLayout->addWidget(physDmg,3,1);
     gbLayout->addWidget(magicDmgL,3,2);
     gbLayout->addWidget(magicDmg,3,3);
-    //
     gbLayout->addWidget(dexScalingL,4,0);
     gbLayout->addWidget(dexScaling,4,1);
     gbLayout->addWidget(physResL,4,2);
     gbLayout->addWidget(physRes,4,3);
-    //
     gbLayout->addWidget(magicResL,5,0);
     gbLayout->addWidget(magicRes,5,1);
     gbLayout->addWidget(stsIncreasingL,5,2);
@@ -110,7 +105,6 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     mainLayout->addLayout(gridLayout);
     setLayout(mainLayout);
 
-    //CHIAMATA PER LA PRIMA VOLTA
     obscurer(0);
 
     //CONNECT

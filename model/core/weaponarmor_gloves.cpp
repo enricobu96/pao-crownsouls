@@ -1,7 +1,7 @@
 #include "weaponarmor_gloves.h"
 
 Gloves::Gloves(string n, U_INT il, string d, U_INT pdef, U_INT mdef, U_INT b, U_INT pdmg, U_INT mdmg, U_INT _strScaling) :
-InventoryItem(n, il, d), WeaponArmor(pdef, mdef, b, pdmg, mdmg) {
+    InventoryItem(n, il, d), WeaponArmor(pdef, mdef, b, pdmg, mdmg) {
     setStrScaling(_strScaling);
 }
 

@@ -9,9 +9,7 @@
 
 class ArmorTab: public QTableView {
 public:
-
     ArmorTab(QWidget* =nullptr);
-
 private:
 };
 

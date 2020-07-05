@@ -1,6 +1,7 @@
 #ifndef PROXYARMOR_H
 #define PROXYARMOR_H
 
+//QT
 #include<QObject>
 #include<QSortFilterProxyModel>
 

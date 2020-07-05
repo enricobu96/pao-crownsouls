@@ -10,9 +10,7 @@
 #include<QTextEdit>
 #include<QObject>
 #include<QSpinBox>
-
 #include<QGroupBox>
-
 
 class AddItem : public QDialog
 {
@@ -20,12 +18,10 @@ class AddItem : public QDialog
 public:
     AddItem(QString t,QWidget* parent=nullptr);
 
-    QLineEdit* namePlaceholder; //nome
+    QLineEdit* namePlaceholder;
     QTextEdit *flavourText;
-    QLineEdit* itemLevelPlaceholder; //itemLevel
-
+    QLineEdit* itemLevelPlaceholder;
     QComboBox *typeItemBox;
-
     QSpinBox *levelItem;
     QSpinBox *physDef;
     QSpinBox *magicDef;
@@ -41,20 +37,19 @@ public:
     QSpinBox *stsIncreasing;
 
     enum ObjType{E_bodyArmor,E_gloves,E_attackweapon,E_attackshield,E_defenceshield,E_ring};
+
 public slots:
     void obscurer(int i);
+
 private:
     QVBoxLayout *mainLayout;
     QGridLayout *gridLayout;
     QGridLayout *gbLayout;
-
     QLabel *nameLabel;
     QLabel *typeLabel;
     QLabel *descLabel;
     QLabel *ilvlLabel;
-
     QPushButton *buttok;
-
     QGroupBox* information;
 };
 

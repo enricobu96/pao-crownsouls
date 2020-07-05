@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//QT
 #include<QObject>
 #include<QMenuBar>
 #include<QMainWindow>
@@ -10,13 +11,10 @@
 #include"tab.h"
 #include"additem.h"
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
-
     MainWindow(QWidget* =nullptr);
-
 private:
 
     QMenuBar* menubar;

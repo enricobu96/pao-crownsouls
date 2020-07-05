@@ -1,6 +1,5 @@
 #ifndef MODEL_H
 #define MODEL_H
-#include"../view/proxy.h"
 
 //GERARCHIA
 #include "core/inventoryitem.h"
@@ -25,13 +24,15 @@
 #include<QAbstractListModel>
 #include<QXmlStreamReader>
 
+//PROXY
+#include"../view/proxy.h"
+
 Q_DECLARE_METATYPE(InventoryItem*)
 
 class Model : public QAbstractListModel
 {
     Q_OBJECT
     friend class Proxy;
-
 public:
 
     //COSTRUTTORI

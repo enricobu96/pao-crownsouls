@@ -21,8 +21,12 @@ void Shield::setMagicalRed(const unsigned int & _magicalRed) {
 }
 
 //GETTER
-unsigned int Shield::getPhysicalRed() const { return physicalRed; }
-unsigned int Shield::getMagicalRed() const { return magicalRed; }
+unsigned int Shield::getPhysicalRed() const {
+    return physicalRed;
+}
+unsigned int Shield::getMagicalRed() const {
+    return magicalRed;
+}
 
 //METODI
 double Shield::getTotalRed() const {

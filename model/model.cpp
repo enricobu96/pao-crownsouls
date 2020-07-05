@@ -23,9 +23,6 @@ bool Model::insertRows(int position, int rows, const QModelIndex& parent) {
     return true;
 }
 
-
-
-
 bool Model::removeRows(int position, int rows, const QModelIndex &parent) {
     Q_UNUSED(parent);
     beginRemoveRows(QModelIndex(), position, position+rows-1);

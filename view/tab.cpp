@@ -111,19 +111,16 @@ void Tab::modifyItem()
         t = proxy->mapToSource(a[0]);
         Armor* sel = dynamic_cast<Armor*>(model->getInventory()[t.row()]);
         if(model->getInventory()[t.row()]->getType() == "weaponarmor"){
-            //VALORI PROPRI DI GLOVES
             mItem.physDmg->setValue(static_cast<Gloves*>(sel)->getPhysicalDmg());
             mItem.magicDmg->setValue(static_cast<Gloves*>(sel)->getMagicalDmg());
             mItem.strScaling->setValue(static_cast<Gloves*>(sel)->getStrScaling());
             mItem.typeItemBox->setCurrentIndex(1);
         }
         else {
-            //VALORI PROPRI DI ARMOR
         mItem.fallDef->setValue(static_cast<BodyArmor*>(sel)->getFallingDef());
         mItem.stabDef->setValue(static_cast<BodyArmor*>(sel)->getStabbingDef());
         mItem.typeItemBox->setCurrentIndex(0);
         }
-        //VALORI IN COMUNE TRA GLOVES E BODYARMOR
         mItem.physDef->setValue(sel->getPhysicalDef());
         mItem.magicDef->setValue(sel->getMagicalDef());
         mItem.balance->setValue(sel->getBalance());
@@ -198,8 +195,8 @@ void Tab::modifyItem()
 
 }
 
-void Tab::setInformation(AddItem &aItem,bool aggiungi, QModelIndex index){
-
+//SUBROUTINE PER AGGIUNTA/MODIFICA
+void Tab::setInformation(AddItem &aItem, bool aggiungi, QModelIndex index){
     QString name = aItem.namePlaceholder->text();
     QString description = aItem.flavourText->toPlainText();
     U_INT il = aItem.levelItem->value();
@@ -257,76 +254,61 @@ void Tab::setInformation(AddItem &aItem,bool aggiungi, QModelIndex index){
 
 //SIDE INFORMATION
 void Tab::createinformation(){
-
-    //ELEMENTI NECESSARI PER INFORMAZIONI AGGIUNTIVE
     infPhysDefL = new QLabel("Physical Defense: ");
     infPhysDef = new QLabel("N/A");
     infMagicDefL = new QLabel("Magic Defense: ");
     infMagicDef = new QLabel("N/A");
-    //
     infBalanceL = new QLabel("Balance: ");
     infBalance = new QLabel("N/A");
     infFallingL = new QLabel("Falling defense: ");
     infFalling = new QLabel("N/A");
-    //
     infStabL = new QLabel("Stabbing defense: ");
     infStab = new QLabel("N/A");
     infstrScalL = new QLabel("Strenght scaling: ");
     infstrScal = new QLabel("N/A");
-    //
     infPhysDmgL = new QLabel("Physical damage: ");
     infPhysDmg = new QLabel("N/A");
     infMagicalDmgL = new QLabel("Magical damage: ");
     infMagicalDmg = new QLabel("N/A");
-    //
     infDxtScalL = new QLabel("Dexterity scaling: ");
     infDxtScal = new QLabel("N/A");
     infPhysResL = new QLabel("Physical resistance: ");
     infPhysRes = new QLabel("N/A");
-    //
     infMagicResL = new QLabel("Magical resistance: ");
     infMagicRes = new QLabel("N/A");
     infStatsIncL = new QLabel("Stats increased: ");
     infStatsInc = new QLabel("N/A");
 
-    //E INSERIMENTO NEL LAYOUT DEL BOX (Divisi per row)
     groupLayout->addWidget(infPhysDefL,0,0);
     groupLayout->addWidget(infPhysDef,0,1);
     groupLayout->addWidget(infMagicDefL,0,2);
     groupLayout->addWidget(infMagicDef,0,3);
-    //
     groupLayout->addWidget(infBalanceL,1,0);
     groupLayout->addWidget(infBalance,1,1);
     groupLayout->addWidget(infFallingL,1,2);
     groupLayout->addWidget(infFalling,1,3);
-    //
     groupLayout->addWidget(infStabL,2,0);
     groupLayout->addWidget(infStab,2,1);
     groupLayout->addWidget(infstrScalL,2,2);
     groupLayout->addWidget(infstrScal,2,3);
-    //
     groupLayout->addWidget(infPhysDmgL,3,0);
     groupLayout->addWidget(infPhysDmg,3,1);
     groupLayout->addWidget(infMagicalDmgL,3,2);
     groupLayout->addWidget(infMagicalDmg,3,3);
-    //
     groupLayout->addWidget(infDxtScalL,4,0);
     groupLayout->addWidget(infDxtScal,4,1);
     groupLayout->addWidget(infPhysResL,4,2);
     groupLayout->addWidget(infPhysRes,4,3);
-    //
     groupLayout->addWidget(infMagicResL,5,0);
     groupLayout->addWidget(infMagicRes,5,1);
     groupLayout->addWidget(infStatsIncL,5,2);
     groupLayout->addWidget(infStatsInc,5,3);
 
-    //BOX DI TESTO PER MOSTRARE LA DESCRIZIONE PER INTERO
     desctiption = new QTextEdit();
     desctiption->setReadOnly(true);
     desctiption->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Expanding);
     groupLayout->addWidget(desctiption,6,0,1,4);
 
-    //INFORMAZIONI AGGIUNTIVE PER ALCUNI TIPI DI OGGETTO (METODI PROPRI)
     infadditionalL = new QLabel();
     infadditionl = new QLabel();
     infadditional2L = new QLabel();
@@ -347,33 +329,28 @@ void Tab::createinformation(){
     infPhysDef->setProperty("type", "statsInfo");
     infMagicDefL->setProperty("type", "stats");
     infMagicDef->setProperty("type", "statsInfo");
-    //
     infBalanceL->setProperty("type", "stats");
     infBalance->setProperty("type", "statsInfo");
     infFallingL->setProperty("type", "stats");
     infFalling->setProperty("type", "statsInfo");
-    //
     infStabL->setProperty("type", "stats");
     infStab->setProperty("type", "statsInfo");
     infstrScalL->setProperty("type", "stats");
     infstrScal->setProperty("type", "statsInfo");
-    //
     infPhysDmgL->setProperty("type", "stats");
     infPhysDmg->setProperty("type", "statsInfo");
     infMagicalDmgL->setProperty("type", "stats");
     infMagicalDmg->setProperty("type", "statsInfo");
-    //
     infDxtScalL->setProperty("type", "stats");
     infDxtScal->setProperty("type", "statsInfo");
     infPhysResL->setProperty("type", "stats");
     infPhysRes->setProperty("type", "statsInfo");
-    //
     infMagicResL->setProperty("type", "stats");
     infMagicRes->setProperty("type", "statsInfo");
     infStatsIncL->setProperty("type", "stats");
     infStatsInc->setProperty("type", "statsInfo");
-
 }
+
 //RESET VALUE
 void Tab::resetInformation(){
     infadditionalL->clear();
@@ -387,7 +364,6 @@ void Tab::showData(QModelIndex index){
     index = proxy->mapToSource(index);
     resetInformation();
     string t = model->getInventory()[index.row()]->getType();
-    //VALORI PER ARMOR
     if(t == "armor") {
         Armor* s  = dynamic_cast<Armor*>(model->getInventory()[index.row()]);
         infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
@@ -407,7 +383,6 @@ void Tab::showData(QModelIndex index){
         QString show = QString::fromStdString( s->getDescription());
         desctiption->setText(show);
     }
-    //VALORI PER WEAPON
     else if (t == "weapon") {
         Weapon* s = dynamic_cast<Weapon*>(model->getInventory()[index.row()]);
         infPhysDef->setText("N/A");
@@ -428,7 +403,6 @@ void Tab::showData(QModelIndex index){
         QString show = QString::fromStdString( s->getDescription());
         desctiption->setText(show);
     }
-    //VALORI PER SHIELD
     else if (t == "shield"){
         Shield* s = dynamic_cast<Shield*>(model->getInventory()[index.row()]);
         infPhysDef->setText("N/A");
@@ -449,7 +423,6 @@ void Tab::showData(QModelIndex index){
         QString show = QString::fromStdString( s->getDescription());
         desctiption->setText(show);
     }
-    //VALORI PER RING
     else if (t == "ring"){
         infPhysDef->setText("N/A");
         infMagicDef->setText("N/A");
@@ -466,7 +439,6 @@ void Tab::showData(QModelIndex index){
         QString show = QString::fromStdString((dynamic_cast<Ring*>(model->getInventory()[index.row()])->getDescription()));
         desctiption->setText(show);
     }
-    //VALORI PER GLOVES
     else if (t == "weaponarmor"){
         Gloves* s = dynamic_cast<Gloves*>(model->getInventory()[index.row()]);
         infPhysDef->setNum(static_cast<int>(s->getPhysicalDef()));
@@ -489,7 +461,6 @@ void Tab::showData(QModelIndex index){
         QString show = QString::fromStdString( s->getDescription());
         desctiption->setText(show);
     }
-    //VALORI ATTACK SHIELD
     else if (t == "weaponshield"){
         WeaponShield* s = dynamic_cast<WeaponShield*>(model->getInventory()[index.row()]);
         infPhysDef->setText("N/A");
@@ -512,13 +483,12 @@ void Tab::showData(QModelIndex index){
         QString show = QString::fromStdString( s->getDescription());
         desctiption->setText(show);
     }
-    //APPARE LA BARRA LATERALE
+
     information->setHidden(false);
 }
 
 //SIGNAL ON ESC
-void Tab::keyPressEvent(QKeyEvent *event)
-{
+void Tab::keyPressEvent(QKeyEvent *event) {
     if(event->key() == Qt::Key_Escape) {
         if(!information->isHidden()) {
             information->setHidden(true);

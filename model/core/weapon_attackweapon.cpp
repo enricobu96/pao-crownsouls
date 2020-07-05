@@ -1,7 +1,7 @@
 #include "weapon_attackweapon.h"
 
 AttackWeapon::AttackWeapon(string n, U_INT il, string d, U_INT pdmg, U_INT mdmg, U_INT _strScaling, U_INT _dexScaling) :
-InventoryItem(n, il, d), Weapon(pdmg, mdmg) {
+    InventoryItem(n, il, d), Weapon(pdmg, mdmg) {
     setStrScaling(_strScaling);
     setDexScaling(_dexScaling);
 }
