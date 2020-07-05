@@ -33,7 +33,7 @@ QTabWidget::tab-bar {
 
 /* QTabBars */
 QTabBar::tab {
-    background-color: rgba(255,238,88 ,0.7);
+    background-color: rgba(143,238,88 ,0.5);
     border-bottom-color: #C2C7CB;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -42,7 +42,7 @@ QTabBar::tab {
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
-    background: rgba(255,238,88 ,0.6);
+    background: rgba(143,238,88 ,0.8);
 }
 
 QTabBar::tab:selected {
@@ -55,6 +55,27 @@ QLineEdit, QTextEdit {
     border: 1px solid #202020;
     border-radius: 6px;
     padding: 4px;
+}
+
+QScrollBar:vertical {
+    border: 1px solid #202020;
+    width: 5px;
+    border-radius: 18px;
+}
+QScrollBar::handle:vertical {
+    background: #202020;
+    min-height: 0px;
+}
+
+QScrollBar::add-line:vertical {
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    height: 0 px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
 }
 
 /* QComboBoxes */
@@ -145,7 +166,5 @@ QPushButton {
 }
 
 QPushButton:pressed {
-    background-color: blue;
+    background-color: #008080;
 }
-
-

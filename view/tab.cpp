@@ -49,6 +49,13 @@ Tab::Tab(QWidget *parent) :
     connect(ringTab,SIGNAL(clicked(QModelIndex)),this,SLOT(showData(QModelIndex)));
     connect(shieldTab,SIGNAL(clicked(QModelIndex)),this,SLOT(showData(QModelIndex)));
     connect(weaponTab,SIGNAL(clicked(QModelIndex)),this,SLOT(showData(QModelIndex)));
+
+    //THEMING
+    usertab->setTabIcon(0, QIcon(":/style/images/inventory/armor.png"));
+    usertab->setTabIcon(1, QIcon(":/style/images/inventory/ring.png"));
+    usertab->setTabIcon(2, QIcon(":/style/images/inventory/shield.png"));
+    usertab->setTabIcon(3, QIcon(":/style/images/inventory/weapon.png"));
+
 }
 
 //AGGIUNTA DI ELEMENTI
@@ -322,6 +329,11 @@ void Tab::createinformation(){
     infadditional2L = new QLabel();
     infadditional2 = new QLabel();
 
+    QLabel* logo = new QLabel();
+    QPixmap logoImg = QPixmap(":/style/images/logo/crownsouls_trans.png");
+    logoImg = logoImg.scaled(350,100);
+    logo->setPixmap(logoImg);
+    groupLayout->addWidget(logo, 7,0,1,4);
     groupLayout->addWidget(infadditional2L,8,0,1,2);
     groupLayout->addWidget(infadditional2,8,2,1,2);
     groupLayout->addWidget(infadditionalL,9,0,1,2);

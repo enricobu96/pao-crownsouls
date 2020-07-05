@@ -1,7 +1,7 @@
 #include "view/mainwindow.h"
 #include<QApplication>
 #include<QStyleFactory>
-
+#include<QTabWidget>
 /*#include<QString>
 #include<QFile>
 #include<iostream>

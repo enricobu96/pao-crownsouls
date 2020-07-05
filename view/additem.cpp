@@ -15,6 +15,7 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     ilvlLabel = new QLabel("Item Level");
     levelItem = new QSpinBox;
     levelItem->setRange(0,99);
+    levelItem->setAlignment(Qt::AlignCenter);
 
     //BOTTONI VARI PER ACCETTARE / CANCELLARE
     buttok = new QPushButton("Add");
@@ -135,6 +136,19 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     physResL->setProperty("type", "addInformation");
     magicResL->setProperty("type", "addInformation");
     stsIncreasingL->setProperty("type", "addInformation");
+
+    physDef->setAlignment(Qt::AlignCenter);
+    magicDef->setAlignment(Qt::AlignCenter);
+    balance->setAlignment(Qt::AlignCenter);
+    fallDef->setAlignment(Qt::AlignCenter);
+    stabDef->setAlignment(Qt::AlignCenter);
+    strScaling->setAlignment(Qt::AlignCenter);
+    physDmg->setAlignment(Qt::AlignCenter);
+    magicDmg->setAlignment(Qt::AlignCenter);
+    dexScaling->setAlignment(Qt::AlignCenter);
+    physRes->setAlignment(Qt::AlignCenter);
+    magicRes->setAlignment(Qt::AlignCenter);
+    stsIncreasing->setAlignment(Qt::AlignCenter);
 }
 
 void AddItem::obscurer(int i) {

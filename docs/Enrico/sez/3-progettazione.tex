@@ -97,8 +97,11 @@ Il \textit{filter proxy}, rappresentato dalla classe \textit{Proxy}, funge da in
 \subsection{I/O}
 Il programma permette la lettura e la scrittura di interi inventari. Questa possibilità è data dalla classe \textit{IO}, la quale fornisce i metodi necessari all'input e all'output dei dati tramite file .xml. Questi metodi risolvono il problema specifico del programma sviluppato, e non sono pertanto applicabili ad altri problemi.
 
-\subsection{Polimorfismo}
-
+\subsection{Polimorfismo e information hiding}
+Il polimorfismo viene fortemente usato nei contenitori. In svariati punti del programma, infatti, sono presenti chiamate polimorfe a metodi virtuali della gerarchia. \\
+I metodi virtuali presenti nella gerarchia sono principalmente \textit{setter} e \textit{getter}, metodi di cui il programma fa un largo uso. Sono inoltre presenti metodi virtuali per il calcolo delle statistiche dei singoli elementi. \\
+Viene fatto uso del polimorfismo anche per la creazione degli oggetti appartenenti all'inventario; viene infatti molto sfruttata la possibilità di creare un oggetto di una classe derivata e inserirlo all'interno del container \textit{inventory}, il quale ha tipo \textit{Inventory<InventoryItem*>}. \\
+Al fine di evitare il più possibile il meccanismo dell'\textit{RTTI (run-time type information)}, si segnala la presenza di un metodo virtuale \textit{getType()} presente nelle classi astratte derivate dalla classe base astratta pura; questo metodo ritorna tramite una stringa la classe di appartenenza dell'oggetto.
 
 \subsection{Gestione degli errori}
 Nel programma sono presenti blocchi \textit{try-catch} per la gestione a \textit{run-time} degli errori. Questi costrutti vengono usati principalmente in presenza di situazioni possibilmente critiche, dove è più importante prestare attenzione. In particolare, si fa uso della gestione di errori:
@@ -112,5 +115,6 @@ Gli errori vengono gestiti dalla \textit{standard library}, e a seguito della ge
 \subsection{Scelte progettuali}
 \begin{itemize}
 \item Si è scelto di utilizzare una lista singolarmente linkata per la facilità e l'efficacia di questa struttura dati in un problema come quello in oggetto. Sono stati però seguiti degli accorgimenti per la semplificazione dell'accesso in sola lettura dati (tramite operatore []) e per la diminuzione dello sforzo computazionale. Un esempio di questo è la presenza di un puntatore all'ultimo elemento, che permette la riduzione di alcune operazioni, tra cui l'aggiunta e la rimozione in coda, da tempo O(n) a tempo costante;
-\item Si è scelto di optare per una classe di Input/Output non scalabile per questioni di tempo. Una classe facilmente adattabile a più problemi, infatti, avrebbe richiesto uno studio più approfondito e un utilizzo pesante di polimorfismo sulla gerarchia; questo è certamente auspicabile, ma purtroppo incompatibile con le tempistiche reali del progetto.
+\item Si è scelto di optare per una classe di Input/Output non scalabile per questioni di tempo. Una classe facilmente adattabile a più problemi, infatti, avrebbe richiesto uno studio più approfondito e un utilizzo pesante di polimorfismo sulla gerarchia; questo è certamente auspicabile, ma purtroppo incompatibile con le tempistiche reali del progetto;
+\item Si è optato per l'utilizzo di un unico oggetto container affiancato a un \textit{filter proxy}, rispetto a più container, ognuno di un tipo diverso, per favorire la leggerezza del programma, la scalabilità del codice e, soprattutto, il polimorfismo.
 \end{itemize}

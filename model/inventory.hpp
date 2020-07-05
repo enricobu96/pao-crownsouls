@@ -328,16 +328,16 @@ void Inventory<T>::insertAtPosition(int i, const T& s) {
     if(i>size)
         return;
     if(i == 0) {
-        SmartP* cristo = new SmartP(s);
-        cristo->next = nullptr;
-        first->item = cristo->item;
+        SmartP* c = new SmartP(s);
+        c->next = nullptr;
+        first->item = c->item;
         return;
     }
 
     if(i == size) {
-        SmartP* cristo = new SmartP(s);
-        cristo->next = nullptr;
-        last->item = cristo->item;
+        SmartP* c = new SmartP(s);
+        c->next = nullptr;
+        last->item = c->item;
         return;
     }
 
