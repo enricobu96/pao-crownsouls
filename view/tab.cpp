@@ -129,6 +129,7 @@ void Tab::modifyItem()
         mItem.balance->setValue(sel->getBalance());
         mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
         mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
+        mItem.levelItem->setValue(sel->getItemLevel());
     }
     else if (!b.isEmpty()){
         t = proxy->mapToSource(b[0]);
@@ -137,6 +138,7 @@ void Tab::modifyItem()
         mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
         mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
         mItem.typeItemBox->setCurrentIndex(5);
+        mItem.levelItem->setValue(sel->getItemLevel());
     }
     else if (!c.isEmpty()){
         t = proxy->mapToSource(c[0]);
@@ -154,6 +156,7 @@ void Tab::modifyItem()
         mItem.magicRes->setValue(sel->getMagicalRed());
         mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
         mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
+        mItem.levelItem->setValue(sel->getItemLevel());
     }
     else if(!d.isEmpty()){
         t = proxy->mapToSource(d[0]);
@@ -181,7 +184,7 @@ void Tab::modifyItem()
         mItem.magicDmg->setValue(sel->getPhysicalDmg());
         mItem.namePlaceholder->setText(QString::fromStdString(sel->getName()));
         mItem.flavourText->setText(QString::fromStdString(sel->getDescription()));
-
+        mItem.levelItem->setValue(sel->getItemLevel());
     }
     else{
         QMessageBox::warning(this,tr("Error"),tr("No item selected."),QMessageBox::Ok);
