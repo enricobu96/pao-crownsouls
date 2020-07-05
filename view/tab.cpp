@@ -310,15 +310,11 @@ void Tab::createinformation(){
     groupLayout->addWidget(infStatsIncL,5,2);
     groupLayout->addWidget(infStatsInc,5,3);
 
-    //QWIDGET COMPLETAMENTE BIANCO PER MATENERE LA SPAZIATURA
-    QWidget* blank = new QWidget();
-    blank->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Expanding);
-
-    desctiption = new QLabel();
-    desctiption->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Preferred);
-    desctiption->setWordWrap(true);
-    groupLayout->addWidget(desctiption,6,0,6,3);
-    groupLayout->addWidget(blank,7,0);
+    //BOX DI TESTO PER MOSTRARE LA DESCRIZIONE PER INTERO
+    desctiption = new QTextEdit();
+    desctiption->setReadOnly(true);
+    desctiption->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Expanding);
+    groupLayout->addWidget(desctiption,6,0,1,4);
 
     //INFORMAZIONI AGGIUNTIVE PER ALCUNI TIPI DI OGGETTO (METODI PROPRI)
     infadditionalL = new QLabel();
@@ -326,10 +322,10 @@ void Tab::createinformation(){
     infadditional2L = new QLabel();
     infadditional2 = new QLabel();
 
-    groupLayout->addWidget(infadditional2L,8,0);
-    groupLayout->addWidget(infadditional2,8,1);
-    groupLayout->addWidget(infadditionalL,9,0);
-    groupLayout->addWidget(infadditionl,9,1);
+    groupLayout->addWidget(infadditional2L,8,0,1,2);
+    groupLayout->addWidget(infadditional2,8,2,1,2);
+    groupLayout->addWidget(infadditionalL,9,0,1,2);
+    groupLayout->addWidget(infadditionl,9,2,1,2);
 
     //THEMING
     infPhysDefL->setProperty("type", "stats");
