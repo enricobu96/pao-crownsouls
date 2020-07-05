@@ -1,2 +1,31 @@
 \section{Breve manuale}
-Brevissimo manuale d'uso del programma
+Alla prima apertura del programma, la finestra presenta un menù superiore, seguito da una visualizzazione a schede dell'inventario. L'inventario non contiene ancora alcuna informazione, poiché è lasciato all'utente il controllo del proprio inventario.
+
+\subsection{Barra menù}
+Il menù presenta quattro voci:
+\begin{itemize}
+  \item \textbf{File}: permette le manipolazioni \textit{in blocco} dell'inventario. Una volta premuto su di esso comparirà un menù a tendina con le seguenti voci:
+  \begin{itemize}
+    \item \textbf{Load inventory}: permette il caricamento di un inventario precedentemente salvato da un file \texttt{.xml};
+    \item \textbf{Save inventory}: permette il salvataggio dell'inventario su un file \texttt{.xml};
+    \item \textbf{Empty inventory}: permette lo svuotamento totale dell'inventario, ossia l'eliminazione di ogni elemente presente in esso;
+  \end{itemize}
+  \item \textbf{Add item}: permette l'aggiunta di un singolo elemento;
+  \item \textbf{Delete item}: permette l'eliminazione di un elemento;
+  \item \textbf{Edit item}: permette la modifica di un elemento.
+\end{itemize}
+
+\subsection{Caricamento e salvataggio di un inventario}
+Una volta premuto su \textbf{Load inventory} si aprirà un form di apertura di file, gestito dal sistema operativo sul quale si trova in esecuzione il programma. L'utente potrà quindi navigare all'interno del filesystem fino a trovare un file in formato \texttt{.xml}; una volta trovato potrà selezionarlo e caricarlo quindi all'interno del programma. \\
+Dopo l'aggiunta, la modifica o la rimozione di elementi dell'inventario, l'utente potrà salvare questo in formato \texttt{.xml} premendo su \textbf{Save inventory}. Anche in questo caso il form di salvataggio di file è gestito dal sistema operativo, e valgono le stesse regole che si hanno per il caricamento. \\
+Il caricamento e il salvataggio prevedono l'utilizzo esclusivo del formato \texttt{.xml}; nel caso in cui l'utente provi a caricare un file mal formato o di tipo diverso rispetto a quanto richiesto del programma, quest'ultimo segnalerà un errore attraverso una finestra di segnalazione e non caricherà alcun elemento.
+
+\subsection{Aggiunta e modifica di un elemento}
+Una volta premuto su \textbf{Add item}, il programma mostrerà una finestra di inserimento dati. L'utente potrà quindi inserire i dati a piacimento, rispettando naturalmente le regole imposte dal programma. In merito a queste, si segnala che è possibile inserire le caratteristiche dell'elemento in base al tipo di questo; le caratteristiche non appartenenti allo specifico tipo selezionato non sono selezionabili né modificabili. Una volta inserite le informazioni desiderate, l'utente dovrà premere il pulsante per permettere così l'inserimento nell'inventario. \\
+Per quanto riguarda la modifica, l'utente dovrà selezionare l'elemento da modificare e cliccare su \textbf{Edit item}. Nel caso in cui l'elemento sia selezionato si aprirà una finestra analoga a quella di inserimento, con la differenza che riporterà già i dati precedentemente caricati; l'utente potrà quindi modificare a piacimento le proprietà dell'elemento e salvare le modifiche con il pulsante. Nel caso in cui non vi sia alcun elemento selezionato, invece, si aprirà una finestra che segnalerà l'errore e la finestra di modifica non verrà aperta.
+
+\subsection{Rimozione di un elemento}
+Per rimuovere un elemento, l'utente dovrà selezionare l'elemento da eliminare e premere \textbf{Delete item}. Nel caso in cui l'elemento sia selezionato esso verrà cancellato; nel caso in cui non vi sia alcun elemento selezionato, invece, si aprirà una finestra che ne segnalerà l'errore e nessuna riga verra cancellata.
+
+\subsection{Visualizzazione delle informazioni}
+Una volta che l'inventario sarà riempito con un numero arbitrario di oggetti (anche solo uno), l'utente potrà cliccarvi sopra per visualizzare le relative informazioni. Una volta cliccato un elemento, si aprirà automaticamente una scheda laterale che mostrerà le informazioni dell'oggetto selezionato.
