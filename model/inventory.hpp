@@ -325,7 +325,7 @@ unsigned int Inventory<T>::getSize() const {
 
 template<class T>
 void Inventory<T>::insertAtPosition(int i, const T& s) {
-    if(i>size)
+    if(i>static_cast<int>(size))
         return;
     if(i == 0) {
         SmartP* c = new SmartP(s);
@@ -334,7 +334,7 @@ void Inventory<T>::insertAtPosition(int i, const T& s) {
         return;
     }
 
-    if(i == size) {
+    if(i == static_cast<int>(size)) {
         SmartP* c = new SmartP(s);
         c->next = nullptr;
         last->item = c->item;
