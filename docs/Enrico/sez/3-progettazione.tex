@@ -54,7 +54,45 @@ La classe \textit{Model} implementa quindi i metodi virtuali della classe base e
 Essa incorpora anche dei metodi \textit{getter} che fanno uso del polimorfismo per restituire porzioni di inventario contenenti oggetti di un solo tipo; questi metodi non sono utilizzati dal programma, ma vengono lasciati per una eventuale futura espansione o modifica del programma.
 
 \subsection{GUI}
+La \textit{GUI}, ossia l'interfaccia grafica, è la componente del programma che si occupa del suo aspetto grafico e dell'interazione con l'utente. Essa è composta dalle seguenti classi:
+\begin{itemize}
+  \item \textit{MainWindow};
+  \item \textit{Tab};
+  \item \textit{AddItem};
+  \item \textit{ArmorTab, RingTab, ShieldTab} e \textit{WeaponTab}.
+\end{itemize}
 
+\subsubsection{MainWindow}
+La classe \textit{MainWindow} rappresenta la finestra principale del programma; essa deriva da \textit{QMainWindow} ed è la classe che si occupa della creazione ed istanziazione di tutte le altre componenti grafiche del programma, e della chiamata degli opportuni metodi appartenenti alle diverse classi della \textit{GUI} attraverso opportuni \textit{connect}. \\
+Nello specifico, questa classe si occupa di:
+\begin{itemize}
+  \item Impostare le dimensioni minime dell'applicazione;
+  \item Creare il \textit{widget} che si occupa della visualizzazione delle tab;
+  \item Creare il menù superiore dell'applicazione;
+  \item Creare e connettere le \textit{action} dei diversi componenti grafici agli opportuni metodi delle rispettive classi. Da essa partono quindi le operazioni di:
+  \begin{itemize}
+    \item Caricamento e salvataggio di un file \texttt{.xml};
+    \item Svuotamento dell'inventario;
+    \item Aggiunta, modifica e rimozione di un elemento dall'inventario.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Tab}
+La classe \textit{Tab}, derivata da \textit{QWidget}, rappresenta il \textit{widget Qt} corrispondente al modello a schede del programma. Nello specifico, essa si occupa di:
+\begin{itemize}
+  \item Istanziare e impostare correttamente il \textit{model} e il \textit{filter proxy};
+  \item Istanziare le diverse schede come singoli oggetti delle rispettive classi \textit{ArmorTab, RingTab, ShieldTab} e \textit{WeaponTab};
+  \item Aggiornare la visualizzazione degli elementi dell'inventario all'interno della tabella;
+  \item Istanziare e visualizzare gli oggetti della classe \textit{AddItem}, ricevendo inoltre i dati inseriti in questo e aggiungendoli o modificandoli nell'inventario;
+  \item Richiamare il \textit{filter proxy} per la corretta suddivisione degli elementi nelle giuste schede;
+  \item Istanziare e visualizzare la barra laterale contenente le informazioni dell'elemento selezionato.
+\end{itemize}
+
+\subsubsection{AddItem}
+La classe \textit{AddItem} rappresenta le finestre di aggiunta e modifica di un elemento. Essa deriva dalla classe \textit{QDialog}, e permette l'inserimento di tutte le informazioni necessarie alla costruzione di un nuovo oggetto dell'inventario o alla modifica di uno preesistente.
+
+\subsection{Filter proxy}
+Il \textit{filter proxy}, rappresentato dalla classe \textit{Proxy}, funge da intermediario tra la \textit{view} e il \textit{model}. I metodi di \textit{Proxy} vengono infatti chiamati a ogni modifica e ogni \textit{refresh} della \textit{view}, e fungono da filtro facendo uso di espressioni regolari per smistare correttamente gli elementi nelle diverse tab.
 
 \subsection{I/O}
 Il programma permette la lettura e la scrittura di interi inventari. Questa possibilità è data dalla classe \textit{IO}, la quale fornisce i metodi necessari all'input e all'output dei dati tramite file .xml. Questi metodi risolvono il problema specifico del programma sviluppato, e non sono pertanto applicabili ad altri problemi.
@@ -63,7 +101,12 @@ Il programma permette la lettura e la scrittura di interi inventari. Questa poss
 
 
 \subsection{Gestione degli errori}
-
+Nel programma sono presenti blocchi \textit{try-catch} per la gestione a \textit{run-time} degli errori. Questi costrutti vengono usati principalmente in presenza di situazioni possibilmente critiche, dove è più importante prestare attenzione. In particolare, si fa uso della gestione di errori:
+\begin{itemize}
+  \item Per l'inserimento, rimozione o modifca di elementi dell'inventario;
+  \item Per la lettura e la scrittura dei file \texttt{.xml}, e per il conseguente inserimento degli elementi nell'inventario.
+\end{itemize}
+Gli errori vengono gestiti dalla \textit{standard library}, e a seguito della gestione viene mostrato un messaggio d'errore tramite un widget \textit{QMessageBox}.
 
 
 \subsection{Scelte progettuali}

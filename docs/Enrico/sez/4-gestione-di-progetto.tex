@@ -6,13 +6,17 @@ Il progetto è stato iniziato
 \subsection{Timeline individuale}
 
 \subsection{Ambiente di lavoro}
-Il progetto è stato sviluppato con Qt Creator v4.11.2 e Atom v1.47.0 su sistema operativo Arch Linux; il compilatore usato è stato GCC v10.1.0. Essendo il compilatore e la versione di Qt del sistema di sviluppo più aggiornati rispetto alle specifiche, sono stati effettuati frequenti allineamenti con la macchina virtuale, contenente Ubuntu 18.04 LTS con GCC alla versione v7.4.0 e Qt alla versione v5.9.5, per verificare la compatibilità di quanto prodotto.
+Il progetto è stato sviluppato con Qt Creator v4.11.2 e Atom v1.47.0 su sistema operativo Arch Linux; il compilatore usato è stato GCC v10.1.0. Essendo il compilatore e la versione di Qt del sistema di sviluppo più aggiornati rispetto alle specifiche, sono stati effettuati frequenti allineamenti con la macchina virtuale, contenente Ubuntu 18.04 LTS con GCC alla versione v7.4.0 e Qt alla versione v5.9.5. Questo ha permesso di verificare la compatibilità di quanto prodotto con le specifiche tecniche richieste.
 
 \subsection{Istruzioni di compilazione ed esecuzione}
 Il progetto prevede la compilazione tramite file .pro e tool qmake. Le istruzioni per la compilazione e l'esecuzione sono quindi le seguenti:
+\begin{center}
+\centering
 \begin{verbatim}
-  \$ qmake CrownSouls.pro
-  \$ make
-  \$ ./CrownSouls
+  $ qmake CrownSouls.pro
+  $ make
+  $ ./CrownSouls
 \end{verbatim}
+\end{center}
+
 Viene inoltre fornito un file .xml, locato nella cartella \texttt{extra}, contenente un inventario precompilato di prova.
