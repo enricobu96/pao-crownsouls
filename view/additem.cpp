@@ -8,7 +8,7 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     namePlaceholder->setPlaceholderText("Insert name");
 
     //DESCRIZIONE ITEM
-    descLabel = new QLabel("Descrizione");
+    descLabel = new QLabel("Description");
     flavourText = new QTextEdit;
 
     //ITEM LEVEl
@@ -17,7 +17,7 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     levelItem->setRange(0,99);
 
     //BOTTONI VARI PER ACCETTARE / CANCELLARE
-    buttok = new QPushButton("ACCETTA");    
+    buttok = new QPushButton("Add");
 
     //COMBOBOX TIPOLOGIA ITEM
     typeLabel = new QLabel("Item Type");

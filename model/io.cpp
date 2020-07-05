@@ -14,13 +14,13 @@ Inventory<InventoryItem*> IO::readFile() const { //questo dovrà ritornare a tab
             try {
                 t.pushFront(readFromXml(xml));
             } catch(const std::exception& e) {
-                QMessageBox box(QMessageBox::Warning, "File mal formato", "Errore nell'apertura del file.", QMessageBox::Ok);
+                QMessageBox box(QMessageBox::Warning, "File malformed", "Error opening file.", QMessageBox::Ok);
                 throw 1;
                 return t;
             }
         }
     } else {
-        QMessageBox box(QMessageBox::Warning, "File mal formato", "Errore nell'apertura del file.", QMessageBox::Ok);
+        QMessageBox box(QMessageBox::Warning, "File malformed", "Error opening file.", QMessageBox::Ok);
         box.exec();
         throw 1;
         return t;
@@ -42,7 +42,7 @@ void IO::write(const Inventory<InventoryItem *>& inv) const {
                 writeToXml(*it, xml);
             }
         } catch (const std::exception& e) {
-            QMessageBox box(QMessageBox::Warning, "Errore in scrittura", "Errore nella scrittura del file.", QMessageBox::Ok);
+            QMessageBox box(QMessageBox::Warning, "Writing error", "Error during file writing.", QMessageBox::Ok);
             throw 1;
             return;
         }
@@ -50,7 +50,7 @@ void IO::write(const Inventory<InventoryItem *>& inv) const {
         xml.writeEndDocument();
         file.commit();
     }
-    QMessageBox box(QMessageBox::Warning, "Errore in scrittura", "Errore nella scrittura del file.", QMessageBox::Ok);
+    QMessageBox box(QMessageBox::Warning, "Writing error", "Error during file writing.", QMessageBox::Ok);
     return;
 }
 

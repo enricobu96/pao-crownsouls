@@ -1,4 +1,4 @@
-\documentclass[openany, a4paper, 10pt]{article}
+\documentclass[openany, a4paper, 11pt]{article}
 \usepackage{emptypage}
 \usepackage{simple}
 \usepackage{csquotes}
@@ -15,12 +15,12 @@
   {\vspace*{\stretch{1}}\par}
 
 \begin{document}
-
+\pagenumbering{roman}
 \input{sez/header/frontespizio.tex}
 \newpage
 \input{sez/header/indici.tex}
-
-
+\setcounter{page}{1}
+\pagenumbering{arabic}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DA REPLICARE PER OGNI FILE %
 %     (un file a sezione)    %

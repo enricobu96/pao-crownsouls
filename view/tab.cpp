@@ -67,7 +67,7 @@ void Tab::removeItem()
     QModelIndexList c = shieldTab->selectionModel()->selectedRows();
     QModelIndexList d = weaponTab->selectionModel()->selectedRows();
 
-    AddItem mitem("Modifica");
+    AddItem mitem("Edit");
 
     if(!a.isEmpty()) {
         QModelIndex t = proxy->mapToSource(a[0]);
@@ -86,7 +86,7 @@ void Tab::removeItem()
         model->removeRows(t.row(), 1, QModelIndex());
     }
     else {
-        QMessageBox::warning(this,tr("Error"),tr("Nessun oggetto selezionato"),QMessageBox::Ok);
+        QMessageBox::warning(this,tr("Error"),tr("No item selected."),QMessageBox::Ok);
     }
 }
 
@@ -97,7 +97,7 @@ void Tab::modifyItem()
     QModelIndexList c = shieldTab->selectionModel()->selectedRows();
     QModelIndexList d = weaponTab->selectionModel()->selectedRows();
 
-    AddItem mItem("Modifica");
+    AddItem mItem("Edit");
 
     QModelIndex t = QModelIndex();
     if(!a.isEmpty()){
@@ -177,7 +177,7 @@ void Tab::modifyItem()
 
     }
     else{
-        QMessageBox::warning(this,tr("Error"),tr("Nessun oggetto selezionato"),QMessageBox::Ok);
+        QMessageBox::warning(this,tr("Error"),tr("No item selected."),QMessageBox::Ok);
     }
 
     if(!(a.isEmpty() && b.isEmpty() && c.isEmpty() && d.isEmpty())) {
@@ -240,7 +240,7 @@ void Tab::setInformation(AddItem &aItem,bool aggiungi, QModelIndex index){
         model->setInventoryItem(index, QVariant::fromValue(t));
     }
     } catch(std::exception e) {
-        QMessageBox err(QMessageBox::Warning, "Errore aggiunta elemento", "Errore nell'aggiunta dell'elemento", QMessageBox::Ok);
+        QMessageBox err(QMessageBox::Warning, "Error in adding ", "Error in adding item.", QMessageBox::Ok);
         throw 1;
     }
 }

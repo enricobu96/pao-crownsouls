@@ -77,11 +77,11 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
         return QVariant();
     if(orientation == Qt::Horizontal) {
         if(section == 0)
-            return "Nome";
+            return "Name";
         else if(section == 1)
-            return "Descrizione";
+            return "Description";
         else if(section == 2)
-            return "Livello";
+            return "Level";
         else
             return QVariant();
     }

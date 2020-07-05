@@ -20,7 +20,31 @@ La gerarchia è composta dalla classe base astratta \textit{InventoryItem}, dall
 Ciascuna classe implementa dei metodi virtuali che riguardano l'impostazione e il recupero delle diverse proprietà degli elementi, e dei metodi virtuali specifici di ogni sottoclasse astratta per il calcolo e l'ottenimento di statistiche basate sulle proprietà. L'utilizzo del polimorfismo in tale contesto viene illustrato in seguito.
 
 \subsection{Container}
-Container
+È stata implementata una classe \textit{Inventory} che funge da container. La classe fornisce un template di smart pointer, e simula una lista singolarmente linkata con alcuni accorgimenti: a differenza di una lista singolarmente linkata standard, infatti, essa fornisce anche un puntatore all'ultimo elemento, e permette l'accesso diretto in sola lettura a un dato elemento tramite l'overloading dell'operatore accesso agli elementi del puntatore ([]). \\
+La classe \textit{Inventory} contiene al suo interno due classi annidate:
+\begin{itemize}
+  \item La classe \textit{SmartP} rappresenta uno smart pointer; è infatti questa classe a rappresentare un elemento del container di tipo T templatizzato. Oltre al contenuto effettivo dell'elemento e al puntatore all'elemento successivo, la classe è fornita anche di:
+  \begin{itemize}
+    \item Costruttore e costruttore di copia profondo;
+    \item Distruttore profondo;
+    \item Assegnazione profonda;
+    \item Overloading degli operatori dereferenziazione e accesso a membro;
+    \item Overloading degli operatori booleani uguaglianza e disuguaglianza.
+  \end{itemize}
+  \item La classe \textit{Iterator} rappresenta l'iteratore del container. Nello specifico, un oggetto di classe Iterator è un iteratore costante, poiché non permette il side effect degli oggetti a cui punta. Questa classe presenta l'overloading dei seguenti operatori:
+  \begin{itemize}
+    \item Incremento prefisso;
+    \item Dereferenziazione;
+    \item Accesso a membro;
+    \item Uguaglianza e disuguaglianza.
+  \end{itemize}
+\end{itemize}
+La classe container fornisce diverse funzionalità di inserimento, cancellazione e ricerca; essa infatti permette:
+\begin{itemize}
+  \item L'inserimento e la rimozione di oggetti in testa, in coda o in una posizione data;
+  \item La modifica di un oggetto a una posizione data (sovrascrittura);
+  \item La lettura di oggetti in testa, in coda o a in una posizione data grazie all'overloading dell'operatore [].
+\end{itemize}
 
 \subsection{Modello}
 Modello
@@ -29,10 +53,13 @@ Modello
 GUI
 
 \subsection{I/O}
-Input/Output
+Il programma permette la lettura e la scrittura di interi inventari. Questa possibilità è data dalla classe \textit{IO}, la quale fornisce i metodi necessari all'input e all'output dei dati tramite file .xml. Questi metodi risolvono il problema specifico del programma sviluppato, e non sono pertanto applicabili ad altri problemi.
 
 \subsection{Polimorfismo}
 Polimorfismo
 
-\subsection{Scelte progettuali discutibili}
-Scelte progettuali
+\subsection{Scelte progettuali}
+\begin{itemize}
+\item Si è scelto di utilizzare una lista singolarmente linkata per la facilità e l'efficacia di questa struttura dati in un problema come quello in oggetto. Sono stati però seguiti degli accorgimenti per la semplificazione dell'accesso in sola lettura dati (tramite operatore []) e per la diminuzione dello sforzo computazionale. Un esempio di questo è la presenza di un puntatore all'ultimo elemento, che permette la riduzione di alcune operazioni, tra cui l'aggiunta e la rimozione in coda, da tempo O(n) a tempo costante;
+\item Si è scelto di optare per una classe di Input/Output non scalabile per questioni di tempo. Una classe facilmente adattabile a più problemi, infatti, avrebbe richiesto uno studio più approfondito e un utilizzo pesante di polimorfismo sulla gerarchia; questo è certamente auspicabile, ma purtroppo incompatibile con le tempistiche reali del progetto.
+\end{itemize}
