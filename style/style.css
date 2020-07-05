@@ -54,7 +54,7 @@ QTabBar::tab:selected {
 QLineEdit, QTextEdit {
     border: 1px solid #202020;
     border-radius: 6px;
-    padding: 4px;
+    padding: 2px;
 }
 
 QScrollBar:vertical {

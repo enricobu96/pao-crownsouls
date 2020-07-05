@@ -33,7 +33,7 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     //TEST GROUPBOX
     gbLayout = new QGridLayout;
     information = new QGroupBox("Additional Information");
-    information->setMinimumSize(525,100);
+    information->setMinimumSize(540,100);
     information->setLayout(gbLayout);
 
     //INFORMAZIONI AGGIUNTIVE
