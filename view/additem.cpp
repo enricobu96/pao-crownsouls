@@ -51,17 +51,29 @@ AddItem::AddItem(QString t, QWidget *parent): QDialog(parent)
     QLabel *stsIncreasingL = new QLabel("Stats Increasing");
 
     physDef = new QSpinBox;
+    physDef->setRange(0, 199);
     magicDef = new QSpinBox;
+    magicDef->setRange(0, 199);
     balance = new QSpinBox;
+    balance->setRange(0, 29);
     fallDef = new QSpinBox;
+    fallDef->setRange(0, 99);
     stabDef = new QSpinBox;
+    stabDef->setRange(0, 99);
     strScaling = new QSpinBox;
+    strScaling->setRange(0, 3);
     physDmg = new QSpinBox;
+    physDmg->setRange(0, 499);
     magicDmg = new QSpinBox;
+    magicDmg->setRange(0, 499);
     dexScaling = new QSpinBox;
+    dexScaling->setRange(0, 3);
     physRes = new QSpinBox;
+    physRes->setRange(0, 99);
     magicRes = new QSpinBox;
+    magicRes->setRange(0,99);
     stsIncreasing = new QSpinBox;
+    stsIncreasing->setRange(0, 3);
 
     gbLayout->addWidget(physDefL,0,0);
     gbLayout->addWidget(physDef,0,1);

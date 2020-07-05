@@ -519,6 +519,7 @@ void Tab::loadFileDialog()
         QString path = loadDialog->selectedFiles()[0];
         IO input(path);
         Inventory<InventoryItem*> t = input.readFile();
+        destroyInventory();
         Inventory<InventoryItem*>::Iterator it;
         for(it=t.begin(); !it.hasFinished(); ++it) {
             model->addInventoryItem(QModelIndex(), QVariant::fromValue(*it));
