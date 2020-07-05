@@ -1,12 +1,12 @@
 \section{Progettazione}
-Lo sviluppo del progetto si è basato sul pattern \textbf{Model-View} di \textit{Qt} e metodologia mista \textit{top-down} e \textit{bottom-up}. \\
-Oltre alla gerarchia, è stato realizzato un Container templatizzato per il contenimento degli oggetti appartenenti alla gerarchia.
+Lo sviluppo del progetto si è basato sul pattern \textbf{Model-View} di \textit{Qt} e una metodologia mista \textit{top-down} e \textit{bottom-up}: si è infatti partiti con la metodologia \textit{top-down} per la progettazione della gerarchia e del container, ma durante la scrittura di \textit{model} e \textit{view} si è ripensato leggermente alla struttura di gerarchia e container. \\
+Oltre alla gerarchia, è stato realizzato un container templatizzato per il contenimento degli oggetti appartenenti alla gerarchia.
 Sono stati realizzati inoltre:
 \begin{itemize}
-  \item Una GUI (Graphical User Interface), basata su classi preesistenti di Qt;
-  \item Un Model, il quale si occupa della gestione dei dati del programma, basato anch'esso su classi preesistenti di Qt;
-  \item Un filter proxy, che funge da intermediario tra model e view e permette di filtrare i dati per la visualizzazione corretta su ogni tab;
-  \item Una classe di Input/Output su file XML.
+  \item Una \textit{GUI (Graphical User Interface)}, basata su classi preesistenti di \textit{Qt};
+  \item Un \textit{model}, il quale si occupa della gestione dei dati del programma, basato anch'esso su classi preesistenti di \textit{Qt};
+  \item Un \textit{filter proxy}, che funge da intermediario tra \textit{model} e \textit{view} e permette di filtrare i dati per la visualizzazione corretta su ogni tab;
+  \item Una classe di Input/Output su file \texttt{.xml}.
 \end{itemize}
 
 \begin{figure}[H]
@@ -16,22 +16,22 @@ Sono stati realizzati inoltre:
 \end{figure}
 
 \subsection{Gerarchia}
-La gerarchia è composta dalla classe base astratta \textit{InventoryItem}, dalla quale deriva \textbf{direttamente} la classe concreta \textit{Ring} e \textbf{virtualmente} le classi astratte \textit{Armor}, \textit{Weapon} e \textit{Shield}. Da queste tre classi derivano \textbf{singolarmente} e \textbf{direttamente} le tre rispettive classi concrete \textit{BodyArmor}, \textit{AttackWeapon} e \textit{DefenseShield}. Viene inoltre utilizzata l'\textit{ereditarietà multipla} per la definizione di classi che rappresentano oggetti appartenenti a più tipi; nello specifico, la classe \textit{WeaponArmor} deriva direttamente da \textit{Armor} e \textit{Weapon}, e la classe \textit{WeaponShield} deriva direttamente da \textit{Weapon} e \textit{Shield}. Questa forma di ereditarietà multipla è di tipo \textbf{is-a}, poiché un oggetto WeaponArmor è sia un oggetto Weapon che un oggetto Armor (e lo stesso vale per WeaponShield). Da queste due classi astratte derivano poi rispettivamente le classi concrete \textit{Gloves} e \textit{AttackShield}. \\
+La gerarchia è composta dalla classe base astratta \textit{InventoryItem}, dalla quale derivano \textbf{direttamente} la classe concreta \textit{Ring} e \textbf{virtualmente} le classi astratte \textit{Armor}, \textit{Weapon} e \textit{Shield}. Da queste tre classi derivano \textbf{singolarmente} e \textbf{direttamente} le tre rispettive classi concrete \textit{BodyArmor}, \textit{AttackWeapon} e \textit{DefenseShield}. Viene inoltre utilizzata l'ereditarietà multipla per la definizione di classi che rappresentano oggetti appartenenti a più tipi; nello specifico, la classe \textit{WeaponArmor} deriva direttamente da \textit{Armor} e \textit{Weapon}, e la classe \textit{WeaponShield} deriva direttamente da \textit{Weapon} e \textit{Shield}. Questa forma di ereditarietà multipla è di tipo \textbf{is-a}, poiché un oggetto WeaponArmor è sia un oggetto Weapon che un oggetto Armor (e lo stesso vale per WeaponShield). Da queste due classi astratte derivano poi rispettivamente le classi concrete \textit{Gloves} e \textit{AttackShield}. \\
 Ciascuna classe implementa dei metodi virtuali che riguardano l'impostazione e il recupero delle diverse proprietà degli elementi, e dei metodi virtuali specifici di ogni sottoclasse astratta per il calcolo e l'ottenimento di statistiche basate sulle proprietà. L'utilizzo del polimorfismo in tale contesto viene illustrato in seguito.
 
 \subsection{Container}
-È stata implementata una classe \textit{Inventory} che funge da container. La classe fornisce un template di smart pointer, e simula una lista singolarmente linkata con alcuni accorgimenti: a differenza di una lista singolarmente linkata standard, infatti, essa fornisce anche un puntatore all'ultimo elemento, e permette l'accesso diretto in sola lettura a un dato elemento tramite l'overloading dell'operatore accesso agli elementi del puntatore ([]). \\
+È stata implementata una classe \textit{Inventory} che funge da container. La classe fornisce un template di smart pointer, e simula una lista singolarmente linkata con alcuni accorgimenti: a differenza di una lista singolarmente linkata standard, infatti, essa fornisce anche un puntatore all'ultimo elemento e permette l'accesso diretto in sola lettura a un dato elemento tramite l'overloading dell'operatore accesso agli elementi del puntatore (\textbf{[ ]}). \\
 La classe \textit{Inventory} contiene al suo interno due classi annidate:
 \begin{itemize}
   \item La classe \textit{SmartP} rappresenta uno smart pointer; è infatti questa classe a rappresentare un elemento del container di tipo T templatizzato. Oltre al contenuto effettivo dell'elemento e al puntatore all'elemento successivo, la classe è fornita anche di:
   \begin{itemize}
-    \item Costruttore e costruttore di copia profondo;
+    \item Costruttore e costruttore di copia profondi;
     \item Distruttore profondo;
     \item Assegnazione profonda;
-    \item Overloading degli operatori dereferenziazione e accesso a membro;
-    \item Overloading degli operatori booleani uguaglianza e disuguaglianza.
+    \item Overloading degli operatori di dereferenziazione e accesso a membro;
+    \item Overloading degli operatori booleani di uguaglianza e disuguaglianza.
   \end{itemize}
-  \item La classe \textit{Iterator} rappresenta l'iteratore del container. Nello specifico, un oggetto di classe Iterator è un iteratore costante, poiché non permette il side effect degli oggetti a cui punta. Questa classe presenta l'overloading dei seguenti operatori:
+  \item La classe \textit{Iterator} rappresenta l'iteratore del container. Nello specifico, un oggetto di classe Iterator è un iteratore costante, poiché non permette il \textit{side effect} sugli oggetti a cui punta. Questa classe presenta l'overloading dei seguenti operatori:
   \begin{itemize}
     \item Incremento prefisso;
     \item Dereferenziazione;
@@ -39,24 +39,32 @@ La classe \textit{Inventory} contiene al suo interno due classi annidate:
     \item Uguaglianza e disuguaglianza.
   \end{itemize}
 \end{itemize}
-La classe container fornisce diverse funzionalità di inserimento, cancellazione e ricerca; essa infatti permette:
+La classe container \textit{Inventory} fornisce diverse funzionalità di inserimento, cancellazione e ricerca; essa infatti permette:
 \begin{itemize}
   \item L'inserimento e la rimozione di oggetti in testa, in coda o in una posizione data;
   \item La modifica di un oggetto a una posizione data (sovrascrittura);
-  \item La lettura di oggetti in testa, in coda o a in una posizione data grazie all'overloading dell'operatore [].
+  \item La lettura di oggetti in testa, in coda o a in una posizione data grazie all'overloading dell'operatore \textbf{[ ]}.
 \end{itemize}
+Come precedentemente detto, questa classe e le relative classi annidate sono templatizzate su tipo T; questo permette quindi il riutilizzo del container anche per applicazioni con \textit{model} e/o \textit{view} differenti.
 
 \subsection{Modello}
-Modello
+Il modello, rappresentato dalla classe \textit{Model}, fa uso delle classi della gerarchia e della classe container. Essa è derivata dalla classe \textit{QAbstractItemModel} fornita da \textit{Qt}; l'utilizzo di tale derivazione si è rivelato particolarmente utile poiché permette una gestione più semplice di aggiunta, rimozione e visualizzazione degli elementi. Queste operazioni, infatti, sono svolte dai metodi \textit{rowCount, columnCount, insertRows, removeRows, data, setData} e \textit{headerData}, metodi virtuali o virtuali puri che sono stati ridefiniti nella classe. \\
+Questa classe si occupa di gestire l'intero inventario presente nel programma, rappresentato dal campo dati \textit{inventory} di classe \textit{Inventory<InventoryItem*>}, delegando alla \textit{view} e al \textit{proxy model} la corretta suddivisione in tabelle di elementi dell'inventario in base al loro tipo. \\
+La classe \textit{Model} implementa quindi i metodi virtuali della classe base e delle diverse classi astratte derivate, aggiungendo nuovi metodi per l'inserimento, la rimozione, la modifica e la visualizzazione degli elementi. \\
+Essa incorpora anche dei metodi \textit{getter} che fanno uso del polimorfismo per restituire porzioni di inventario contenenti oggetti di un solo tipo; questi metodi non sono utilizzati dal programma, ma vengono lasciati per una eventuale futura espansione o modifica del programma.
 
 \subsection{GUI}
-GUI
+
 
 \subsection{I/O}
 Il programma permette la lettura e la scrittura di interi inventari. Questa possibilità è data dalla classe \textit{IO}, la quale fornisce i metodi necessari all'input e all'output dei dati tramite file .xml. Questi metodi risolvono il problema specifico del programma sviluppato, e non sono pertanto applicabili ad altri problemi.
 
 \subsection{Polimorfismo}
-Polimorfismo
+
+
+\subsection{Gestione degli errori}
+
+
 
 \subsection{Scelte progettuali}
 \begin{itemize}
