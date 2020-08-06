@@ -1,0 +1,35 @@
+\documentclass[openany, a4paper, 10.5pt]{article}
+\usepackage{emptypage}
+\usepackage{simple}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{eurosym}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{listings}
+\newenvironment{vplace}[1][1]
+  {\par\vspace*{\stretch{#1}}}
+  {\vspace*{\stretch{1}}\par}
+
+\begin{document}
+\pagenumbering{roman}
+\input{sez/header/frontespizio.tex}
+\input{sez/header/indici.tex}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DA REPLICARE PER OGNI FILE %
+%     (un file a sezione)    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\input{sez/1-introduzione.tex}
+\input{sez/2-manuale.tex}
+\input{sez/3-progettazione.tex}
+\input{sez/4-gestione-di-progetto}
+
+\end{document}

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Inventory>
+    <InventoryItem>
+        <name>Dragon Tooth</name>
+        <itemLevel>56</itemLevel>
+        <description>Created from an everlasting dragon tooth. Legendary great hammer of Havel the Rock. 
+The dragon tooth will never break as it is harder than stone, and it grants its wielder resistance to magic and flame. </description>
+        <type>weapon</type>
+        <physicalDamage>30</physicalDamage>
+        <magicalDamage>79</magicalDamage>
+        <strenghtScaling>0</strenghtScaling>
+        <dexScaling>0</dexScaling>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Gravelord Sword</name>
+        <itemLevel>97</itemLevel>
+        <description>Sword wielded only by servants of Gravelord Nito, the first of the dead. Crafted from the bones of the fallen. 
+The miasma of death exudes from the sword, a veritable toxin to any living being. </description>
+        <type>weapon</type>
+        <physicalDamage>87</physicalDamage>
+        <magicalDamage>39</magicalDamage>
+        <strenghtScaling>0</strenghtScaling>
+        <dexScaling>0</dexScaling>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Solaire's Gloves</name>
+        <itemLevel>76</itemLevel>
+        <description>Praise the sun...with your gloves</description>
+        <type>weaponarmor</type>
+        <physicalDefense>28</physicalDefense>
+        <magicalDefense>70</magicalDefense>
+        <balance>18</balance>
+        <physicalDamage>65</physicalDamage>
+        <magicalDamage>75</magicalDamage>
+        <strenghtScaling>0</strenghtScaling>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Iron &amp; Sun Set</name>
+        <itemLevel>86</itemLevel>
+        <description>Praise the sun.</description>
+        <type>armor</type>
+        <physicalDefense>54</physicalDefense>
+        <magicalDefense>30</magicalDefense>
+        <balance>0</balance>
+        <fallingDefense>3</fallingDefense>
+        <stabbingDefense>63</stabbingDefense>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Golem Set</name>
+        <itemLevel>86</itemLevel>
+        <description>Head of the Iron Golem, guardian of the
+ancient Sen's Fortress, slayer of heroes who
+ventured forth from Anor Londo.</description>
+        <type>armor</type>
+        <physicalDefense>56</physicalDefense>
+        <magicalDefense>53</magicalDefense>
+        <balance>0</balance>
+        <fallingDefense>85</fallingDefense>
+        <stabbingDefense>35</stabbingDefense>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Catarina Set</name>
+        <itemLevel>57</itemLevel>
+        <description>Outside Catarina, it is often ridiculed for
+their onion-like shape, infuriating the proud
+knights, but the masterfully forged curved
+design makes it very effective for parrying.</description>
+        <type>armor</type>
+        <physicalDefense>87</physicalDefense>
+        <magicalDefense>87</magicalDefense>
+        <balance>0</balance>
+        <fallingDefense>30</fallingDefense>
+        <stabbingDefense>97</stabbingDefense>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Big Hat's Set</name>
+        <itemLevel>43</itemLevel>
+        <description>Famously antisocial, Logan used it to block
+out noise and people's stares so he could
+focus on his own thoughts, but it does not
+possess any special magic powers.</description>
+        <type>armor</type>
+        <physicalDefense>63</physicalDefense>
+        <magicalDefense>23</magicalDefense>
+        <balance>0</balance>
+        <fallingDefense>95</fallingDefense>
+        <stabbingDefense>85</stabbingDefense>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Wolf Ring</name>
+        <itemLevel>53</itemLevel>
+        <description>Wolf Ring is a Ring in Dark Souls and Dark Souls Remastered. Players can equip up to 2 Rings, but equipping two of the same item is not possible.</description>
+        <type>ring</type>
+        <statsIncreasing>65</statsIncreasing>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Darkmoon Seance Ring</name>
+        <itemLevel>86</itemLevel>
+        <description>Darkmoon Seance Ring is a Ring in Dark Souls and Dark Souls Remastered. Players can equip up to 2 Rings, but equipping two of the same item is not possible.</description>
+        <type>ring</type>
+        <statsIncreasing>65</statsIncreasing>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Ring of Sacrifice</name>
+        <itemLevel>8</itemLevel>
+        <description>Ring of Sacrifice is a Ring in Dark Souls and Dark Souls Remastered. Players can equip up to 2 Rings, but equipping two of the same item is not possible.</description>
+        <type>ring</type>
+        <statsIncreasing>40</statsIncreasing>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Spell Stoneplate Ring</name>
+        <itemLevel>5</itemLevel>
+        <description>Spell Stoneplate Ring is a Ring in Dark Souls and Dark Souls Remastered. Players can equip up to 2 Rings, but equipping two of the same item is not possible.</description>
+        <type>ring</type>
+        <statsIncreasing>15</statsIncreasing>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Bonewheeled Shield</name>
+        <itemLevel>74</itemLevel>
+        <description>Giant wooden wheel encircled by spikes. Half-melded to a strange skeleton&quot; 
+&quot;Can be used as a great shield, only for the great gaps. But at least the spikes turn into weapons with a good spin. Strange indeed!&quot;</description>
+        <type>weaponshield</type>
+        <physicalDamage>54</physicalDamage>
+        <magicalDamage>52</magicalDamage>
+        <physicalReduction>76</physicalReduction>
+        <magicalReduction>74</magicalReduction>
+        <dexScaling>0</dexScaling>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Havel's Greatshield</name>
+        <itemLevel>90</itemLevel>
+        <description>Greatshield of the legendary Havel the Rock. Cut straight from a great slab of stone.&quot; 
+&quot;This greatshield is imbued with the magic of Havel, proves a strong defense, and is incredibly heavy. A true divine heirloom on par with the Dragon tooth.</description>
+        <type>shield</type>
+        <physicalReduction>99</physicalReduction>
+        <magicalReduction>70</magicalReduction>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Spiked Shield</name>
+        <itemLevel>60</itemLevel>
+        <description>Shield of the infamous Darkwraith Kirk, Knight of Thorns. Covered with spikes.&quot; 
+&quot;Can be used as a weapon. Sharp spikes cause heavy bleeding.</description>
+        <type>weaponshield</type>
+        <physicalDamage>40</physicalDamage>
+        <magicalDamage>10</magicalDamage>
+        <physicalReduction>85</physicalReduction>
+        <magicalReduction>80</magicalReduction>
+        <dexScaling>0</dexScaling>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Small Leather Shield</name>
+        <itemLevel>34</itemLevel>
+        <description>Small, leather-covered round shield, reinforced in critical spots with metal. 
+Small shields are always less stable, but landing critical hits after parry is easier.</description>
+        <type>shield</type>
+        <physicalReduction>67</physicalReduction>
+        <magicalReduction>65</magicalReduction>
+    </InventoryItem>
+    <InventoryItem>
+        <name>Zweihander</name>
+        <itemLevel>79</itemLevel>
+        <description>The Zweihander's strong attack is its signature overhead swing. It doesn't deal quite as much damage as the strong attacks of other Ultra weapons, but deals immense poise damage, and is much faster to swing (the other weapons require a &quot;charge up&quot;). Normal enemies will be immediately smashed into the ground, and almost all bigger enemies will be interrupted. It is one of the only moves in the game that can swing faster than a Mushroom Parent or Crystal Golem can attack, yet is guaranteed to break their poise, interrupting their attack. This makes it an ideal weapon/attack versus those enemies. Like most weapons with large poise-breaking capacities, barely missing an enemy with the strong attack can still cause a stagger. </description>
+        <type>weapon</type>
+        <physicalDamage>45</physicalDamage>
+        <magicalDamage>10</magicalDamage>
+        <strenghtScaling>0</strenghtScaling>
+        <dexScaling>0</dexScaling>
+    </InventoryItem>
+</Inventory>

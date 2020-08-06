@@ -1,0 +1,170 @@
+/* GLOBAL */
+* {
+    background-color: rgba(38,50,56 ,1);
+    color: #F5F5F5;
+}
+
+/* QLabels */
+QLabel[type="addInformation"] {
+    color: #FFF;
+    background-color: rgba(129,199,132 , 0.5);
+    border-radius: 8px;
+    padding: 1px;
+}
+
+QLabel[type="stats"] {
+    color: #FFF;
+    background-color: rgba(3,169,244 , 0.5);
+    border-radius: 8px;
+    padding: 1px;
+}
+
+QLabel[type="statsInfo"] {
+    color: #FFF;
+    background-color: rgba(1,87,155 ,0.5);
+    border-radius: 8px;
+    padding: 1px;
+}
+
+/* QTabWidgets */
+QTabWidget::tab-bar {
+    left: 5px;
+}
+
+/* QTabBars */
+QTabBar::tab {
+    background-color: rgba(143,238,88 ,0.5);
+    border-bottom-color: #C2C7CB;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 10ex;
+    padding: 4px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: rgba(143,238,88 ,0.8);
+}
+
+QTabBar::tab:selected {
+    border-color: #9B9B9B;
+    border-bottom-color: #C2C7CB; /* same as pane color */
+}
+
+/* QLineEdits, QTextEdits */
+QLineEdit, QTextEdit {
+    border: 1px solid #202020;
+    border-radius: 6px;
+    padding: 2px;
+}
+
+QScrollBar:vertical {
+    border: 1px solid #202020;
+    width: 5px;
+    border-radius: 18px;
+}
+QScrollBar::handle:vertical {
+    background: #202020;
+    min-height: 0px;
+}
+
+QScrollBar::add-line:vertical {
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    height: 0 px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+/* QComboBoxes */
+QComboBox {
+    border: 1px solid #202020;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+
+QComboBox::drop-down {
+    border: 0px;
+}
+
+QComboBox::down-arrow {
+    image: url(:/style/images/down_arrow.png);
+    width: 12px;
+    height: 12px;
+    border: 0px;
+    color: #202020;
+}
+
+/* QSpinBoxes */
+QSpinBox {
+    margin-left: 13px;
+    margin-right: 13px;
+    width: 13px;
+    border: 1 solid #202020;
+    border-radius: 4px;
+    background-color: rgba(38,50,56 ,1);
+    color: #F5F5F5;
+    text-align: center;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: margin;
+    subcontrol-position: right;
+    image: url(:/style/images/plus_button.png);
+    width: 30px;
+    height: 30px;
+    border: 0px;
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: margin;
+    subcontrol-position: left;
+    image: url(:/style/images/minus-button.png);
+    width: 30px;
+    height: 30px;
+    border: 0px;
+}
+
+QSpinBox:disabled {
+    margin-left: 13px;
+    margin-right: 13px;
+    width: 13px;
+    border: 1 solid #202020;
+    border-radius: 4px;
+    background-color: rgba(38,50,56 ,1);
+    color: #F5F5F5;
+    text-align: center;
+}
+
+QSpinBox::up-button:disabled {
+    subcontrol-origin: margin;
+    subcontrol-position: right;
+    image: url(:/style/images/plus_button_dis.png);
+    width: 30px;
+    height: 30px;
+    border: 0px;
+}
+
+
+QSpinBox::down-button:disabled {
+    subcontrol-origin: margin;
+    subcontrol-position: left;
+    image: url(:/style/images/minus-button_dis.png);
+    width: 30px;
+    height: 30px;
+    border: 0px;
+}
+
+/* QPushButtons */
+QPushButton {
+    border-radius: 6px;
+    border: 1px solid #202020;
+    padding: 5px;
+}
+
+QPushButton:pressed {
+    background-color: #008080;
+}

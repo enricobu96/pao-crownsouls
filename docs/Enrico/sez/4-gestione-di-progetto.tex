@@ -1,0 +1,58 @@
+\section{Gestione di Progetto}
+
+\subsection{Suddivisione del lavoro progettuale}
+Il progetto è stato iniziato all'inizio del mese di giugno e si è concluso il giorno precedente alla consegna (4 luglio 2020).\\
+Il progetto, nella la sua completezza ha richiesto circa \textbf{110} ore equalmente divise tra i due componenti del gruppo, che sono:
+\begin{itemize}
+    \item Buratto Enrico - 1142644
+    \item Ostanello Emanuele - 1143439
+\end{itemize}
+Entrambi i componenti hanno contribuito a tutte le parti del progetto; la progettazione iniziale dei diversi componenti del progetto è stata concepita in totale collaborazione tramite la piattaforma di comunicazione vocale \textit{Discord}, necessaria nel periodo di distanziamento sociale che si è sovrapposto a buona parte del periodo di progettazione e sviluppo. Tuttavia, i singoli componenti hanno approfondito maggiormente un determinato ambito di progetto; nello specifico:
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{c|c}
+\textbf{Enrico Buratto}        & \textbf{Emanuele Ostanello} \\ \hline
+Codifica Gerarchia e Container & Apprendimento Qt            \\
+Codifica Model                 & Codifica View              
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{Timeline individuale}
+Il lavoro individuale ha richiesto circa \textbf{55 ore} sulle 50 ore previste; le ore in eccesso sono dovute principalmente alla difficoltà di comunicazione a distanza, dovuta al periodo attuale. Nonostante questo, si può dire che il carico di lavoro è stato ben calibrato in base alla disponibilità oraria personale e a quanto sviluppato.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{l|c}
+\textbf{Fasi progettuali}        & \textbf{Ore utilizzate} \\ \hline
+Analisi del problema             & 5                       \\
+Progettazione                    & 13                      \\
+Apprendimento Qt                 & 4                       \\
+Codifica e implementazione Model & 17                      \\
+Codifica e implementazione View  & 4                       \\
+Test e Debug                     & 8                       \\
+Relazione                        & 4                       \\ \hline
+\textbf{Ore totali}              & \textbf{55}            
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{Ambiente di lavoro}
+Il progetto è stato sviluppato con \texti{Qt Creator v4.11.2} e \textif{Atom v1.47.0} su sistema operativo \textit{Arch Linux}; il compilatore usato è stato \textit{gcc v10.1.0}. Essendo il compilatore e la versione di \textit{Qt} del sistema di sviluppo più aggiornati rispetto alle specifiche, sono stati effettuati frequenti allineamenti con la macchina virtuale, contenente \textit{Ubuntu 18.04 LTS} con \textit{gcc v7.4.0} e \textit{Qt} alla versione v5.9.5. Questo ha permesso di verificare la compatibilità di quanto prodotto con le specifiche tecniche richieste.
+
+\subsection{Istruzioni di compilazione ed esecuzione}
+Il progetto prevede la compilazione tramite file .pro e tool qmake. Le istruzioni per la compilazione e l'esecuzione sono quindi le seguenti:
+\begin{center}
+\centering
+\begin{verbatim}
+  $ qmake CrownSouls.pro
+  $ make
+  $ ./CrownSouls
+\end{verbatim}
+\end{center}
+
+Viene inoltre fornito un file \texttt{.xml}, locato nella cartella \texttt{extra}, contenente un inventario precompilato di prova.
+
+\subsection{Considerazioni finali}
+Il progetto ha richiesto un modesto impegno, soprattutto per quanto riguarda la progettazione e l'organizzazione del lavoro, avvenute a distanza. Una volta che il gruppo si è organizzato e il lavoro è stato diviso, però, lo sviluppo è stato abbastanza lineare, costante nel tempo e senza particolari complicazioni. \\
+Entrambi i componenti del gruppo hanno utilizzato una parte considerevole di tempo per l'apprendimento e l'implementazione del \textit{proxy model}, che inizialmente ha dato non pochi problemi. Una volta risolti questi, però, lo sviluppo è continuato velocemente. \\
+Concludendo, possiamo affermare che il progetto è stato abbastanza lungo e impegnativo, ma lo studio individuale e la scrittura di codice "reale" ha portato i suoi frutti.
