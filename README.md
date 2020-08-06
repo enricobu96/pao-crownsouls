@@ -20,4 +20,4 @@ Questo ovviamente **non** significa che potete copiarlo e consegnarlo come proge
 
 ## Valutazione
 
-Il progetto è stato valutato come _molto buono, quasi ottimo_ dal Prof. Ranzato.
+Il progetto è stato valutato come **_"molto buono, quasi ottimo"_** dal Prof. Ranzato.
