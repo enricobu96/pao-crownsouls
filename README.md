@@ -17,3 +17,7 @@ Il progetto viene rilasciato con licenza _GPL-3.0_. Questo significa che il prog
 - Redistribuito
 
 Questo ovviamente **non** significa che potete copiarlo e consegnarlo come progetto di Programmazione ad Oggetti. I creatori declinano qualsiasi responsabilità, ergo: se lo copiate e venite sgamati la colpa è totalmente vostra, noi ve l'avevamo detto. Anche perché diciamocelo ragazzi, siete all'università e la pagate pure, che senso ha copiare?
+
+## Valutazione
+
+Il progetto è stato valutato come _molto buono, quasi ottimo_ dal Prof. Ranzato.
