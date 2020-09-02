@@ -2,7 +2,7 @@
 
 Repository per il progetto di Programmazione a Oggetti "CrownSouls" - A.A. 2019 - 2020
 
-![Screenshot dell'applicazione](extra/screenshot.png)
+![Screenshot dell'applicazione](extra/screenshot.jpg)
 
 ## Sviluppatori
 | Matricola | Nome e cognome |
